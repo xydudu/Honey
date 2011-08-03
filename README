@@ -1,4 +1,17 @@
 Honey 
+    
+    honey.go( 'lib_jquery', function() {
+        
+        // things going on
+        
+    } );
+
+    honey.ready( 'lib_jquery', function() {
+        
+        // fire when lib_jquery is loaded
+
+    } );
+
 
 TODO:
  * debug
