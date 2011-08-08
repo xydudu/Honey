@@ -11,19 +11,26 @@
  * IE等不能按顺序并行下载的浏览器 OK
  * IE等浏览器下combo合并 OK
  * 合并应该限制合成后文件大小 (  )
+ * 如果是开发模式，自动引入 debug OK
+ *
  */
 
 var PROJECT = 'revive',
     VERSION = '2011080301',
     DEV = true,
-    COMBO = true,
+    COMBO = false,
     COMBOURL = 'http://lab.local:8888/',
-    ROOT = 'http://beta.hunantv.com:9000/js/';
+    ROOT = 'http://lab.local/honey/';
 
 (function( doc, undef ) {
     
-    var
+    var 
+    head = doc.documentElement,
+    debugLoaded = false,
+    depansLoaded = true,
+    depansEvent = [],
     combos = [],
+    domWaiters = [],
     isHeadReady,
     isDomReady,
     scripts = {},
@@ -53,7 +60,13 @@ var PROJECT = 'revive',
         
         var 
         els = {},
-        fn = $fn === undef ? false : $fn,
+        fn = $fn === undef ? false : function() {
+            if ( depansLoaded ) {
+                $fn()
+            } else {
+                depansEvent.push( $fn );
+            }
+        },
         mods = $mods.split( ',' );
          
         each( mods, function( $m, $i ) {
@@ -215,13 +228,77 @@ var PROJECT = 'revive',
         return H;
 
     };
+    
+    // make a module
+    H.def = function( $depends, $fn ) {
+        
+        if ( isFunc( $depends ) ) {
+            $fn = $depends; 
+            $depends = [];
+        } else {
+            $depends = $depends.split(',');
+        }
 
+        var mod;
+
+        while ( $depends.length ) {
+            
+            mod = H.trim( $depends.shift() );
+            
+            if ( !scripts[ mod ] || LOADED != scripts[ mod ].state ) {
+                
+                depansLoaded = false;
+
+                //TODO
+                //preload the mod dep...
+                if ( !isAsync || COMBO ) {
+                    alert( mod +' is not required' ); 
+                    return H;
+                }
+
+
+                return load( getScript( mod ), function() {
+                    depansLoaded = true;
+                    $fn( H );
+                    fireEventDef();
+                } );
+
+            }
+        
+        }
+
+        $fn && $fn( H );
+
+        return H;
+
+    };
+
+    //simple css loader
+    H.css = function( $path ) {
+
+        var f = doc.createElement( 'link' ); 
+        f.setAttribute( 'rel', 'stylesheet' );
+        f.setAttribute( 'type', 'text/css' );
+        f.setAttribute( 'href', $path );
+        (doc.body || head).appendChild(f);
+
+    };
     
     H.trim = function( $a ) {
 
         return $a.replace( /^\s+|\s+$/g, '' ); 
 
     };
+
+    function fireEventDef () {
+        
+        each( depansEvent, function( $fn ) {
+            
+            $fn();
+        
+        } );
+
+    }
 
     function getScript( $m, $justGiveScript ) {
         
@@ -456,6 +533,79 @@ var PROJECT = 'revive',
     }
 
     /*
+        The much desired DOM ready check
+        Thanks to jQuery and http://javascript.nwbox.com/IEContentLoaded/
+    */
+
+    function fireReady() {
+
+        if ( DEV && !debugLoaded ) return;
+
+        fireReady.fired = true;
+        if (!isDomReady) {
+            isDomReady = true;
+            each(domWaiters, function(fn) {
+                one(fn);
+            });
+        }
+    }
+
+    // W3C
+    if (window.addEventListener) {
+        doc.addEventListener("DOMContentLoaded", fireReady, false);
+
+        // fallback. this is always called
+        window.addEventListener("load", fireReady, false);
+
+    // IE
+    } else if (window.attachEvent) {
+
+        // for iframes
+        doc.attachEvent("onreadystatechange", function()  {
+            if (doc.readyState === "complete" ) {
+                fireReady();
+            }
+        });
+
+
+        // avoid frames with different domains issue
+        var frameElement = 1;
+
+        try {
+            frameElement = window.frameElement;
+
+        } catch(e) {}
+
+
+        if (!frameElement && head.doScroll) {
+
+            (function() {
+                try {
+                    head.doScroll("left");
+                    fireReady();
+
+                } catch(e) {
+                    setTimeout(arguments.callee, 1);
+                    return;
+                }
+            })();
+        }
+
+        // fallback
+        window.attachEvent("onload", fireReady);
+    }
+
+
+    // enable document.readyState for Firefox <= 3.5
+    if (!doc.readyState && doc.addEventListener) {
+        doc.readyState = "loading";
+        doc.addEventListener("DOMContentLoaded", handler = function () {
+            doc.removeEventListener("DOMContentLoaded", handler, false);
+            doc.readyState = "complete";
+        }, false);
+    }
+
+    /*
         We wait for 300 ms before script loading starts. for some reason this is needed
         to make sure scripts are cached. Not sure why this happens yet. A case study:
 
@@ -465,6 +615,21 @@ var PROJECT = 'revive',
 
         isHeadReady = true;
         each( queue, function( fn ) { fn(); });
+
+        //load debug
+        if ( DEV ) {
+            
+            scriptTag( ROOT +'honey.debug.js', function() {
+                
+                debugLoaded = true;
+                H.debug( 'You are in the DEV mode!' );
+                if ( !fireReady.fired ) {
+                    fireReady();
+                };
+            
+            } );
+
+        }
 
     }, 300);
 
