@@ -1,19 +1,5 @@
-Honey 
-    
-    honey.go( 'lib_jquery', function() {
-        
-        // things going on
-        
-    } );
+Honey is a Javascript file Loader , and it's based on Headjs (headjs.com).
 
-    honey.ready( 'lib_jquery', function() {
-        
-        // fire when lib_jquery is loaded
+Now Honey is rebuilding.
 
-    } );
-
-
-TODO:
- * debug
- * add some modules
- * api for combo js from other domain
+6.13 / 2012 Lian Hsueh
