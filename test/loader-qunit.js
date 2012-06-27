@@ -38,6 +38,15 @@
     }), 2000);
   });
 
+  test('只加载无函数', function() {
+    stop();
+    H.go("mod_test");
+    ok(true, "H.go ok");
+    return setTimeout((function() {
+      return start();
+    }), 2000);
+  });
+
   test('加载2个模块', 7, function() {
     stop();
     H.ready("mod_test2", function() {
@@ -77,11 +86,9 @@
       return equal(mod_test, 1, 'mod_test == 1 from H.go');
     });
     H.go("mod_test2, mod_test", function() {
-      H.debug('mod_test2, mod_test');
       return equal(mod_test2, 2, 'mod_test2 == 2 from H.go');
     });
     H.go("mod_test, mod_needa, mod_a", function() {
-      H.debug('mod_test, mod_needa, mod_a');
       return equal(H.need_a, 1, 'H.need_a === 1');
     });
     return setTimeout((function() {

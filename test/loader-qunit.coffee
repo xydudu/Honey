@@ -33,6 +33,12 @@ test '加载1个模块', 6, ()->
 
     setTimeout (-> start()), 2000
 
+test '只加载无函数', ()->
+    stop()
+    H.go "mod_test"
+    ok true, "H.go ok"
+    setTimeout (-> start()), 2000
+
 test '加载2个模块', 7, ()->
     
     stop()
@@ -71,11 +77,17 @@ test '依赖关系加载', 3, ()->
         equal mod_test, 1, 'mod_test == 1 from H.go'
 
     H.go "mod_test2, mod_test", ()->
-        H.debug 'mod_test2, mod_test'
         equal mod_test2, 2, 'mod_test2 == 2 from H.go'
 
     H.go "mod_test, mod_needa, mod_a", ()->
-        H.debug 'mod_test, mod_needa, mod_a'
         equal H.need_a, 1, 'H.need_a === 1'
 
     setTimeout (-> start()), 2000
+
+
+#test 'def依赖的模块没有引入', 1, ()->
+#    stop()
+#    H.go "mod_test, mod_needa", ()->
+#        equal H.need_a, 1, 'H.need_a === 1'
+#    setTimeout (-> start()), 2000
+

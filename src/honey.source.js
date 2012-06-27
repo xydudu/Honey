@@ -3,7 +3,11 @@
  * Honey, just a loader, based headjs ( headjs.com )
  * Version 3.0
  * Lian Hsueh from Huantv.com
- *
+ * 
+ * remove methods:
+ *  1. honey.isString
+ *  2. honey.delegate
+ *  3. honey.ie()
  */
 
 (function(w, doc, undefined) {
@@ -43,13 +47,6 @@
         fn = _fn || null,
         l, current,
         group = scriptGroup[_m] || {scripts: []};
-        
-        var xfn = function() {
-            for (var name in handlers) {
-                H.debug(handlers[name].length);
-            }
-            fn();
-        };
 
         while (l = mods.length) {
             var m = getScript(mods.shift());
@@ -63,8 +60,8 @@
             load(m, function() {
                 var group = scriptGroup[_m];
                 group
-                ? allLoaded(group.scripts) && one(xfn)
-                : one(xfn);
+                ? allLoaded(group.scripts) && one(fn)
+                : one(fn);
             });
             (l === 1) && (current = null);
         }
@@ -114,6 +111,10 @@
         }; 
         ready = 1;
         each(deps, function(_m) {
+            if (!scripts[_m]) {
+                //TODO
+                //没有在H.go中引入依赖
+            }
             if (scripts[_m] && scripts[_m].state !== LOADED) {
                 H.ready(_m, fn);
                 ready = 0;
