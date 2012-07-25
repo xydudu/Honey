@@ -17,17 +17,17 @@ module("Loader")
 
 test '加载1个模块', 6, ()->
     stop()
-    H.ready "mod_test", ()->
+    H.ready "test_test", ()->
         equal mod_test, 1, 'mod_test ready'
         ok true, "H.ready before"
     
-    H.go "mod_test", ()->
+    H.go "test_test", ()->
         equal mod_test, 1, 'mod_test go'
 
-    H.go "mod_test2", ()->
+    H.go "test_test2", ()->
         equal mod_test2, 2, 'mod_test2 go'
 
-    H.ready "mod_test2", ()->
+    H.ready "test_test2", ()->
         equal mod_test2, 2, 'mod_test2'
         ok true, "H.ready after"
 
@@ -35,22 +35,22 @@ test '加载1个模块', 6, ()->
 
 test '只加载无函数', ()->
     stop()
-    H.go "mod_test"
+    H.go "test_test"
     ok true, "H.go ok"
     setTimeout (-> start()), 2000
 
 test '加载2个模块', 7, ()->
     
     stop()
-    H.ready "mod_test2", ()->
+    H.ready "test_test2", ()->
         equal mod_test2, 2, 'mod_test2 == 2'
         ok true, "H.ready before"
     
-    H.go "mod_test, mod_test2", ()->
+    H.go "test_test, test_test2", ()->
         equal mod_test, 1, 'mod_test == 1 from H.go'
         equal mod_test2, 2, 'mod_test2 == 2 from H.go'
     
-    H.ready "mod_test2", ()->
+    H.ready "test_test2", ()->
         equal mod_test, 1, 'mod_test'
         equal mod_test2, 2, 'mod_test2 == 2 from H.ready'
         ok true, "H.ready after"
@@ -59,10 +59,10 @@ test '加载2个模块', 7, ()->
 
 test '重复加载同一模块', ()->
     stop()
-    H.go "mod_test, mod_test", ()->
+    H.go "test_test, test_test", ()->
         equal mod_test, 1, 'mod_test == 1 from H.go'
 
-    H.go "mod_test, mod_test, mod_test2", ()->
+    H.go "test_test, test_test, test_test2", ()->
         equal mod_test, 1, 'mod_test == 1 from H.go'
 
     setTimeout (-> start()), 2000
@@ -73,13 +73,13 @@ test '依赖关系加载', 3, ()->
 
     #H.go "mod_a, mod_needa", ()->
 
-    H.ready "mod_test", ()->
+    H.ready "test_test", ()->
         equal mod_test, 1, 'mod_test == 1 from H.go'
 
-    H.go "mod_test2, mod_test", ()->
+    H.go "test_test2, test_test", ()->
         equal mod_test2, 2, 'mod_test2 == 2 from H.go'
 
-    H.go "mod_test, mod_needa, mod_a", ()->
+    H.go "test_test, test_needa, test_a", ()->
         equal H.need_a, 1, 'H.need_a === 1'
 
     setTimeout (-> start()), 2000
