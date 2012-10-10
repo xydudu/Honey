@@ -210,11 +210,16 @@
         if ( scripts[name] ) {
             return scripts[name];
         }
-
         var
-        m = name.split('_'),
+        is_pub = name.indexOf(':') > 0,
+        root = is_pub ? PUBROOT : ROOT,
+        m = is_pub 
+            ? name.split(':')
+            : name.split('_');
+        
+        var
         path = m[0] +'/'+ m[1] + (DEV ? '.source' : '') +'.js',
-        script = {name: name, src: ROOT +'/'+ path +'?v'+ VERSION};
+        script = {name: name, src: root +'/'+ path +'?v'+ VERSION};
         
         //if ( !$justGiveScript ) {
         scripts[name] = script;

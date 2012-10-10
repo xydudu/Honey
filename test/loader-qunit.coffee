@@ -84,6 +84,12 @@ test '依赖关系加载', 3, ()->
 
     setTimeout (-> start()), 2000
 
+test '加载pub路径', 1, ()->
+    stop()
+    H.go "test_test2, test:test", ()->
+        equal mod_test2, 2, 'mod_test2 == 2 from H.go'
+
+    setTimeout (-> start()), 2000
 
 #test 'def依赖的模块没有引入', 1, ()->
 #    stop()
