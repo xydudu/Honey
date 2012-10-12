@@ -47,19 +47,23 @@ HN.dialog = function($settings) {
         self.conBox = self.box.find('.honey-dialog-conBox');
         self.bg = $('#honey-dialog-overlay');
         self.bgiframe = $('#honey-dialog-bgframe');
-        self.ie6 = HN.ie6();
-        self.loadingimage = CSSURL +'ui/mangoq/2010v1/images/ico/loading3.gif';
+        self.ie6 = HN.ie == 6;
+        //self.loadingimage = CSSURL +'ui/mangoq/2010v1/images/ico/loading3.gif';
         self.inited = true;
         self.reInit = false;
         self.setContent(settings.content);
         
         //绑定事件
-        self.box.click(honey.delegate({
-            '.honey-dialog-close': function() {
-                self.close();
-                return false;
-            }                     
-        }));
+        self.box.on('click', '.honey-dialog-close', function() {
+            self.close();
+            return false;
+        });
+        //self.box.click($.delegate({
+        //    '.honey-dialog-close': function() {
+        //        self.close();
+        //        return false;
+        //    }                     
+        //}));
     
     };
     

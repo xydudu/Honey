@@ -277,13 +277,49 @@
         }
         return loaded;
     }
+    
+    //simple css loader
+    H.css = function(_url) {
 
-    H.trim = function(_a) {
-
-        return _a.replace( /^\s+|\s+$/g, '' ); 
+        var f = doc.createElement('link'); 
+        f.setAttribute('rel', 'stylesheet');
+        f.setAttribute('type', 'text/css');
+        f.setAttribute('href', _url);
+        (doc.body || head).appendChild(f);
 
     };
+
+    H.trim = function(_a) {
+        return _a.replace( /^\s+|\s+$/g, '' ); 
+    };
     
+    // ----------------------------------------------------------
+    // If you're not in IE (or IE version is less than 5) then:
+    //     ie === undefined
+    // If you're in IE (>5) then you can determine which version:
+    //     ie === 7; // IE7
+    // Thus, to detect IE:
+    //     if (ie) {}
+    // And to detect the version:
+    //     ie === 6 // IE6
+    //     ie> 7 // IE8, IE9 ...
+    //     ie <9 // Anything less than IE9
+    // ----------------------------------------------------------
+    // http://james.padolsey.com/javascript/detect-ie-in-js-using-conditional-comments/
+
+    H.ie = (function() {
+        var
+        undef,
+        v = 3,
+        div = document.createElement('div');
+
+        while(
+            div.innerHTML = '<!--[if gt IE '+ (++v) +']><i></i><![endif]-->',
+            div.getElementsByTagName('i')[0]
+        );
+        return v>4 ? v : undef;           
+    })();
+   
     w.H = w.Honey = w.honey = w.HN = H;
 
 })(window, document);
