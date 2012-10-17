@@ -6,3 +6,11 @@ imgotv:
 	@if [ ! -d build/imgotv ]; then mkdir -p build/imgotv; fi
 	uglifyjs -nc src/config.imgotv.js > build/imgotv/honey.js
 	uglifyjs -nc src/honey.source.js >> build/imgotv/honey.js
+
+ihunantv:
+	@if [ ! -d build/ihunantv ]; then mkdir -p build/ihunantv; fi
+	uglifyjs -nc src/config.ihunantv.js > build/ihunantv/honey.js
+	uglifyjs -nc src/honey.source.js >> build/ihunantv/honey.js
+
+	
+
