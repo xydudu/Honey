@@ -12,5 +12,11 @@ ihunantv:
 	uglifyjs -nc src/config.ihunantv.js > build/ihunantv/honey.js
 	uglifyjs -nc src/honey.source.js >> build/ihunantv/honey.js
 
-	
+		#do echo $(basename $$filename); 
+		#do echo $(basename $$filename});
+loop:
+	@for filename in src/lib/*.source.js; \
+		do echo $${filename##*/}; \
+		done
+
 
