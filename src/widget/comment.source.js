@@ -122,9 +122,10 @@ honey.def('lib:jquery, lib:mustache', function(H) {
             var 
             o = $(this),
             id = o.attr('href').split('#')[1],
-            tpl = _.tpl.reply,
+            tpl = current_user ? _.tpl.reply : _.tpl.reply_nologin,
             item_box = $('#honey-comment-item-'+ id).find('.honey-comment-body'),
             reply_box = $('#reply-'+ id)
+            //console.log(current_user)
              
             if (reply_box.data('show')) {
                 reply_box.data('show', false).hide()

@@ -64,6 +64,22 @@ honey.def('lib:jquery', function(H) {
             + '</table>'
             + '</div>',
 
+        reply_nologin: '<div class="reply" id="reply-{{.}}">'
+            + '<div class="arrow"></div>'
+            + '<table>'
+            + '<tr>'
+            + '<td class="reply-login">'
+            + '帐号：<input type="text" /> 密码: <input type="password" />'
+            + '<span></span>'
+            + '<button class="btn" value="reply-{{.}}">登录</button>'
+            + '<span></span>'
+            + '<a href="#">新用户注册</a>'
+            + '</td>'
+            + '</tr>'
+            + '<tr><td class="nologin-info">请登录后回复</td></tr>'
+            + '</table>'
+            + '</div>',
+
         pageList: '<a class="first" href="#{{first}}"></a>'
             + '<a class="prev" href="#{{prev}}" ></a>'
             + '{{#pages}}'
