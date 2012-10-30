@@ -8,4 +8,5 @@ COMBOURL = 'http://honey.hunantv.com/combo/',
 ROOT = 'http://honey.hunantv.com/src',
 PUBROOT = 'http://honey.hunantv.com/src',
 CSS = 'http://honey.hunantv.com/css';
+IMG = 'http://honey.hunantv.com/img';
 //ROOT = 'http://lab.local:3000'
