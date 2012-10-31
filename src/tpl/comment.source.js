@@ -137,4 +137,59 @@ honey.def('lib:jquery', function(H) {
             + '</li>'
     }
 
+    H.commentTpl.enthunantv = {
+        actions_nologin: H.commentTpl.ihunantv.actions_nologin
+        , actions: H.commentTpl.ihunantv.actions
+        , reply: H.commentTpl.ihunantv.reply
+        , reply_nologin: H.commentTpl.ihunantv.reply_nologin
+        , pageList: H.commentTpl.ihunantv.pageList
+        , list: '<li id="honey-comment-item-{{comment.comment_id}}" class="clearfix">'
+            + '<div class="honey-comment-avatar">'
+            + '<a href="#">'
+            + '<img src="{{comment.user.avatar_key}}" width="50"/>'
+            + '</a>'
+            
+            + '<p>{{no}} 楼</p>'
+            + '</div>'
+            + '<div class="honey-comment-body">'
+            + '<p class="top">'
+            + '<span class="fr time">{{comment.create_time}}</span>'
+            + '<a href="#" >{{comment.user.nickname}}</a> [{{comment.user.location}}]'
+            + '</p>'
+
+            //+ '<div class="origin-contents mb15">'
+
+            //+ '<div class="origin-contents">'
+            //+ '<div class="origin-contents">' 
+
+            //+ '<p><small>1</small>' 
+            //+ '<span><a href="#">@1502</a> [上海网友]</span>'
+            //+ '我觉得这电影还是不错的嘛'
+            //+ '</p>'
+            //+ '</div>'
+            
+            + '{{#comments}}'
+            + '<div class="origin-contents">' 
+            + '{{/comments}}'
+
+            + '{{#comments}}'
+            + '<p>'
+            + '<small>{{no}}</small>'
+            + '<span><a href="#">@{{user.nickname}}</a> [{{user.location}}]</span>'
+            + '{{content}}'
+            + '</p>'
+            + '</div>'
+            + '{{/comments}}'
+
+            + '<p class="content">'
+            + '{{comment.content}}'
+            + '</p>'
+            
+            + '<p class="actions">'
+            + '<a href="#{{comment.comment_id}}" class="add-reply">回应</a>'
+            + '</p>'
+            + '</div>'
+            + '</li>'
+    }
+
 })

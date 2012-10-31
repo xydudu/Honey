@@ -14,7 +14,8 @@ honey.def('lib:jquery, lib:mustache', function(H) {
     api = 'http://comment.hunantv.com',
     current_url = window.location.href.split('#')[0],
     methods = {
-        ihunantv: 'icomment'
+        ihunantv: 'icomment',
+        enthunantv: 'list'
     },
     win = $(window),
     current_user,
@@ -140,7 +141,7 @@ honey.def('lib:jquery, lib:mustache', function(H) {
                     id: id,
                     show: true
                 })
-                item_box.append(reply_box);
+                item_box.append(reply_box)
             }
             reply_box.find('input').focus()
              
@@ -233,7 +234,8 @@ honey.def('lib:jquery, lib:mustache', function(H) {
     comment.prototype.getList = function(_page, _fn) {
         var 
         _ = this,
-        url = api +'/comment/'+ methods[_.project] +'/?callback=?'
+        method = methods[_.project]
+        url = api +'/comment/'+ method +'/?callback=?'
         current_page = _page
         _.listbox.empty().css('opacity', '0.5')
         $.getJSON(url, {
@@ -247,7 +249,7 @@ honey.def('lib:jquery, lib:mustache', function(H) {
             if (no < 0) no = 0
 
             if (!comments || !comments.length) {
-                total_number = 0;
+                total_number = 0
                 comments = []
             }
 
@@ -310,10 +312,21 @@ honey.def('lib:jquery, lib:mustache', function(H) {
     }
     
     comment.prototype.renderItem = function(_item) {
-        _item.no = ++ no
-        _item.ie = honey.ie && honey.ie < 7
+        var item = {}
+        if ($.isArray(_item)) {
+            item.comment = _item.pop()
+            item.comments = _item
+            $.each(item.comments, function(i, v) {
+                v.no = i+1
+            })
+        } else {
+            item = _item
+        }
+        item.no = ++ no
+        item.ie = honey.ie && honey.ie < 7
+        
         var 
-        html = Mustache.render(this.tpl.list, _item)
+        html = Mustache.render(this.tpl.list, item)
         this.listbox.prepend(html)
     }
      
