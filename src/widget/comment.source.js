@@ -66,6 +66,13 @@ honey.def('lib:jquery, lib:mustache', function(H) {
                 method: 'POST'
             })
             .appendTo('body')
+        , upform = $('<form />')
+            .attr({
+                action: api +'/comment/up',
+                target: id,
+                method: 'POST'
+            })
+            .appendTo('body')
         , hiddens = {}
         
         $.each({
@@ -75,17 +82,28 @@ honey.def('lib:jquery, lib:mustache', function(H) {
             fid: 0,
             mood: 0,
             method: 'post',
-            url: current_url
+            url: current_url,
+            comment_id: 0
         }, function(_name, _value) {
             hiddens[_name] = $('<input />')
                 .attr({
                     type: 'hidden',
                     name: _name,
                     value: _value
-                }).appendTo(form)
+                })
+            hiddens[_name].appendTo(upform)
+            hiddens[_name].clone().appendTo(form)
+
         })
         
+        //hiddens['comment_id'] = $('<input />')
+        //    .attr({
+        //        type: 'hidden',
+        //        name: 'comment_id',
+        //        value: 0
+        //    }).appendTo(upform)
         _.form = form
+        _.upform = upform
         _.hiddens = hiddens
         _.iframe = iframe
     }
@@ -168,6 +186,7 @@ honey.def('lib:jquery, lib:mustache', function(H) {
             _.hiddens.fid.val(fid)
             _.form.submit()
             listenAPI(function(_data) {
+                o.data('lock', false)
                 if (hash.err) {
                     alert(hash.msg)
                 } else {
@@ -182,7 +201,6 @@ honey.def('lib:jquery, lib:mustache', function(H) {
         })
 
         // 提交评论
-        var count = 1
         box.on('click', '.comment-submit', function(e) {
             var 
             content = box.find('textarea'),
@@ -204,8 +222,33 @@ honey.def('lib:jquery, lib:mustache', function(H) {
             }) 
             return false
         })
+
+        // 顶一条评论
+        box.on('click', '.up-comment', function(e) {
+            var 
+            o = $(this),
+            id = o.attr('href').split('#')[1]
+
+            if (o.data('lock')) return false
+            o.data('lock', true)
+            
+            _.hiddens.comment_id.val(id)
+            _.upform.submit()
+            listenAPI(function(_data) {
+                if (hash.err) {
+                    alert(hash.msg)
+                } else {
+                    _.hiddens.comment_id.val(0)
+                    o.find('strong').html('[ '+ _data.msg +' ]')
+                    window.location.hash = 'position-'+ id
+                }
+            })
+            
+            return false
+        })
         
         // 监听iframe返回
+        var count = 1
         function listenAPI(_fn) {
             _.timer = setInterval(function() {
                 var 
@@ -217,6 +260,7 @@ honey.def('lib:jquery, lib:mustache', function(H) {
                     _.timer = null
                     window.location.hash = ''
                     hash = $.parseJSON(hash)
+                    count = 1
                     _fn(hash)
                     return 
                 }
@@ -224,6 +268,7 @@ honey.def('lib:jquery, lib:mustache', function(H) {
                 if (count > 150) {
                     clearInterval(_.timer) 
                     _.timer = null
+                    count = 1
                     alert('timeout')
                 }
             }, 200)

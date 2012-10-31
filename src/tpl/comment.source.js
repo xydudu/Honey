@@ -94,7 +94,7 @@ honey.def('lib:jquery', function(H) {
 
         list: '<li id="honey-comment-item-{{comment_id}}" class="clearfix">'
             + '<div class="honey-comment-avatar">'
-            + '<a href="#">'
+            + '<a href="#" id="position-{{comment_id}}" >'
             + '<img src="{{user.avatar_key}}" width="50"/>'
             + '</a>'
 
@@ -145,7 +145,7 @@ honey.def('lib:jquery', function(H) {
         , pageList: H.commentTpl.ihunantv.pageList
         , list: '<li id="honey-comment-item-{{comment.comment_id}}" class="clearfix">'
             + '<div class="honey-comment-avatar">'
-            + '<a href="#">'
+            + '<a href="#" id="position-{{comment.comment_id}}">'
             + '<img src="{{comment.user.avatar_key}}" width="50"/>'
             + '</a>'
             
@@ -186,7 +186,10 @@ honey.def('lib:jquery', function(H) {
             + '</p>'
             
             + '<p class="actions">'
+            + '<a href="#{{comment.comment_id}}" class="up-comment">顶 '
+            + '<strong>[ {{comment.up_num}} ]</strong></a>'
             + '<a href="#{{comment.comment_id}}" class="add-reply">回应</a>'
+            + '<a href="#{{comment.comment_id}}" class="copy">复制</a>'
             + '</p>'
             + '</div>'
             + '</li>'
