@@ -74,6 +74,7 @@ honey.def('lib:jquery, lib:mustache', function(H) {
             })
             .appendTo('body')
         , hiddens = {}
+        , uphiddens = {}
         
         $.each({
             type: _.type,
@@ -90,21 +91,26 @@ honey.def('lib:jquery, lib:mustache', function(H) {
                     type: 'hidden',
                     name: _name,
                     value: _value
-                })
-            hiddens[_name].appendTo(upform)
-            hiddens[_name].clone().appendTo(form)
+                }).appendTo(form)
+        })
 
+        $.each({
+            method: 'post',
+            url: current_url,
+            comment_id: 0
+        }, function(_name, _value) {
+            uphiddens[_name] = $('<input />')
+                .attr({
+                    type: 'hidden',
+                    name: _name,
+                    value: _value
+                }).appendTo(upform)
         })
         
-        //hiddens['comment_id'] = $('<input />')
-        //    .attr({
-        //        type: 'hidden',
-        //        name: 'comment_id',
-        //        value: 0
-        //    }).appendTo(upform)
         _.form = form
         _.upform = upform
         _.hiddens = hiddens
+        _.uphiddens = uphiddens
         _.iframe = iframe
     }
 
@@ -251,13 +257,13 @@ honey.def('lib:jquery, lib:mustache', function(H) {
             if (o.data('lock')) return false
             o.data('lock', true)
             
-            _.hiddens.comment_id.val(id)
+            _.uphiddens.comment_id.val(id)
             _.upform.submit()
             listenAPI(function(_data) {
                 if (hash.err) {
                     alert(hash.msg)
                 } else {
-                    _.hiddens.comment_id.val(0)
+                    _.uphiddens.comment_id.val(0)
                     o.find('strong').html('[ '+ _data.msg +' ]')
                     window.location.hash = 'position-'+ id
                 }
