@@ -103,7 +103,10 @@
     };
 
     H.def = function(_deps, _method) {
-        
+        if (arguments.length == 1) {
+            _method = _deps;
+            _deps = '';
+        } 
         var 
         deps = _deps.split(','),
         fn = function() {

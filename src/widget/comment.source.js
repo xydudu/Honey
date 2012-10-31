@@ -223,6 +223,25 @@ honey.def('lib:jquery, lib:mustache', function(H) {
             return false
         })
 
+        // 登录
+        box.on('click', '.submit', function(e) {
+            var 
+            btn = $(this),
+            form = $('#'+ btn.val()).find('form'),
+            email = form.find('.honey-comment-email'),
+            pass = form.find('.honey-comment-pass'),
+            passv = pass.val()
+            
+            if ($.trim(passv) == '') {
+                alert('密码不能为空')
+                return false;
+            }
+             
+            pass.val(honey.encodePassword(passv))
+            form.submit()
+            return false;
+        })
+
         // 顶一条评论
         box.on('click', '.up-comment', function(e) {
             var 

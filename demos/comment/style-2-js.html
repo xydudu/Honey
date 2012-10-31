@@ -35,7 +35,8 @@
 
     </div> 
     <script>
-        honey.go('lib:jquery, lib:mustache, tpl:comment, widget:comment', 
+        honey.go('lib:jquery, lib:mustache, plugin:pswencode, '
+        + 'tpl:comment, widget:comment', 
         function() {
             new honey.comment({
                 project: 'enthunantv',

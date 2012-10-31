@@ -5,15 +5,21 @@ honey.def('lib:jquery', function(H) {
     
     (!H.commentTpl) && (H.commentTpl = {})
 
+    var current_url = window.location.href
     H.commentTpl.ihunantv = {
-        actions_nologin: '<div class="comment-input">'
+
+        actions_nologin: '<div class="comment-input" id="honey-comment-login-form">'
+            + '<form method="post" '
+            + 'action="http://spp.hunantv.com/passport/service.php?action=login">'
+            + '<input type="hidden" name="ref" value="'+ current_url +'" />'
             + '<p>'
-            + '帐号：<input type="text" />'
-            + '密码: <input type="password" />'
+            + '帐号：<input type="text" name="email" class="honey-comment-email" />'
+            + '密码: <input type="password" name="password" class="honey-comment-pass"/>'
             + '<span> </span>'
-            + '<button class="btn" >登录</button>'
+            + '<button class="btn submit" value="honey-comment-login-form" >登录</button>'
             + '<a href="#" >新用户注册</a>'
             + '</p>'
+            + '</form>'
             + '<div class="textarea">'
             + '<textarea disabled="disabled">请登录后评论</textarea>'
             + '</div>'
@@ -69,11 +75,18 @@ honey.def('lib:jquery', function(H) {
             + '<table>'
             + '<tr>'
             + '<td class="reply-login">'
-            + '帐号：<input type="text" /> 密码: <input type="password" />'
+
+            + '<form method="post" '
+            + 'action="http://spp.hunantv.com/passport/service.php?action=login">'
+            + '帐号：<input type="text" name="email" class="honey-comment-email" /> '
+            + '密码: <input type="password" name="password" class="honey-comment-pass"/>'
             + '<span></span>'
-            + '<button class="btn" value="reply-{{.}}">登录</button>'
+            + '<button class="btn submit" value="reply-{{.}}">登录</button>'
             + '<span></span>'
+            + '<input type="hidden" name="ref" value="'+ current_url +'" />'
             + '<a href="#">新用户注册</a>'
+            + '</form>'
+
             + '</td>'
             + '</tr>'
             + '<tr><td class="nologin-info">请登录后回复</td></tr>'
