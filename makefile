@@ -12,6 +12,12 @@ ihunantv:
 	uglifyjs -nc src/config.ihunantv.js > build/ihunantv/honey.js
 	uglifyjs -nc src/honey.source.js >> build/ihunantv/honey.js
 
+datahunantv:
+	@if [ ! -d build/datahunantv ]; then mkdir -p build/datahunantv; fi
+	uglifyjs -nc src/config.datahunantv.js > build/datahunantv/honey.js
+	uglifyjs -nc src/honey.source.js >> build/datahunantv/honey.js
+
+
 		#do echo $(basename $$filename); 
 		#do echo $(basename $$filename});
 loop:
