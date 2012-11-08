@@ -27,7 +27,7 @@ honey.def('lib:jquery', function(H) {
 
         actions: '<h5>'
             +'<img src="{{user.avatar}}" width="30"/>'
-            + '<a href="#">{{user.nickname}}</a>'
+            + '<a href="#" name="comment--">{{user.nickname}}</a>'
             + '<span>|</span>'
             + '<a href="#">我的评论</a>'
             + '<span>|</span>'
@@ -42,6 +42,7 @@ honey.def('lib:jquery', function(H) {
             + '<i class="emo-5"></i>'
             //+ '<i class="selected"></i>'
             + '<div class="textarea">'
+            + '<div class="notice"></div>'
             + '<textarea placeholder="输入你想说的话"></textarea>'
             + '</div>'
             + '</div>'

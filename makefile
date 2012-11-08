@@ -1,28 +1,53 @@
 compress:
-	uglifyjs -nc src/config.js > build/honey.js
-	uglifyjs -nc src/honey.source.js >> build/honey.js
+	@uglifyjs -nc src/config.js > svn/honey.js
+	@uglifyjs -nc src/honey.source.js >> svn/honey.js
 
 imgotv:
-	@if [ ! -d build/imgotv ]; then mkdir -p build/imgotv; fi
-	uglifyjs -nc src/config.imgotv.js > build/imgotv/honey.js
-	uglifyjs -nc src/honey.source.js >> build/imgotv/honey.js
+	@echo 芒果TV 压缩中。。。
+	@uglifyjs -nc src/config.imgotv.js > svn/honey.imgotv.js
+	@uglifyjs -nc src/honey.source.js >> svn/honey.imgotv.js
 
 ihunantv:
-	@if [ ! -d build/ihunantv ]; then mkdir -p build/ihunantv; fi
-	uglifyjs -nc src/config.ihunantv.js > build/ihunantv/honey.js
-	uglifyjs -nc src/honey.source.js >> build/ihunantv/honey.js
+	@echo 芒果微空间 压缩中。。。
+	@uglifyjs -nc src/config.ihunantv.js > svn/honey.ihunantv.js
+	@uglifyjs -nc src/honey.source.js >> svn/honey.ihunantv.js
 
 datahunantv:
-	@if [ ! -d build/datahunantv ]; then mkdir -p build/datahunantv; fi
-	uglifyjs -nc src/config.datahunantv.js > build/datahunantv/honey.js
-	uglifyjs -nc src/honey.source.js >> build/datahunantv/honey.js
+	@echo 资讯数据 data.hunantv 压缩中。。。
+	@uglifyjs -nc src/config.datahunantv.js > svn/honey.data.js
+	@uglifyjs -nc src/honey.source.js >> svn/honey.data.js
 
 
-		#do echo $(basename $$filename); 
-		#do echo $(basename $$filename});
-loop:
-	@for filename in src/lib/*.source.js; \
-		do echo $${filename##*/}; \
-		done
+#do echo $(basename $$filename); 
+#do echo $(basename $$filename});
+#uglifyjs $${origin} >> svn/; 
+#echo $${dirname}; 
 
+svn: compress imgotv ihunantv datahunantv
+	@for dirname in src/*; do \
+		if [ -d $${dirname} ]; then \
+			for file in $${dirname}/*.source.js; do \
+				origin=$${file}; \
+				file=$${file##src/}; \
+				target=svn/$${file%source.js}js; \
+				dir=$${target%/*.js}; \
+				if [ -f $${origin} ]; then \
+					if [ ! -d $$dir ]; then mkdir -p $$dir; fi; \
+					echo 压缩 $${origin} 到 $${target}; \
+					uglifyjs -nc $$origin > $$target; \
+					svn add $$target; \
+				fi; \
+			done; \
+		fi; \
+	done
+	@cd svn/; \
+		svn add *.js; \
+		echo 提交svn; \
+		svn ci -m 'honey 2.0 svn deploy xydudu'; 
+	@echo ------ 完成 -----
+
+#	@for filename in src/lib/*.source.js; \
+#		do echo $${filename##*/}; \
+#		done
+#
 
