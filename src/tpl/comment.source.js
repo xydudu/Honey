@@ -115,7 +115,7 @@ honey.def('lib:jquery', function(H) {
             + '</table>'
             + '</div>',
 
-        reply_nologin: '<div class="reply" id="reply-{{user_id}}">'
+        reply_nologin: '<div class="reply" id="reply-{{.}}">'
             + '<div class="arrow"></div>'
             + '<table>'
             + '<tr>'
@@ -126,7 +126,7 @@ honey.def('lib:jquery', function(H) {
             + '帐号：<input type="text" name="email" class="honey-comment-email" /> '
             + '密码: <input type="password" name="password" class="honey-comment-pass"/>'
             + '<span></span>'
-            + '<button class="btn submit" value="reply-{{user_id}}">登录</button>'
+            + '<button class="btn submit" value="reply-{{.}}">登录</button>'
             + '<span></span>'
             + '<input type="hidden" name="ref" value="'+ current_url +'" />'
             + '<a href="http://i.hunantv.com/login#reg">新用户注册</a>'
