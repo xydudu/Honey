@@ -442,7 +442,7 @@ honey.def('lib:jquery, lib:mustache', function(H) {
         tpl = this.tpl.actions,
         tpl_nologin = this.tpl.actions_nologin,
         box = this.box.find('.honey-comment-text'),
-        url = api +'/user?callback=?'
+        url = api +'/user?s='+ Math.random() +'&callback=?'
         
         $.getJSON(url, function(_data) {
             var html = (~~_data.login)
