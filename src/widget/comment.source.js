@@ -177,6 +177,7 @@ honey.def('lib:jquery, lib:mustache', function(H) {
                 reply_box.data('show', true).hide()
                 reply_box.show()
             }
+
             if (!reply_box.length) {
                 reply_box = $(Mustache.render(tpl, current_user))
                 reply_box.data({
