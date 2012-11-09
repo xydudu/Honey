@@ -89,33 +89,33 @@ honey.def('lib:jquery', function(H) {
             */
             + '</div>',
 
-        reply: '<div class="reply" id="reply-{{user_id}}">'
+        reply: '<div class="reply" id="reply-{{id}}">'
             + '<div class="arrow"></div>'
             + '<table>'
             + '<tr>'
             
-            + '{{#is_active}}'
+            + '{{#user.is_active}}'
             + '<td class="reply-input">'
             + '<div class="notice"></div>'
             + '<input type="text" />'
             + '</td>'
             + '<td class="reply-button">'
-            + '<button class="btn" value="reply-{{user_id}}">发送</button></td>'
-            + '{{/is_active}}'
+            + '<button class="btn" value="reply-{{id}}">发送</button></td>'
+            + '{{/user.is_active}}'
 
-            + '{{^is_active}}'
+            + '{{^user.is_active}}'
             + '<td class="reply-input">'
-            + '<p><a href="http://i.hunantv.com/{{use_id}}">{{nickname}}</a> | '
+            + '<p><a href="http://i.hunantv.com/{{user.use_id}}">{{user.nickname}}</a> | '
             + '激活金鹰微空间才可以发表评论 '
             + '<a href="http://i.hunantv.com">马上激活</a></p>'
             + '</td>'
-            + '{{/is_active}}'
+            + '{{/user.is_active}}'
 
             + '</tr>'
             + '</table>'
             + '</div>',
 
-        reply_nologin: '<div class="reply" id="reply-{{.}}">'
+        reply_nologin: '<div class="reply" id="reply-{{id}}">'
             + '<div class="arrow"></div>'
             + '<table>'
             + '<tr>'
@@ -126,7 +126,7 @@ honey.def('lib:jquery', function(H) {
             + '帐号：<input type="text" name="email" class="honey-comment-email" /> '
             + '密码: <input type="password" name="password" class="honey-comment-pass"/>'
             + '<span></span>'
-            + '<button class="btn submit" value="reply-{{.}}">登录</button>'
+            + '<button class="btn submit" value="reply-{{id}}">登录</button>'
             + '<span></span>'
             + '<input type="hidden" name="ref" value="'+ current_url +'" />'
             + '<a href="http://i.hunantv.com/login#reg">新用户注册</a>'
