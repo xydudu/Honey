@@ -7,7 +7,8 @@ honey.def('lib:jquery', function(H) {
 
     var 
     current_url = window.location.href,
-    logout_url = 'http://spp.hunantv.com/passport/service.php?action=logout&ref='+ current_url    
+    spp_url = 'http://spp.hunantv.com/passport/service.php?',
+    logout_url = spp_url +'action=logout&ref='+ encodeURIComponent(current_url)    
 
     H.commentTpl.ihunantv = {
 
