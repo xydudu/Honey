@@ -48,6 +48,7 @@ honey.def('lib:jquery, lib:mustache', function(H) {
         _.type = _options.type
         _.subject = _options.subject_id
         _.tpl = H.commentTpl[_.project]
+        _.rules = rules[_.project]
         _.box = $('#honey-comment')
         _.listbox = _.box.find('ul')
         _.getList(current_page) 
@@ -200,12 +201,23 @@ honey.def('lib:jquery, lib:mustache', function(H) {
             reply_box = $('#'+ o.val()),
             fid = reply_box.data('id'),
             input = reply_box.find('input'),
+            notice = reply_box.find('.notice'),
             v = input.val()
 
             if ($.trim(v) == '') {
-                // 不能为空
+                notice.text(_.rules.empty)._shakeElem()
+                input.focus()
+                o.data('lock', false)
                 return false
             }
+
+            if (v.length > _.rules.comment_max[0]) {
+                notice.text(_.rules.comment_max[1])._shakeElem()
+                input.focus()
+                o.data('lock', false)
+                return false
+            }
+
             _.hiddens.content.val(v)
             _.hiddens.fid.val(fid)
             _.form.submit()
@@ -241,18 +253,17 @@ honey.def('lib:jquery, lib:mustache', function(H) {
             var 
             content = box.find('textarea'),
             notice = box.find('.notice'),
-            v = content.val(),
-            _rules = rules[_.project]
+            v = content.val()
 
             if ($.trim(v) == '') {
-                notice.text(_rules.empty)._shakeElem()
+                notice.text(_.rules.empty)._shakeElem()
                 content.focus()
                 o.data('lock', false)
                 return false
             }
             
-            if (v.length > _rules.comment_max[0]) {
-                notice.text(_rules.comment_max[1])._shakeElem()
+            if (v.length > _.rules.comment_max[0]) {
+                notice.text(_.rules.comment_max[1])._shakeElem()
                 content.focus()
                 o.data('lock', false)
                 return false
@@ -262,7 +273,7 @@ honey.def('lib:jquery, lib:mustache', function(H) {
             _.form.submit()
             listenAPI(function(_data) {
                 var state = _data.err ? 'error' : 'success'
-                notice.addClass(state).html(_rules[state]).show()
+                notice.addClass(state).html(_.rules[state]).show()
                 if (_data.err) {
                     setTimeout(function() {
                         notice.fadeOut(500)
