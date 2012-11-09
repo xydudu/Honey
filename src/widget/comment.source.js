@@ -46,6 +46,7 @@ honey.def('lib:jquery, lib:mustache', function(H) {
         var _ = this
         _.project = _options.project
         _.type = _options.type
+        _.hasmood = _options.mood || false
         _.subject = _options.subject_id
         _.tpl = H.commentTpl[_.project]
         _.rules = rules[_.project]
@@ -439,12 +440,14 @@ honey.def('lib:jquery, lib:mustache', function(H) {
     }
     comment.prototype.buildActions = function() {
         var 
-        tpl = this.tpl.actions,
-        tpl_nologin = this.tpl.actions_nologin,
-        box = this.box.find('.honey-comment-text'),
+        _ = this,
+        tpl = _.tpl.actions,
+        tpl_nologin = _.tpl.actions_nologin,
+        box = _.box.find('.honey-comment-text'),
         url = api +'/user?callback=?'
         
         $.getJSON(url, function(_data) {
+            _data.mood = _.hasmood
             var html = (~~_data.login)
                 ? (current_user = _data.user, Mustache.render(tpl, _data))
                 : Mustache.render(tpl_nologin, _data)

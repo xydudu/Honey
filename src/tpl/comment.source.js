@@ -25,14 +25,19 @@ honey.def('lib:jquery', function(H) {
             + '</div>'
             + '</div>',
 
-        actions: '<h5>'
-            +'<img src="{{user.avatar}}" width="30"/>'
+        actions: ''
+            + '{{^mood}}'
+            + '<div class="comment-input">'
+            + '{{/mood}}'
+            + '<h5>'
+            + '<img src="{{user.avatar}}" width="30"/>'
             + '<a href="#" name="comment--">{{user.nickname}}</a>'
             + '<span>|</span>'
             + '<a href="#">我的评论</a>'
             + '<span>|</span>'
             + '<a href="#">安全退出</a>'
             + '</h5>'
+            + '{{#mood}}'
             + '<div class="comment-input">'
             + '<h4>看它时的心情</h4> '
             + '<i class="emo-1"></i>'
@@ -40,6 +45,9 @@ honey.def('lib:jquery', function(H) {
             + '<i class="emo-3"></i>'
             + '<i class="emo-4"></i>'
             + '<i class="emo-5"></i>'
+            + '{{/mood}}'
+
+
             //+ '<i class="selected"></i>'
             + '<div class="textarea">'
             + '<div class="notice"></div>'
