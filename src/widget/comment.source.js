@@ -169,7 +169,7 @@ honey.def('lib:jquery, lib:mustache', function(H) {
             tpl = current_user ? _.tpl.reply : _.tpl.reply_nologin,
             item_box = $('#honey-comment-item-'+ id).find('.honey-comment-body'),
             reply_box = $('#reply-'+ id)
-             
+            
             if (reply_box.data('show')) {
                 reply_box.data('show', false).hide()
                 return false
@@ -178,7 +178,7 @@ honey.def('lib:jquery, lib:mustache', function(H) {
                 reply_box.show()
             }
             if (!reply_box.length) {
-                reply_box = $(Mustache.render(tpl, id))
+                reply_box = $(Mustache.render(tpl, current_user))
                 reply_box.data({
                     id: id,
                     show: true
@@ -487,14 +487,14 @@ honey.def('lib:jquery, lib:mustache', function(H) {
                 'backgroundColor': colors[i % 2],
                 'color': colors[(i + 1) % 2]
             })
-            if (i > 5) {
+            if (i > 8) {
                 clearTimeout(t)
                 t = null
                 o.fadeOut(500)
                 return
             }
             i ++
-            t = setTimeout(c, 150)
+            t = setTimeout(c, 100)
         }()
          
     }
