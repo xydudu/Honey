@@ -389,7 +389,7 @@ honey.def('lib:jquery, lib:mustache', function(H) {
                 comments = []
             }
 
-            _.box.find('h3>span').html('( 全部 '+ total_number +' )')
+            _.box.find('.comments-total-nums').html('( 全部 '+ total_number +' )')
             while (comments.length)
                 _.renderItem(comments.pop())
             _.listbox.animate({opacity: 1}, 500)

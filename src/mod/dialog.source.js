@@ -109,8 +109,10 @@ HN.dialog.prototype = {
         self = this,
         box = self.box,
         conBox = self.conBox,
-        h = $h == 'auto' ? (+conBox.height() + 10 + 24) : $h;
-        w = $w == 'auto' ? (+conBox.width() + 10 + 24) : $w;
+        h = $h,
+        w = $w;
+        //h = $h == 'auto' ? (+conBox.height() + 10 + 24) : $h;
+        //w = $w == 'auto' ? (+conBox.width() + 10 + 24) : $w;
         
         box.css({
             width: +w,
@@ -160,6 +162,9 @@ HN.dialog.prototype = {
             zIndex: 999
         },
         didScroll = false;
+
+        $h = $h == 'auto' ? (+self.conBox.height() + 10 + 24) : $h;
+        $w = $w == 'auto' ? (+self.conBox.width() + 10 + 24) : $w;
 
         if (p == 'center') {
             pos.left = (winW - $w)/2;
