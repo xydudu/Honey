@@ -38,6 +38,10 @@ honey.def('lib:jquery, lib:mustache', function(H) {
     no = 1, // 楼号
     page_number = 15, //每页条数
     total_number = 0, //总条数
+    len = function(_str) {
+        // 把中文字符替换为两个英文，并返回长度
+        return _str.replace(/[^\x00-\xff]/g,"xx").length
+    },
     current_page = (function() {
         var page = ~~window.location.hash.replace('#', '')
         return page || 1
@@ -212,7 +216,9 @@ honey.def('lib:jquery, lib:mustache', function(H) {
             fid = reply_box.data('id'),
             input = reply_box.find('input'),
             notice = reply_box.find('.notice'),
-            v = input.val()
+            v = input.val(),
+            l = len(v)
+            
 
             if ($.trim(v) == '') {
                 notice.text(_.rules.empty)._shakeElem()
@@ -221,14 +227,14 @@ honey.def('lib:jquery, lib:mustache', function(H) {
                 return false
             }
 
-            if (v.length > _.rules.comment_max[0]) {
+            if (l > _.rules.comment_max[0]) {
                 notice.text(_.rules.comment_max[1])._shakeElem()
                 input.focus()
                 o.data('lock', false)
                 return false
             }
 
-            if (v.length > _.rules.comment_min[0]) {
+            if (l > _.rules.comment_min[0]) {
                 notice.text(_.rules.comment_min[1])._shakeElem()
                 input.focus()
                 o.data('lock', false)
@@ -271,7 +277,8 @@ honey.def('lib:jquery, lib:mustache', function(H) {
             var 
             content = box.find('textarea'),
             notice = box.find('.notice'),
-            v = content.val()
+            v = content.val(),
+            l = len(v)
 
             if ($.trim(v) == '') {
                 notice.text(_.rules.empty)._shakeElem()
@@ -280,14 +287,14 @@ honey.def('lib:jquery, lib:mustache', function(H) {
                 return false
             }
             
-            if (v.length > _.rules.comment_max[0]) {
+            if (l > _.rules.comment_max[0]) {
                 notice.text(_.rules.comment_max[1])._shakeElem()
                 content.focus()
                 o.data('lock', false)
                 return false
             }
 
-            if (v.length < _.rules.comment_min[0]) {
+            if (l < _.rules.comment_min[0]) {
                 notice.text(_.rules.comment_min[1])._shakeElem()
                 content.focus()
                 o.data('lock', false)
