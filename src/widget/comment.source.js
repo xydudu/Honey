@@ -146,8 +146,12 @@ honey.def('lib:jquery, lib:mustache', function(H) {
         box.on('click', '.comment-input>i', function(e) {
             var 
             o = $(this),
+            selected_mood = _.hiddens.mood.val(),
             mood = o.attr('class').split('-')[1],
             select_ico = o.parent().find('.selected')
+            if (selected_mood === mood) {
+                select_ico.remove()
+            }
             if (!select_ico.length)
                 select_ico = $('<i class="selected" ></i>').insertAfter(o)
             select_ico.css('left', o.position().left)
