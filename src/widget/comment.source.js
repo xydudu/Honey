@@ -23,14 +23,14 @@ honey.def('lib:jquery, lib:mustache', function(H) {
             success: '<i></i> 评论提交成功',
             error: '<i></i> 评论提交失败，请刷新后重试',
             comment_max: [300, '输入字符过多，不能超过300字符'],
-            comment_min: [7, '输入字符过少，不能少于6个字符']
+            comment_min: [6, '输入字符过少，不能少于6个字符']
         },
         enthunantv: {
             empty: '评论内容不能为空',
             success: '<i></i> 评论提交成功',
             error: '<i></i> 评论提交失败，请刷新后重试',
             comment_max: [600, '输入字符过多，不能超过600字符'],
-            comment_min: [7, '输入字符过少，请务必超过6个字']
+            comment_min: [6, '输入字符过少，请务必超过6个字']
         }
     },
     win = $(window),
@@ -300,6 +300,7 @@ honey.def('lib:jquery, lib:mustache', function(H) {
                 var state = _data.err ? 'error' : 'success'
                 notice.addClass(state).html(_.rules[state]).show()
                 if (_data.err) {
+                    notice.html(_data.msg)
                     setTimeout(function() {
                         notice.fadeOut(500)
                     }, 1000)
