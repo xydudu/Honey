@@ -22,13 +22,15 @@ honey.def('lib:jquery, lib:mustache', function(H) {
             empty: '评论内容不能为空',
             success: '<i></i> 评论提交成功',
             error: '<i></i> 评论提交失败，请刷新后重试',
-            comment_max: [300, '输入字符过多，不能超过300字符']
+            comment_max: [300, '输入字符过多，不能超过300字符'],
+            comment_min: [7, '输入字符过少，不能少于6个字符']
         },
         enthunantv: {
             empty: '评论内容不能为空',
             success: '<i></i> 评论提交成功',
             error: '<i></i> 评论提交失败，请刷新后重试',
-            comment_max: [600, '输入字符过多，不能超过600字符']
+            comment_max: [600, '输入字符过多，不能超过600字符'],
+            comment_min: [7, '输入字符过少，请务必超过6个字']
         }
     },
     win = $(window),
@@ -222,6 +224,14 @@ honey.def('lib:jquery, lib:mustache', function(H) {
                 return false
             }
 
+            if (v.length > _.rules.comment_min[0]) {
+                notice.text(_.rules.comment_min[1])._shakeElem()
+                input.focus()
+                o.data('lock', false)
+                return false
+            }
+
+
             _.hiddens.content.val(v)
             _.hiddens.fid.val(fid)
             _.form.submit()
@@ -268,6 +278,13 @@ honey.def('lib:jquery, lib:mustache', function(H) {
             
             if (v.length > _.rules.comment_max[0]) {
                 notice.text(_.rules.comment_max[1])._shakeElem()
+                content.focus()
+                o.data('lock', false)
+                return false
+            }
+
+            if (v.length < _.rules.comment_min[0]) {
+                notice.text(_.rules.comment_min[1])._shakeElem()
                 content.focus()
                 o.data('lock', false)
                 return false
@@ -490,7 +507,7 @@ honey.def('lib:jquery, lib:mustache', function(H) {
                 'backgroundColor': colors[i % 2],
                 'color': colors[(i + 1) % 2]
             })
-            if (i > 8) {
+            if (i > 6) {
                 clearTimeout(t)
                 t = null
                 o.fadeOut(500)
