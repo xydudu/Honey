@@ -234,7 +234,7 @@ honey.def('lib:jquery, lib:mustache', function(H) {
                 return false
             }
 
-            if (l > _.rules.comment_min[0]) {
+            if (l < _.rules.comment_min[0]) {
                 notice.text(_.rules.comment_min[1])._shakeElem()
                 input.focus()
                 o.data('lock', false)
@@ -512,7 +512,7 @@ honey.def('lib:jquery, lib:mustache', function(H) {
         t, 
         i = 0,
         o = $(this).show(),
-        colors = ['#cb4b4b', '#efefef']
+        colors = ['#cb4b4b', '#fff']
 
         !function c() {
             o.css({
