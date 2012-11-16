@@ -51,6 +51,7 @@ honey.def('mod_dialog', function(H) {
     trigger
     .mouseenter(function() {
         win_h += win.scrollTop()
+        console.log((pos.top + height),  win_h)
         var 
         a = $(this),
         pos = a.position(),
