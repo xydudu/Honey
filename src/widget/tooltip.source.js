@@ -50,15 +50,12 @@ honey.def('mod_dialog', function(H) {
     
     trigger
     .mouseenter(function() {
-        win_h += win.scrollTop()
         var 
+        win_h = win_h + win.scrollTop(),
         a = $(this),
         pos = a.position(),
         left = (pos.left + width) > win_w ? (win_w - width - 20) : pos.left,
         top = (pos.top + height) > win_h ? (win_h - height - 45) : pos.top + 30
-
-        console.log((pos.top + height),  win_h)
-        
         
         dialog.settings.position = [top, 0, '', left]
         clearTimeout(t)
