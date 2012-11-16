@@ -38,8 +38,8 @@ honey.def('mod_dialog', function(H) {
         width: width
     }),
     win = $(window),
-    win_w = win.width(),
-    win_h = win.height();
+    Win_w = win.width(),
+    Win_h = win.height();
 
     var arrow = $('<div />')
         .addClass('honey-tooltip-arrow')
@@ -51,7 +51,8 @@ honey.def('mod_dialog', function(H) {
     trigger
     .mouseenter(function() {
         var 
-        win_h = win_h + win.scrollTop(),
+        win_h = Win_h + win.scrollTop(),
+        win_w = Win_w,
         a = $(this),
         pos = a.position(),
         left = (pos.left + width) > win_w ? (win_w - width - 20) : pos.left,
