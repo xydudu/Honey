@@ -40,7 +40,7 @@ honey.def('lib:jquery', function(H) {
             + '<span>|</span>'
 
             + '{{#user.is_active}}'
-            + '<a href="#">我的评论</a>'
+            + '<a href="http://i.hunantv.com/comment">我的评论</a>'
             + '{{/user.is_active}}'
 
             + '{{^user.is_active}}'
