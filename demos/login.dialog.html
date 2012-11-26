@@ -11,7 +11,7 @@
     <h1 id="heading">Honey Demos - Login Dialog</h1>
     <button id="trigger">点击打开</button>
     <script>
-        honey.go('lib:jquery, mod:dialog, widget:login.dialog', function() {
+        honey.go('lib:jquery, plugin:pswencode, mod:dialog, widget:login.dialog', function() {
             var trigger = $('#trigger');
             trigger.click(function() {
                 honey.loginDialog();

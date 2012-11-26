@@ -222,7 +222,7 @@ honey.def('lib:jquery', function(H) {
             + '{{#comments}}'
             + '<p>'
             + '<small>{{no}}</small>'
-            + '<span><a href="http://i.hunantv.com/{{user.user_id}}">@{{user.nickname}}</a> [{{user.location}}]</span>'
+            + '<span><a href="http://i.hunantv.com/{{user.user_id}}">回复 {{user.nickname}}</a> [{{user.location}}]</span>'
             + '{{content}}'
             + '</p>'
             + '</div>'
