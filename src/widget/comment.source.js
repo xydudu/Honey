@@ -153,13 +153,14 @@ honey.def('lib:jquery, lib:mustache', function(H) {
             selected_mood = _.hiddens.mood.val(),
             mood = o.attr('class').split('-')[1],
             select_ico = o.parent().find('.selected')
+            _.hiddens.mood.val(mood)
             if (selected_mood === mood) {
                 select_ico.remove()
+                _.hiddens.mood.val(0)
             }
             if (!select_ico.length)
                 select_ico = $('<i class="selected" ></i>').insertAfter(o)
             select_ico.css('left', o.position().left)
-            _.hiddens.mood.val(mood)
             return false
         }) 
         

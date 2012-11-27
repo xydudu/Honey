@@ -35,7 +35,7 @@ honey.def('lib:jquery', function(H) {
             + '{{/mood}}'
             + '<h5>'
             + '<img src="{{user.avatar}}" width="30"/>'
-            + '<a href="http://i.hunantv.com/{{user.user_id}}" '
+            + '<a style="font-size: 14px" href="http://i.hunantv.com/{{user.user_id}}" '
             + 'name="comment--">{{user.nickname}}</a>'
             + '<span>|</span>'
 
