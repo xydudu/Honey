@@ -18,7 +18,7 @@ honey.def('lib:jquery', function(H) {
             + '<input type="hidden" name="ref" value="'+ current_url +'" />'
             + '<p>'
             + '帐号：<input type="text" name="email" class="honey-comment-email" />'
-            + '密码: <input type="password" name="password" class="honey-comment-pass"/>'
+            + '密码：<input type="password" name="password" class="honey-comment-pass"/>'
             + '<span> </span>'
             + '<button class="btn submit" value="honey-comment-login-form" >登录</button>'
             + '<a href="http://i.hunantv.com/login#reg" >新用户注册</a>'
