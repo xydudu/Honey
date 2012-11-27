@@ -111,7 +111,6 @@ honey.def('mod:dialog, plugin:pswencode ', function(H) {
          
         pass.val(honey.encodePassword(passv))
         form.submit()
-
     }
 
     function third() {
