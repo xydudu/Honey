@@ -51,13 +51,13 @@ honey.def('mod:dialog, plugin:pswencode ', function(H) {
                 '<a href="http://passport2.hunantv.com/index.php?ac=findpass" >'+ texts.forgetpass +'</a>',
                 '</span>',
                 '<p class="clearfix noborder">'+ texts.signup +'</p>',
-                '<p class="clearfix">',
+                '<p class="clearfix thired-parts">',
                 '<span>',
                 '第三方帐号登录',
                 '</span>',
-                '<a href="#"><i class="sina"></i>新浪微博</a>',
-                '<a href="#"><i class="tqq" ></i>腾讯微博</a>',
-                '<a href="#"><i class="qq"  ></i>QQ帐号</a>',
+                '<a href="#200"><i class="sina"></i>新浪微博</a>',
+                '<a href="#110"><i class="tqq" ></i>腾讯微博</a>',
+                '<a href="#100"><i class="qq"  ></i>QQ帐号</a>',
                 '</p>',
                 '<input type="hidden" name="ref" value="'+ current_url +'" />',
             '</div>',
@@ -76,6 +76,7 @@ honey.def('mod:dialog, plugin:pswencode ', function(H) {
             })
             dialog.init()
             dialog.find('#honey-dialog-submit').click(login)
+            dialog.find('.thired-parts a').click(third)
         }
         dialog.open()
     }
@@ -113,5 +114,11 @@ honey.def('mod:dialog, plugin:pswencode ', function(H) {
 
     }
 
+    function third() {
+        var 
+        type = this.href.split('#')[1],
+		url = 'http://passport2.hunantv.com/oauth/?action=step&step=ca2e2a4d9872750a49778920e284c000&type='+ type +'&rs='+ current_url
+		window.location = url
+    }
 
 })
