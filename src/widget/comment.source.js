@@ -428,11 +428,13 @@ honey.def('lib:jquery, lib:mustache', function(H) {
             
             var hot_comments = []
             if (_.project === 'enthunantv' && _page === 1) {
-                hot_comments = comments.slice(0, 3)
+                hot_comments = comments.splice(0, 3)
                 _.listbox = _.listbox.clone().insertBefore(_.listbox)    
                 _.listbox.addClass('bluebox-style')
+                
                 while (hot_comments.length)
                     _.renderItem(hot_comments.pop())
+                
                 _.listbox.animate({opacity: 1}, 500)
                 _.listbox = _.listbox.next('.honey-comment-list')
             }
