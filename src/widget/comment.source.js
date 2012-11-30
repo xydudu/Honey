@@ -409,6 +409,11 @@ honey.def('lib:jquery, lib:mustache', function(H) {
             subject_id: _.subject,
             page: _page
         }, function(_data) {
+
+            if (_data.err) {
+                _.listbox.html(_data.msg).show();
+                return
+            }
             var comments = _data.comments
             total_number = _data.total_number
             no = total_number - (_page * page_number)
@@ -418,8 +423,20 @@ honey.def('lib:jquery, lib:mustache', function(H) {
                 total_number = 0
                 comments = []
             }
-
+            
             _.box.find('.comments-total-nums').html(total_number)
+            
+            var hot_comments = []
+            if (_.project === 'enthunantv' && _page === 1) {
+                hot_comments = comments.slice(0, 3)
+                _.listbox = _.listbox.clone().insertBefore(_.listbox)    
+                _.listbox.addClass('bluebox-style')
+                while (hot_comments.length)
+                    _.renderItem(hot_comments.pop())
+                _.listbox.animate({opacity: 1}, 500)
+                _.listbox = _.listbox.next('.honey-comment-list')
+            }
+
             while (comments.length)
                 _.renderItem(comments.pop())
             _.listbox.animate({opacity: 1}, 500)
@@ -501,7 +518,6 @@ honey.def('lib:jquery, lib:mustache', function(H) {
         }
         item.no = ++ no
         item.ie = honey.ie && honey.ie < 7
-        
         var 
         html = Mustache.render(this.tpl.list, item)
         this.listbox.prepend(html)
