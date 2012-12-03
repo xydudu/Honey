@@ -432,7 +432,6 @@ honey.def('lib:jquery, lib:mustache', function(H) {
                 while (hot_comments.length) {
                     var comment = hot_comments.shift()
                     if (~~comment[0].up_num > 0) {
-                        console.log(count_hot)
                         count_hot ++
                     }
                 }
