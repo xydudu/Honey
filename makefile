@@ -12,6 +12,11 @@ ihunantv:
 	@uglifyjs -nc src/config.ihunantv.js > svn/honey.ihunantv.js
 	@uglifyjs -nc src/honey.source.js >> svn/honey.ihunantv.js
 
+hunantv:
+	@echo 金鹰网 压缩中。。。
+	@uglifyjs -nc src/config.hunantv.js > svn/honey.hunantv.js
+	@uglifyjs -nc src/honey.source.js >> svn/honey.hunantv.js
+
 datahunantv:
 	@echo 资讯数据 data.hunantv 压缩中。。。
 	@uglifyjs -nc src/config.datahunantv.js > svn/honey.data.js
@@ -23,7 +28,7 @@ datahunantv:
 #uglifyjs $${origin} >> svn/; 
 #echo $${dirname}; 
 
-svn: compress imgotv ihunantv datahunantv
+svn: hunantv compress imgotv ihunantv datahunantv
 	@for dirname in src/*; do \
 		if [ -d $${dirname} ]; then \
 			for file in $${dirname}/*.source.js; do \

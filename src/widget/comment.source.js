@@ -425,16 +425,36 @@ honey.def('lib:jquery, lib:mustache', function(H) {
             }
             
             _.box.find('.comments-total-nums').html(total_number)
-            
-            var hot_comments = []
+
+            var count_hot = 0
             if (_.project === 'enthunantv' && _page === 1) {
-                hot_comments = comments.splice(0, 3)
-                _.listbox = _.listbox.clone().insertBefore(_.listbox)    
-                _.listbox.addClass('bluebox-style')
-                
+                var hot_comments = comments.slice(0, 3)
+                while (hot_comments.length) {
+                    var comment = hot_comments.shift()
+                    if (~~comment[0].up_num > 0) {
+                        console.log(count_hot)
+                        count_hot ++
+                    }
+                }
+            } else {
+                count_hot = 0
+            }
+            
+            if (count_hot) {
+                hot_comments = comments.splice(0, count_hot)
+                 
+                var blue_box = $('.bluebox-style')
+                if (!blue_box.length) {
+                    _.listbox = _.listbox.clone().insertBefore(_.listbox)    
+                    _.listbox.addClass('bluebox-style')
+                } else {
+                    _.listbox = blue_box
+                }
+                _.listbox.empty()
                 while (hot_comments.length)
                     _.renderItem(hot_comments.pop())
-                
+               
+                _.listbox.prepend('<h3>热门评论</h3>')
                 _.listbox.animate({opacity: 1}, 500)
                 _.listbox = _.listbox.next('.honey-comment-list')
             }
