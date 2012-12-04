@@ -276,8 +276,9 @@ honey.def('lib:jquery, lib:mustache', function(H) {
             o.data('lock', true)
 
             var 
-            content = box.find('textarea'),
-            notice = box.find('.notice'),
+            thisbox = box.find('.honey-comment-text'),
+            content = thisbox.find('textarea'),
+            notice = thisbox.find('.notice'),
             v = content.val(),
             l = len(v)
 
@@ -409,6 +410,11 @@ honey.def('lib:jquery, lib:mustache', function(H) {
             subject_id: _.subject,
             page: _page
         }, function(_data) {
+
+            if (_data.err) {
+                _.listbox.html(_data.msg).show();
+                return
+            }
             var comments = _data.comments
             total_number = _data.total_number
             no = total_number - (_page * page_number)
@@ -418,8 +424,42 @@ honey.def('lib:jquery, lib:mustache', function(H) {
                 total_number = 0
                 comments = []
             }
-
+            
             _.box.find('.comments-total-nums').html(total_number)
+
+            var count_hot = 0
+            if (_.project === 'enthunantv' && _page === 1) {
+                var hot_comments = comments.slice(0, 3)
+                while (hot_comments.length) {
+                    var comment = hot_comments.shift()
+                    if (~~comment[0].up_num > 0) {
+                        count_hot ++
+                    }
+                }
+            } else {
+                count_hot = 0
+                $('.bluebox-style').remove()
+            }
+            
+            if (count_hot) {
+                hot_comments = comments.splice(0, count_hot)
+                 
+                var blue_box = $('.bluebox-style')
+                if (!blue_box.length) {
+                    _.listbox = _.listbox.clone().insertBefore(_.listbox)    
+                    _.listbox.addClass('bluebox-style')
+                } else {
+                    _.listbox = blue_box
+                }
+                _.listbox.empty()
+                while (hot_comments.length)
+                    _.renderItem(hot_comments.pop())
+               
+                _.listbox.prepend('<h3>热门评论</h3>')
+                _.listbox.animate({opacity: 1}, 500)
+                _.listbox = _.listbox.next('.honey-comment-list')
+            }
+
             while (comments.length)
                 _.renderItem(comments.pop())
             _.listbox.animate({opacity: 1}, 500)
@@ -501,7 +541,6 @@ honey.def('lib:jquery, lib:mustache', function(H) {
         }
         item.no = ++ no
         item.ie = honey.ie && honey.ie < 7
-        
         var 
         html = Mustache.render(this.tpl.list, item)
         this.listbox.prepend(html)

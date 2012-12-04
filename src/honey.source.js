@@ -322,6 +322,26 @@
         );
         return v>4 ? v : undef;           
     })();
+
+
+    //判断$a是否在数组$b中
+    //如果在，返回$a在$b中对应的下标
+    H.inArray = function($a, $b) {
+        for (var c = 0; c < $b.length; c++) { 
+            if ($b[c] == $a) 
+                return c;
+        }
+        return -1;    
+    };
+
+    H.isString = function($o) {
+        return typeof $o === 'string'; 
+    };
+
+    //生成两个数间的随机数
+    H.random = function($min, $max) {
+        return ($max-$min) * Math.random() + $min;
+    };
    
     w.H = w.Honey = w.honey = w.HN = H;
 
