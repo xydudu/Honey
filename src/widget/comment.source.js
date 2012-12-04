@@ -276,8 +276,9 @@ honey.def('lib:jquery, lib:mustache', function(H) {
             o.data('lock', true)
 
             var 
-            content = box.find('textarea'),
-            notice = box.find('.notice'),
+            thisbox = box.find('.honey-comment-text'),
+            content = thisbox.find('textarea'),
+            notice = thisbox.find('.notice'),
             v = content.val(),
             l = len(v)
 
@@ -437,6 +438,7 @@ honey.def('lib:jquery, lib:mustache', function(H) {
                 }
             } else {
                 count_hot = 0
+                $('.bluebox-style').remove()
             }
             
             if (count_hot) {
