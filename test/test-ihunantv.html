@@ -17,7 +17,7 @@
     <script src="http://honey.hunantv.com/honey-2.0/honey.ihunantv.js"></script>
     <script>
         module("Loader");
-        test('加载模块', 6, function() {
+        test('加载模块', 12, function() {
             stop();
             
             H.go("lib:jquery, mod:dialog, mod_alert, plugin_jvalidate, mod_area, mod_select, mod_ymddate, mod_setting", function() {
@@ -28,7 +28,16 @@
                 equal(typeof HN.setting, 'function', "mod setting");
                 return ok(true, "完成");
             });
-            
+
+            honey.go('lib:jquery,lib:socket,mod:pusher,mod_alert,mod_search,mod_notice',
+            function() {
+                equal(typeof $, 'function', "jquery");
+                equal(typeof HN.notice, 'function', "mod notice");
+                equal(typeof HN.search, 'function', "mod search");
+                equal(typeof HN.pusher, 'function', "mod pusher");
+                equal(typeof HN.alert, 'function', "mod alert");
+                return ok(true, "完成");
+            }); 
             
             return setTimeout((function() {
               return start();
