@@ -17,12 +17,13 @@
     <script src="http://honey.hunantv.com/honey-2.0/honey.ihunantv.js"></script>
     <script>
         module("Loader");
-        test('加载模块', 12, function() {
+        test('加载模块', 13, function() {
             stop();
             
             H.go("lib:jquery, mod:dialog, mod_alert, plugin_jvalidate, mod_area, mod_select, mod_ymddate, mod_setting", function() {
                 equal(typeof $, 'function', "jquery");
                 equal(typeof HN.selectTwo, 'function', "mod select");
+                equal(AREA.length, 2, "mod area");
                 equal(typeof HN.ymddate, 'function', "mod ymddate");
                 equal(typeof HN.validate, 'function', "mod jvalidate");
                 equal(typeof HN.setting, 'function', "mod setting");
