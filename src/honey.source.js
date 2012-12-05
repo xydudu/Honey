@@ -237,18 +237,51 @@
         s.type = 'text/' + (src.type || 'javascript');
         s.src = src.src || src;
         s.async = false;
+        s.defer = false;
 
-        s.onreadystatechange = s.onload = function() {
+        s.onload = s.onreadystatechange = process;
+        s.onerror = error;
 
-            var state = s.readyState;
-            if (!callback.done && (!state || /loaded|complete/.test(state))) {
-                callback.done = true;
+        function error(event) {
+            //script.state = LOADED 
+            s.onload = s.onreadystatechange = s.onerror = null;
+            callback();
+        }
+        
+        function process(event) {
+            event = event || w.event;
+            //if (event.type === 'load' || /complete/.test(s.readyState)) {
+            //    //script.state = LOADED;
+            //    s.onload = s.onreadystatechange = s.onerror = null;
+            //    callback();
+            //}
+
+            //if (event.type === 'readystatechange' && /loaded/.test(s.readyState)) {
+            //    //script.state = LOADED;
+            //    s.onload = s.onreadystatechange = s.onerror = null;
+            //    callback();
+            //}
+
+            if (event.type === 'load' 
+                || (/loaded|complete/.test(s.readyState)
+                && (!doc.documentMode || doc.documentMode < 9))) {
+                s.onload = s.onreadystatechange = s.onerror = null;
                 callback();
             }
-        };
+        }
+        
+        //s.onreadystatechange = s.onload = function() {
 
+        //    var state = s.readyState;
+        //    if (!callback.done && (!state || /loaded|complete/.test(state))) {
+        //        callback.done = true;
+        //        callback();
+        //    }
+        //};
         // use body if available. more safe in IE
-        (doc.body || head).appendChild(s);
+        //(doc.body || head).appendChild(s);
+        var head = doc['head'] || doc.getElementsByTagName('head')[0];
+        head.insertBefore(s, head.lastChild)
     }
 
     function each(arr, fn) {

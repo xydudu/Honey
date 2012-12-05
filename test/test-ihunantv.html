@@ -17,7 +17,7 @@
     <script src="http://honey.hunantv.com/honey-2.0/honey.ihunantv.js"></script>
     <script>
         module("Loader");
-        test('加载模块', 13, function() {
+        test('设置页', 13, function() {
             stop();
             
             H.go("lib:jquery, mod:dialog, mod_alert, plugin_jvalidate, mod_area, mod_select, mod_ymddate, mod_setting", function() {
@@ -30,6 +30,54 @@
                 return ok(true, "完成");
             });
 
+            honey.go('lib:jquery,lib:socket,mod:pusher,mod_alert,mod_search,mod_notice',
+            function() {
+                equal(typeof $, 'function', "jquery");
+                equal(typeof HN.notice, 'function', "mod notice");
+                equal(typeof HN.search, 'function', "mod search");
+                equal(typeof HN.pusher, 'function', "mod pusher");
+                equal(typeof HN.alert, 'function', "mod alert");
+                return ok(true, "完成");
+            }); 
+            
+            return setTimeout((function() {
+              return start();
+            }), 2000);
+        });
+
+        test('首页', 15, function() {
+            stop();
+            HN.go("lib:jquery,mod:dialog,mod_alert,mod_signature,mod_zoom,mod_page,mod_lazyload,mod_slide,mod_ad,mod_recommendation,mod_change,mod_share,mod_gototop",
+            function() {
+                equal(typeof $, 'function', "jquery");
+                equal(typeof HN.lazyload, 'function', "mod lazyload");
+                equal(typeof HN.zoom, 'function', "mod zoom");
+                equal(typeof HN.gototop, 'function', "mod gototop");
+                equal(typeof HN.ad, 'function', "mod ad");
+                equal(typeof HN.page, 'function', "mod page");
+                equal(typeof HN.signature, 'function', "mod signature");
+                equal(typeof HN.change, 'function', "mod change");
+                return equal(typeof HN.share, 'function', "mod share");
+            });
+
+            honey.go('lib:jquery,lib:socket,mod:pusher,mod_alert,mod_search,mod_notice',
+            function() {
+                equal(typeof $, 'function', "jquery");
+                equal(typeof HN.notice, 'function', "mod notice");
+                equal(typeof HN.search, 'function', "mod search");
+                equal(typeof HN.pusher, 'function', "mod pusher");
+                equal(typeof HN.alert, 'function', "mod alert");
+                return ok(true, "完成");
+            }); 
+            
+            return setTimeout((function() {
+              return start();
+            }), 2000);
+        });
+
+        module('footer')
+        test('公共底', 6, function() {
+            stop();
             honey.go('lib:jquery,lib:socket,mod:pusher,mod_alert,mod_search,mod_notice',
             function() {
                 equal(typeof $, 'function', "jquery");
