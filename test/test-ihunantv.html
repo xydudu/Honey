@@ -1,0 +1,39 @@
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <title>Honey Tester</title>
+    <link rel="stylesheet" href="http://code.jquery.com/qunit/git/qunit.css" type="text/css" media="screen" />
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+    <script type="text/javascript" src="http://code.jquery.com/qunit/git/qunit.js"></script>    
+    </head>
+<body>
+    <h1 id="qunit-header">Honey 微空间单元测试</h1>
+    <h2 id="qunit-banner"></h2>
+    <div id="qunit-testrunner-toolbar"></div>
+    <h2 id="qunit-userAgent"></h2>
+    <ol id="qunit-tests"></ol>
+    <div id="qunit-fixture">test markup, will be hidden</div>
+    <div id="debug"></div>
+    <script src="http://honey.hunantv.com/honey-2.0/honey.ihunantv.js"></script>
+    <script>
+        module("Loader");
+        test('加载模块', 6, function() {
+            stop();
+            
+            H.go("lib:jquery, mod:dialog, mod_alert, plugin_jvalidate, mod_area, mod_select, mod_ymddate, mod_setting", function() {
+                equal(typeof $, 'function', "jquery");
+                equal(typeof HN.selectTow, 'function', "mod select");
+                equal(typeof HN.ymddate, 'function', "mod ymddate");
+                equal(typeof HN.validate, 'function', "mod jvalidate");
+                equal(typeof HN.setting, 'function', "mod setting");
+                return ok(true, "完成");
+            });
+            
+            
+            return setTimeout((function() {
+              return start();
+            }), 2000);
+        });
+    </script>
+</body>
+</html>

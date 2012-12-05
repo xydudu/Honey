@@ -203,7 +203,7 @@ honey.def('lib:jquery', function(H) {
         , pageList: H.commentTpl.ihunantv.pageList
         , list: '<li id="honey-comment-item-{{comment.comment_id}}" class="clearfix">'
             + '<div class="honey-comment-avatar">'
-            + '<a href="http://i.hunantv.com/{{user.user_id}}" id="position-{{comment.floor_id }}">'
+            + '<a href="http://i.hunantv.com/{{comment.user.user_id}}" id="position-{{comment.floor_id }}">'
             + '<img src="{{comment.user.avatar_key}}" width="50"/>'
             + '</a>'
             
@@ -212,7 +212,7 @@ honey.def('lib:jquery', function(H) {
             + '<div class="honey-comment-body">'
             + '<p class="top">'
             + '<span class="fr time">{{comment.create_time}}</span>'
-            + '<a href="http://i.hunantv.com/{{user.user_id}}" >{{comment.user.nickname}}</a> [{{comment.user.location}}]'
+            + '<a href="http://i.hunantv.com/{{comment.user.user_id}}" >{{comment.user.nickname}}</a> [{{comment.user.location}}]'
             + '</p>'
 
             + '{{#comments}}'
