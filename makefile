@@ -1,25 +1,30 @@
 compress:
 	@uglifyjs -nc src/config.js > svn/honey.js
+	@uglifyjs -nc src/head.load.js >> svn/honey.js
 	@uglifyjs -nc src/honey.source.js >> svn/honey.js
 
 imgotv:
 	@echo 芒果TV 压缩中。。。
 	@uglifyjs -nc src/config.imgotv.js > svn/honey.imgotv.js
+	@uglifyjs -nc src/head.load.js >> svn/honey.imgotv.js
 	@uglifyjs -nc src/honey.source.js >> svn/honey.imgotv.js
 
 ihunantv:
 	@echo 芒果微空间 压缩中。。。
 	@uglifyjs -nc src/config.ihunantv.js > svn/honey.ihunantv.js
+	@uglifyjs -nc src/head.load.js >> svn/honey.ihunantv.js
 	@uglifyjs -nc src/honey.source.js >> svn/honey.ihunantv.js
 
 hunantv:
 	@echo 金鹰网 压缩中。。。
 	@uglifyjs -nc src/config.hunantv.js > svn/honey.hunantv.js
+	@uglifyjs -nc src/head.load.js >> svn/honey.hunantv.js
 	@uglifyjs -nc src/honey.source.js >> svn/honey.hunantv.js
 
 datahunantv:
 	@echo 资讯数据 data.hunantv 压缩中。。。
 	@uglifyjs -nc src/config.datahunantv.js > svn/honey.data.js
+	@uglifyjs -nc src/head.load.js >> svn/honey.data.js
 	@uglifyjs -nc src/honey.source.js >> svn/honey.data.js
 
 
