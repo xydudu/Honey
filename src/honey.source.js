@@ -38,7 +38,7 @@
         if (arguments.length == 1) {
             _fn = _deps
             _deps = ''
-            return _fn()
+            return _fn(H)
         } 
 
         var 
@@ -66,7 +66,7 @@
             ? name.split(':')
             : name.split('_');
         
-        var path = m[0] +'/'+ m[1] + (DEV ? '.source' : '') +'.js'
+        var path = m[0] +'/'+ m[1] + ((DEV && !is_pub) ? '.source' : '') +'.js'
         script[name] = root +'/'+ path +'?v'+ VERSION
 
         return script
@@ -120,7 +120,10 @@
     H.random = function($min, $max) {
         return ($max-$min) * Math.random() + $min
     }
-
+    
+    H.css = function(_url) {
+        head.js(_url)
+    }
 
     w.H = w.Honey = w.honey = w.HN = H
 })(window, document)

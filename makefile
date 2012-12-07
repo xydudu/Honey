@@ -27,13 +27,20 @@ datahunantv:
 	@uglifyjs -nc src/head.load.js >> svn/honey.data.js
 	@uglifyjs -nc src/honey.source.js >> svn/honey.data.js
 
+monitor:
+	@echo 监控 压缩中。。。
+	@uglifyjs -nc src/config.monitor.js > svn/honey.monitor.js
+	@uglifyjs -nc src/head.load.js >> svn/honey.monitor.js
+	@uglifyjs -nc src/honey.source.js >> svn/honey.monitor.js
+
+
 
 #do echo $(basename $$filename); 
 #do echo $(basename $$filename});
 #uglifyjs $${origin} >> svn/; 
 #echo $${dirname}; 
 
-svn: hunantv compress imgotv ihunantv datahunantv
+svn: hunantv compress imgotv ihunantv datahunantv monitor
 	@for dirname in src/*; do \
 		if [ -d $${dirname} ]; then \
 			for file in $${dirname}/*.source.js; do \

@@ -22,7 +22,7 @@ honey.def('mod:dialog, plugin:pswencode ', function(H) {
         submit: '登 录',
         setcookie: '自动登录',
         forgetpass: '忘记密码？',
-        signup: '还没有金鹰网帐号？<a href="http://passport2.hunantv.com/index.php?ac=register">马上注册</a>'
+        signup: '还没有金鹰网帐号？<a href="http://i.hunantv.com/register">马上注册</a>'
     },
     html = [
         '<div class="mod-dialog pr" id="'+ id +'">',
