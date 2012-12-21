@@ -79,7 +79,6 @@ sup {
 	margin: 0 auto;
 	clear: both;	
 	padding-top: 15px;
-	box-shadow: 0 1px 2px #ccc;
 }
 
 #header {
@@ -666,7 +665,8 @@ a.rsslink {background:url(http://s.wordpress.org/style/images/feedicon10.png) to
 
 #pagebody .wrapper{
 	background: #fff;
-	overflow: hidden;
+	overflow: hidden;	
+	box-shadow: 0 1px 2px #ccc;
 }
 
 #footer p {
