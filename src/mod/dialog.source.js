@@ -70,8 +70,9 @@ HN.dialog = function($settings) {
     function renderHtml() {
         
         var html = settings.html || [
-            '<div class="dialog" id="'+ settings.id +'">',
-            '<div class="honey-dialog-conBox">',
+            '<div class="dialog mod-dialog" id="'+ settings.id +'">',
+            '<div class="black pa"></div>',
+            '<div class="honey-dialog-conBox dialog-wrap">',
             '</div>',
             '</div>'
         ].join(''),

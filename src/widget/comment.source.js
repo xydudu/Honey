@@ -335,11 +335,16 @@ honey.def('lib:jquery, lib:mustache', function(H) {
             pass = form.find('.honey-comment-pass'),
             passv = pass.val()
             
+            if ($.trim(email) == '') {
+                alert('邮箱不能为空')
+                return false
+            }
+             
             if ($.trim(passv) == '') {
                 alert('密码不能为空')
                 return false
             }
-             
+
             pass.val(honey.encodePassword(passv))
             form.submit()
             return false
@@ -455,7 +460,7 @@ honey.def('lib:jquery, lib:mustache', function(H) {
                 while (hot_comments.length)
                     _.renderItem(hot_comments.pop())
                
-                _.listbox.prepend('<h3>热门评论</h3>')
+                _.listbox.prepend('<li class="clearfix"><h4>热门评论</h4></li>')
                 _.listbox.animate({opacity: 1}, 500)
                 _.listbox = _.listbox.next('.honey-comment-list')
             }
