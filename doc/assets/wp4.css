@@ -593,9 +593,9 @@ p.person {
 }
 
 #pagebody .submenu li a {
-	width: 100%;
 	display: block;
 	padding: 5px 0;
+	text-indent: 20px;
 }
 #pagebody .submenu li a:hover,#pagebody .submenu li a.current{
 	background: url(http://s.wordpress.org/style/images/arrow.png) center left no-repeat;
