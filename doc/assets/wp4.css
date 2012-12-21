@@ -86,6 +86,10 @@ sup {
 	background: #dcdcdc url(http://s.wordpress.org/style/images/header-bg.png) top left repeat-x;
 }
 
+#header .wrapper{
+	position: relative;
+}
+
 #header h1 a {
 	display: block;
 	background: url(wp-header-logo.png?2) center left no-repeat;
@@ -97,10 +101,9 @@ sup {
 }
 
 #header ul {
-	margin-right: 14px;
+	margin-top: 54px;
 	float: right;
 	list-style: none;
-	min-width: 500px;
 }
 
 #header ul li {
@@ -665,7 +668,7 @@ a.rsslink {background:url(http://s.wordpress.org/style/images/feedicon10.png) to
 #pagebody .wrapper{
 	background: #fff;
 	overflow: hidden;	
-	box-shadow: 0 1px 2px #ccc;
+	box-shadow: 0 1px 15px #000;
 	padding-top: 15px;
 }
 
@@ -692,7 +695,9 @@ a.rsslink {background:url(http://s.wordpress.org/style/images/feedicon10.png) to
 	margin-right: 14px;
 	height: 48px;
 	padding-top: 6px;
-	display: none;
+	position: absolute;
+	right: 0;
+	top: 10px;
 }
 
 #head-search input.text {
