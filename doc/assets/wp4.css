@@ -10,7 +10,7 @@ q:before,q:after { content: ''; }
 a { text-decoration: none; }
 body {
 	font-size: 62.5%;
-	background: #fff;
+	background: #333333;
 	font-family: sans-serif;
 	line-height: 22px;
 	color: #444;
@@ -613,7 +613,6 @@ p.person {
 
 #pagebody {
 	font-size: 13px;
-	margin-top: 29px;
 }
 
 #pagebody p, #pagebody ol, #pagebody ul {
@@ -660,6 +659,11 @@ a.rsslink {background:url(http://s.wordpress.org/style/images/feedicon10.png) to
 
 #footer .wrapper {
 	width: 932px;
+}
+
+#pagebody .wrapper{
+	background: #fff;
+	overflow: hidden;
 }
 
 #footer p {
