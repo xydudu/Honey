@@ -13,7 +13,7 @@ body {
 	background: #fff;
 	font-family: sans-serif;
 	line-height: 22px;
-	color: #444;
+	color: #333;
 	margin-bottom: 40px;
 }
 /* -------------------------------------------- */
@@ -24,10 +24,11 @@ pre {
 	background: #f3f3f7;
 	border: 1px solid #dedee3;
 	padding: 11px;
-	font-size: 12px;
+	font-size: 14px;
 	line-height: 1.3em;
 	margin-bottom: 22px;
 	overflow: auto;
+	color: #555;
 }
 
 pre a { font-weight: normal; }
@@ -115,8 +116,8 @@ sup {
 	font-weight: normal;
 	display: block;
 	line-height: 34px;
-	padding: 0 6px;
-	font-size: 13px;
+	padding: 0 20px;
+	font-size: 22px;
 	color: #ccc;
 	text-shadow: #000 0px 1px 0px;
 }
@@ -436,7 +437,7 @@ a.download-button {
 }
 
 h3 {
-	font-size: 12px;
+	font-size: 14px;
 	color: #333;
 	font-weight:bold;
 	margin: -1px 0 1px 0;
@@ -553,13 +554,14 @@ input.text {
 
 #headline h2 {
 	color: #555;
-	font-size: 28px;
+	font-size: 30px;
 	line-height: 1em;
 	text-shadow: #fff 0px 1px 0px;
 	padding-top: 18px;
 	padding-left: 12px;
 	float: left;
 	text-rendering: optimizeLegibility;
+	font-weight: bold;
 }
 
 #headline .login {
@@ -597,8 +599,9 @@ p.person {
 
 #pagebody .submenu li {
 	border-bottom: 1px solid #dedede;
-	font-size: 12px;
-	line-height: 18px;
+	font-size: 14px;
+	line-height: 25px;
+	text-shadow:1px 1px 0 #DDD, 1px 2px 0 #DDD;
 }
 
 #pagebody .submenu li a {
@@ -712,9 +715,10 @@ a.rsslink {background:url(http://s.wordpress.org/style/images/feedicon10.png) to
 	position: absolute;
 	right: 0;
 	top: 10px;
-	font-size: 12px;
+	font-size: 14px;
 	text-shadow:0 1px 0 #000;
 	color: #ccc;
+	font-family: '微软雅黑';
 }
 
 #head-search input.text {
