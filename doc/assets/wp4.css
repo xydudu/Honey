@@ -540,7 +540,6 @@ input.text {
 	min-width: 960px;
 	background: #f7f7f7;
 	border-bottom: 1px solid #dfdfdf;
-	display: none;
 }
 
 #headline h2 {
@@ -591,18 +590,18 @@ p.person {
 	border-bottom: 1px solid #dedede;
 	font-size: 12px;
 	line-height: 18px;
-	padding: 5px 0;
 }
 
 #pagebody .submenu li a {
 	width: 100%;
 	display: block;
+	padding: 5px 0;
 }
-
-#pagebody .submenu li.current {
+#pagebody .submenu li a:hover,#pagebody .submenu li a.current{
 	background: url(http://s.wordpress.org/style/images/arrow.png) center left no-repeat;
 	font-weight: bold;
 }
+
 
 #pagebody .submenu li ul {
 	margin-top: 0 !important;
