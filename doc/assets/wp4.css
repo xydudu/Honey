@@ -28,6 +28,7 @@ pre {
 	line-height: 1.3em; 
 	margin-bottom: 22px;
 	overflow: auto;
+	text-shadow:0 1px 0 #fff;
 }
 
 pre a { font-weight: normal; }
