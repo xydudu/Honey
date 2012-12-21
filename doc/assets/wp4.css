@@ -664,9 +664,11 @@ a.rsslink {background:url(http://s.wordpress.org/style/images/feedicon10.png) to
 #footer {
 	clear: both;
 	border-top: 1px solid #dedede;
-	padding: 6px 14px;
+	padding:14px;
 	width: 932px;
 	margin: 0 auto;
+	overflow: hidden;
+	background: #333;
 }
 
 #footer .wrapper {
@@ -693,6 +695,7 @@ a.rsslink {background:url(http://s.wordpress.org/style/images/feedicon10.png) to
 
 #footer h6 {
 	float: right;
+	color: #bbb;
 }
 
 #footer h6 {
