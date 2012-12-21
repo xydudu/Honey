@@ -83,7 +83,7 @@ sup {
 #header {
 	height: 118px;
 	min-width: 960px;
-	background: #dcdcdc url(http://s.wordpress.org/style/images/header-bg.png) top left repeat-x;
+	background: #333;
 }
 
 #header .wrapper{
@@ -101,7 +101,7 @@ sup {
 }
 
 #header ul {
-	margin-top: 54px;
+	margin-top: 84px;
 	float: right;
 	list-style: none;
 }
@@ -695,8 +695,8 @@ a.rsslink {background:url(http://s.wordpress.org/style/images/feedicon10.png) to
 #head-search {
 	float: right;
 	margin-right: 14px;
-	height: 48px;
-	padding-top: 6px;
+	height: 28px;
+	padding-top: 16px;
 	position: absolute;
 	right: 0;
 	top: 10px;
