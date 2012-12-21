@@ -12,9 +12,9 @@
   <div id="header">
     <div class="wrapper">
       <h1><a href="./index.html">Honey</a></h1>
-      <form method="get" id="head-search">
+      <!--<form method="get" id="head-search">
         well, no word
-      </form>
+    </form>-->
   <ul>
   
   
@@ -36,6 +36,7 @@
       <p></p>
     </div>
   </div>
+
 <div id="pagebody">
   <div class="wrapper">
     <div class="col-3" id="sidebar">
@@ -74,12 +75,16 @@
     <div class="col-9">
       <h1>评论公共组件</h1>
 <h2>依赖模块</h2>
-<pre><code>* lib:jquery
-* lib:mustache // 模板渲染库
-* plugin:pswencode // 登录密码加密</code></pre>
+<ul>
+<li>lib:jquery</li>
+<li>lib:mustache // 模板渲染库</li>
+<li>plugin:pswencode // 登录密码加密</li>
+</ul>
 <h2>评论组件文件构成</h2>
-<pre><code>* tpl:comment // 模板
-* widget:comment // 组件核心文件</code></pre>
+<ul>
+<li>tpl:comment // 模板</li>
+<li>widget:comment // 组件核心文件</li>
+</ul>
 <h2>调用示例</h2>
 <h3>html 部分</h3>
 <pre><code>&lt;div class=&quot;outer&quot;&gt;
@@ -95,8 +100,7 @@
 <h4>说明</h4>
 <ul>
 <li>.outer 不是必须，可为任意外部容器</li>
-<li><h1>honey-comment html块为必须</h1>
-</li>
+<li><strong>#honey-comment</strong> html块为必须</li>
 <li>.comments-total-nums 为显示部评论数容器 <strong>可调用多次</strong></li>
 <li>.honey-comment-list 为评论列表主体显示容器</li>
 <li>.honey-comment-pages 为评论分页容器 <strong>可调用多次</strong>  </li>

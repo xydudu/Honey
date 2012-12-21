@@ -2,15 +2,15 @@
 
 ## 依赖模块
 
-    * lib:jquery
-    * lib:mustache // 模板渲染库
-    * plugin:pswencode // 登录密码加密
+* lib:jquery
+* lib:mustache // 模板渲染库
+* plugin:pswencode // 登录密码加密
 
 
 ## 评论组件文件构成
 
-    * tpl:comment // 模板
-    * widget:comment // 组件核心文件
+* tpl:comment // 模板
+* widget:comment // 组件核心文件
 
 ## 调用示例
     
@@ -28,8 +28,9 @@
     </div>
 
 #### 说明
+
 * .outer 不是必须，可为任意外部容器
-* #honey-comment html块为必须
+* **#honey-comment** html块为必须
 * .comments-total-nums 为显示部评论数容器 **可调用多次**
 * .honey-comment-list 为评论列表主体显示容器
 * .honey-comment-pages 为评论分页容器 **可调用多次**  

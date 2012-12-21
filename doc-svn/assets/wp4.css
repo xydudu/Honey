@@ -90,11 +90,9 @@ sup {
 
 #header h1 a {
 	display: block;
-	background: url(wp-header-logo.png?2) center left no-repeat;
 	background-size: 301px 52px;
 	width: 301px;
 	height: 88px;
-	text-indent: -9999px;
 	float: left;
 	margin-top:12px; 
 }
