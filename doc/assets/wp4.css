@@ -404,7 +404,7 @@ a.download-button {
 
 .col-1 { width: 52px; }
 .col-2 { width: 132px; }
-.col-3 { width: 212px; }
+.col-3 { width: 212px; display: inline;}
 .col-4 { width: 292px; }
 .col-5 { width: 372px; }
 .col-6 { width: 452px; }
