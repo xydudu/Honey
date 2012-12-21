@@ -53,12 +53,16 @@ honey.def('lib:jquery, lib:mustache', function(H) {
         _.project = _options.project
         _.type = _options.type
         _.hasmood = _options.mood || false
+        _.nolist = _options.nolist || false
         _.subject = _options.subject_id
+
         _.tpl = H.commentTpl[_.project]
         _.rules = rules[_.project]
         _.box = $('#honey-comment')
         _.listbox = _.box.find('ul')
+
         _.getList(current_page) 
+
         _.buildActions()
         _.bindEvents()
         _.buildForm()
@@ -406,8 +410,13 @@ honey.def('lib:jquery, lib:mustache', function(H) {
     comment.prototype.getList = function(_page, _fn) {
         var 
         _ = this,
-        method = methods[_.project]
+        method = methods[_.project],
         url = api +'/comment/'+ method +'/?callback=?'
+        
+        if (_.nolist) {
+            return
+        }
+
         current_page = _page
         _.listbox.empty().css('opacity', '0.5')
         $.getJSON(url, {

@@ -6,8 +6,6 @@
     * lib:mustache // 模板渲染库
     * plugin:pswencode // 登录密码加密
 
-## css 依赖
-    * http://honey.hunantv.com/css/honey.css
 
 ## 评论组件文件构成
 
@@ -30,14 +28,14 @@
     </div>
 
 #### 说明
-    * .outer 不是必须，可为任意外部容器
-    * #honey-comment html块为必须
-    * .comments-total-nums 为显示部评论数容器 **可调用多次**
-    * .honey-comment-list 为评论列表主体显示容器
-    * .honey-comment-pages 为评论分页容器 **可调用多次**  
-    * .honey-comment-text 为评论输入部分
-    * 评论宽度随外部容器而变化
-    
+* .outer 不是必须，可为任意外部容器
+* #honey-comment html块为必须
+* .comments-total-nums 为显示部评论数容器 **可调用多次**
+* .honey-comment-list 为评论列表主体显示容器
+* .honey-comment-pages 为评论分页容器 **可调用多次**  
+* .honey-comment-text 为评论输入部分
+* 评论宽度随外部容器而变化
+
 ### javascript 部分    
     
     // 引入依赖模块
@@ -54,10 +52,11 @@
     })
 
 #### 参数说明
-    * project 项目名，现有ihunantv, enthunantv
-    * subject_id 对象id，如文章id，电影id...
-    * type 项目类型，现有ent
-    * mood 是否需要表情功能，true/false
+* project 项目名，现有ihunantv, enthunantv
+* subject_id 对象id，如文章id，电影id...
+* type 项目类型，现有ent
+* mood 是否需要表情功能，true/false
+* nolist 如为 true，不会显示评论列表
 
 ## demo 地址
     

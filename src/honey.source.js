@@ -102,23 +102,23 @@
     })();
 
 
-    //判断$a是否在数组$b中
-    //如果在，返回$a在$b中对应的下标
-    H.inArray = function($a, $b) {
-        for (var c = 0; c < $b.length; c++) { 
-            if ($b[c] == $a) 
+    //判断_a是否在数组_b中
+    //如果在，返回_a在_b中对应的下标
+    H.inArray = function(_a, _b) {
+        for (var c = 0; c < _b.length; c++) { 
+            if (_b[c] == _a) 
                 return c
         }
         return -1
     };
 
-    H.isString = function($o) {
-        return typeof $o === 'string'
+    H.isString = function(_o) {
+        return typeof _o === 'string'
     }
 
     //生成两个数间的随机数
-    H.random = function($min, $max) {
-        return ($max-$min) * Math.random() + $min
+    H.random = function(_min, _max) {
+        return (_max - _min) * Math.random() + _min
     }
     
     H.css = function(_url) {

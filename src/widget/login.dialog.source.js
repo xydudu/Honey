@@ -22,7 +22,7 @@ honey.def('mod:dialog, plugin:pswencode ', function(H) {
         submit: '登 录',
         setcookie: '自动登录',
         forgetpass: '忘记密码？',
-        signup: '还没有金鹰网帐号？<a href="http://i.hunantv.com/register">马上注册</a>'
+        signup: '还没有金鹰网帐号？<a target="_blank" href="http://i.hunantv.com/register">马上注册</a>'
     },
     html = [
         '<div class="mod-dialog pr" id="'+ id +'">',
@@ -48,7 +48,7 @@ honey.def('mod:dialog, plugin:pswencode ', function(H) {
                 '<label>'+ texts.setcookie +'</label>',
                 '</span>',
                 '<span class="forget-pass">',
-                '<a href="http://passport2.hunantv.com/index.php?ac=findpass" >'+ texts.forgetpass +'</a>',
+                '<a target="_blank" href="http://passport2.hunantv.com/index.php?ac=findpass" >'+ texts.forgetpass +'</a>',
                 '</span>',
                 '<p class="clearfix noborder">'+ texts.signup +'</p>',
                 '<p class="clearfix thired-parts">',
@@ -92,7 +92,7 @@ honey.def('mod:dialog, plugin:pswencode ', function(H) {
         passv = pass.val()
         
         if ($.trim(emailv) == '') {
-            alert('请输入您的芒果通行证邮箱')
+            alert('请输入您的金鹰网帐号')
             email.focus()
             return false
         }

@@ -21,7 +21,7 @@ honey.def('lib:jquery', function(H) {
             + '密码：<input type="password" name="password" class="honey-comment-pass"/>'
             + '<span> </span>'
             + '<button class="btn submit" value="honey-comment-login-form" >登录</button>'
-            + '<a href="http://i.hunantv.com/register" >新用户注册</a>'
+            + '<a target="_blank" href="http://i.hunantv.com/register" >新用户注册</a>'
             + '</p>'
             + '</form>'
             + '<div class="textarea">'
@@ -35,7 +35,7 @@ honey.def('lib:jquery', function(H) {
             + '{{/mood}}'
             + '<h5>'
             + '<img src="{{user.avatar}}" width="30"/>'
-            + '<a style="font-size: 14px" href="http://i.hunantv.com/{{user.user_id}}" '
+            + '<a target="_blank"  style="font-size: 14px" href="http://i.hunantv.com/{{user.user_id}}" '
             + 'name="comment--">{{user.nickname}}</a>'
             + '<span>|</span>'
 
@@ -44,7 +44,7 @@ honey.def('lib:jquery', function(H) {
             + '{{/user.is_active}}'
 
             + '{{^user.is_active}}'
-            + '完善资料才可以发表评论 <a href="http://i.hunantv.com">马上完善</a>'
+            + '完善资料才可以发表评论 <a target="_blank" href="http://i.hunantv.com">马上完善</a>'
             + '{{/user.is_active}}'
 
             + '<span>|</span>'
@@ -105,9 +105,9 @@ honey.def('lib:jquery', function(H) {
 
             + '{{^user.is_active}}'
             + '<td class="reply-input">'
-            + '<p><a href="http://i.hunantv.com/{{user.use_id}}">{{user.nickname}}</a> | '
+            + '<p><a target="_blank" href="http://i.hunantv.com/{{user.use_id}}">{{user.nickname}}</a> | '
             + '完善资料才可以发表评论 '
-            + '<a href="http://i.hunantv.com">马上完善</a></p>'
+            + '<a target="_blank"  href="http://i.hunantv.com">马上完善</a></p>'
             + '</td>'
             + '{{/user.is_active}}'
 
@@ -129,7 +129,7 @@ honey.def('lib:jquery', function(H) {
             + '<button class="btn submit" value="reply-{{id}}">登录</button>'
             + '<span></span>'
             + '<input type="hidden" name="ref" value="'+ current_url +'" />'
-            + '<a href="http://i.hunantv.com/register">新用户注册</a>'
+            + '<a target="_blank" href="http://i.hunantv.com/register">新用户注册</a>'
             + '</form>'
 
             + '</td>'
