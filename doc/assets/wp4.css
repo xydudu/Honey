@@ -77,7 +77,9 @@ sup {
 .wrapper {
 	width: 960px;
 	margin: 0 auto;
-	clear: both;
+	clear: both;	
+	padding-top: 15px;
+	box-shadow: 0 1px 2px #ccc;
 }
 
 #header {
@@ -613,7 +615,7 @@ p.person {
 
 #pagebody {
 	font-size: 13px;
-	margin-top: 30px;
+	margin-top: 20px;
 }
 
 #pagebody p, #pagebody ol, #pagebody ul {
