@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Honey</title>
+  <script src="assets/jquery-1.8.2.min.js"></script>
+  <link rel="stylesheet" href="assets/wp4.css">
+  <link rel="shortcut icon" href="http://s.wordpress.org/favicon.ico?3" type="image/x-icon">
+</head>
+
+<body id="wordpress-org">
+  <div id="header">
+    <div class="wrapper">
+      <h1><a href="./index.html">Honey</a></h1>
+      <form method="get" id="head-search">
+        well, no word
+      </form>
+  <ul>
+  
+  
+      <li>
+        <a href="./comment.html">comment</a>
+      </li>
+    
+      <li>
+        <a href="./honey.html">honey</a>
+      </li>
+    
+  </ul>
+    </div>
+  </div>
+
+  <div id="headline">
+    <div class="wrapper">
+      <h2>Honey <small>Version: 2.0 By @Lian Hsueh</small></h2>
+      <p></p>
+    </div>
+  </div>
+<div id="pagebody">
+  <div class="wrapper">
+    <div class="col-3" id="sidebar">
+      <ul class="submenu">
+
+</ul>
+    </div>
+    <div class="col-9">
+      <p>Honey is a Javascript file Loader , and it&#39;s based on Headjs (headjs.com).
+
+</p>
+<p>Now Honey is rebuilding.
+
+</p>
+<p>6.13 / 2012 Lian Hsueh
+
+</p>
+
+    </div>
+  </div>
+</div>
+<br class="clear">
+<div id="footer">
+	<div class="wrapper">
+    <p>
+      此文档通过doxmate生成。主题借鉴Wordpress首页风格，注解基于<a href="https://github.com/visionmedia/dox">Dox</a>。欢迎关注doxmate作者<a href="http://weibo.com/shyvo" target="_blank">@朴灵</a>
+    </p>
+    <p>
+      | <a href="https://github.com/visionmedia/dox">Dox主页</a>
+      | <a href="http://html5ify.com/doxmate">Doxmate主页</a>
+      | <a href="https://github.com/JacksonTian/doxmate/issues?state=open">提交bug</a>
+    </p>
+		<h6>doxmate is awesome</h6>
+	</div>
+</div>
+  
+
+  <script>
+  	var splited = location.pathname.split('/');
+  	var filename = splited[splited.length - 1].split('.')[0];
+  	$("#header li a").each(function () {
+  		if ($(this).text() === filename) {
+  			$(this).addClass('current');
+  		}
+  	});
+    $(".col-9").find('h1, h2, h3, h4, h5, h6').each(function () {
+      var node = $(this);
+      if (!node.attr("id")) {
+        node.attr("id", "index_" + node.text());
+      }
+    });
+  </script>
+</body>
+</html>

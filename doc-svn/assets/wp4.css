@@ -28,7 +28,6 @@ pre {
 	line-height: 1.3em; 
 	margin-bottom: 22px;
 	overflow: auto;
-	text-shadow:0 1px 0 #fff;
 }
 
 pre a { font-weight: normal; }
@@ -689,10 +688,9 @@ a.rsslink {background:url(http://s.wordpress.org/style/images/feedicon10.png) to
 }
 
 #footer p {
-	font-size: 13px;
+	font-size: 12px;
 	float: left;
 	color: #bbb;
-	text-shadow:0 1px 0 #000;
 }
 
 #footer p a {
@@ -702,6 +700,10 @@ a.rsslink {background:url(http://s.wordpress.org/style/images/feedicon10.png) to
 #footer h6 {
 	float: right;
 	color: #bbb;
+}
+
+#footer h6 {
+	margin-top: 6px;
 }
 
 #head-search {
