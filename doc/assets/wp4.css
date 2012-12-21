@@ -404,7 +404,7 @@ a.download-button {
 
 .col-1 { width: 52px; }
 .col-2 { width: 132px; }
-.col-3 { width: 212px; display: inline;}
+.col-3 { width: 210px; display: inline;}
 .col-4 { width: 292px; }
 .col-5 { width: 372px; }
 .col-6 { width: 452px; }
@@ -682,6 +682,7 @@ a.rsslink {background:url(http://s.wordpress.org/style/images/feedicon10.png) to
 	box-shadow: 0 1px 5px #999;
 	padding-top: 15px;
 	border-radius:10px;
+	border: 1px solid #ccc;
 }
 
 #footer p {
