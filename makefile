@@ -33,6 +33,12 @@ monitor:
 	@uglifyjs -nc src/head.load.js >> svn/honey.monitor.js
 	@uglifyjs -nc src/honey.source.js >> svn/honey.monitor.js
 
+docx: 
+	@echo 文档生成...
+	@cp -rf ./doc-svn/ svn/doc
+	@cd svn/; \
+		svn add ./doc; \
+		echo 提交文档到svn;
 
 
 #do echo $(basename $$filename); 
@@ -40,7 +46,7 @@ monitor:
 #uglifyjs $${origin} >> svn/; 
 #echo $${dirname}; 
 
-svn: hunantv compress imgotv ihunantv datahunantv monitor
+svn: hunantv compress imgotv ihunantv datahunantv monitor docx
 	@for dirname in src/*; do \
 		if [ -d $${dirname} ]; then \
 			for file in $${dirname}/*.source.js; do \
