@@ -12,6 +12,7 @@ honey.def('lib:jquery, lib:mustache', function(H) {
 
     var 
     api = 'http://comment.hunantv.com',
+    total_num_box = $('.comments-total-nums'),
     current_url = window.location.href.split('#')[0],
     methods = {
         ihunantv: 'icomment',
@@ -414,6 +415,14 @@ honey.def('lib:jquery, lib:mustache', function(H) {
         url = api +'/comment/'+ method +'/?callback=?'
         
         if (_.nolist) {
+            $.getJSON(url, {
+                type: _.type,
+                subject_id: _.subject,
+                page: _page
+            }, function(_data) {
+                //_.box.find('.comments-total-nums').html(_data.total_number)
+                total_num_box.html(_data.total_number)
+            });
             return
         }
 
@@ -439,7 +448,8 @@ honey.def('lib:jquery, lib:mustache', function(H) {
                 comments = []
             }
             
-            _.box.find('.comments-total-nums').html(total_number)
+            //_.box.find('.comments-total-nums').html(total_number)
+            total_num_box.html(_data.total_number)
 
             var count_hot = 0
             if (_.project === 'enthunantv' && _page === 1) {
