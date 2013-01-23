@@ -64,7 +64,7 @@
         script = {},
         m = is_pub 
             ? name.split(':')
-            : name.split('_');
+            : name.split('_')
         
         var path = m[0] +'/'+ m[1] + ((DEV && !is_pub) ? '.source' : '') +'.js'
         script[name] = root +'/'+ path +'?v'+ VERSION
@@ -97,9 +97,9 @@
         while(
             div.innerHTML = '<!--[if gt IE '+ (++v) +']><i></i><![endif]-->',
             div.getElementsByTagName('i')[0]
-        );
+        )
         return v>4 ? v : undef
-    })();
+    })()
 
 
     //判断_a是否在数组_b中
@@ -110,7 +110,7 @@
                 return c
         }
         return -1
-    };
+    }
 
     H.isString = function(_o) {
         return typeof _o === 'string'
@@ -123,6 +123,18 @@
     
     H.css = function(_url) {
         head.js(_url)
+    }
+
+    H.delegate = function(_rules) {
+        return function(_e) {
+            var 
+            e = _e || window.event,
+            target = $( e.target || e.srcElement )
+
+            for ( var selector in _rules )
+                if ( target.is( selector ) ) 
+                    return _rules[ selector ].apply( target, $.makeArray( arguments ) )
+        }
     }
 
     w.H = w.Honey = w.honey = w.HN = H
