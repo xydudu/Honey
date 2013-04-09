@@ -40,12 +40,13 @@ honey.def('lib:jquery', function(H) {
         //!s.length && HN.debug('没有找到id为"'+ options.slideId +'"的东东');
 
         distance = options[worh] || $(items[0])['outer'+worh]();
-        max = distance * itemLen;
+        max = distance * (itemLen - options.showItems);
+        //distance = distance * options.scrollItems
 
         //定义滚动个体的父容器宽度
         //var fixpx=0;
         //if(ie6){ fixpx=10;}
-        box[worh.toLowerCase()](max);
+        box[worh.toLowerCase()](distance * itemLen);
 
         //点击个体的整体 
         options.click && items.click(options.click);
@@ -85,14 +86,14 @@ honey.def('lib:jquery', function(H) {
             } else {
                 if ($isNext) {
                     newpos = 
-                        (old + distance * options.showItems) >= max ? 
+                        (old + distance * options.scrollItems) >= max ? 
                         (options.repeat ? 0 : max) :
-                        (old + distance);
+                        (old + distance * options.scrollItems);
                 } else {
                     newpos = 
-                        (old - distance) < 0 ?
+                        (old - distance * options.scrollItems) < 0 ?
                         (options.repeat ? max : 0) : 
-                        (old - distance);
+                        (old - distance * options.scrollItems);
                 }
             }
 

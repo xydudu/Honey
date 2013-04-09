@@ -55,7 +55,7 @@ honey.def('lib:jquery', function(H) {
             + '</h5>'
             + '{{#mood}}'
             + '<div class="comment-input">'
-            + '<h4>看它时的心情</h4> '
+            + '<h4>现在的心情</h4> '
             + '<i class="emo-1"></i>'
             + '<i class="emo-2"></i>'
             + '<i class="emo-3"></i>'

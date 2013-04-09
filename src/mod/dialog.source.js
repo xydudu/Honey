@@ -47,7 +47,7 @@ HN.dialog = function($settings) {
         self.conBox = self.box.find('.honey-dialog-conBox');
         self.bg = $('#honey-dialog-overlay');
         self.bgiframe = $('#honey-dialog-bgframe');
-        self.ie6 = HN.ie == 6;
+        self.ie6 = HN.ie < 7;
         //self.loadingimage = CSSURL +'ui/mangoq/2010v1/images/ico/loading3.gif';
         self.inited = true;
         self.reInit = false;

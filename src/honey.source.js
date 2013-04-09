@@ -62,11 +62,10 @@
         is_pub = name.indexOf(':') > 0,
         root = is_pub ? PUBROOT : ROOT,
         script = {},
-        m = is_pub 
-            ? name.split(':')
-            : name.split('_')
+        m = name.split(is_pub ? ':' : '_')
         
-        var path = m[0] +'/'+ m[1] + ((DEV && !is_pub) ? '.source' : '') +'.js'
+        //var path = m[0] +'/'+ m[1] + ((DEV && !is_pub) ? '.source' : '') +'.js'
+        var path = m[0] +'/'+ m[1] + (DEV ? '.source' : '') +'.js'
         script[name] = root +'/'+ path +'?v'+ VERSION
 
         return script
@@ -97,11 +96,11 @@
         while(
             div.innerHTML = '<!--[if gt IE '+ (++v) +']><i></i><![endif]-->',
             div.getElementsByTagName('i')[0]
-        )
-        return v>4 ? v : undef
-    })()
-
-
+        ) {
+            return v > 3 ? v : undef
+        }
+    }())
+    
     //判断_a是否在数组_b中
     //如果在，返回_a在_b中对应的下标
     H.inArray = function(_a, _b) {
