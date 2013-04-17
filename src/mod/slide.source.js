@@ -39,11 +39,11 @@ honey.def('lib:jquery', function(H) {
 
         //!s.length && HN.debug('没有找到id为"'+ options.slideId +'"的东东');
 
-        distance = options[worh] || $(items[0])['outer'+worh]();
+        distance = options[worh] || $(items[0])['outer'+worh](true);
         max = distance * (itemLen - options.showItems);
         //distance = distance * options.scrollItems
-
         //定义滚动个体的父容器宽度
+        //
         //var fixpx=0;
         //if(ie6){ fixpx=10;}
         box[worh.toLowerCase()](distance * itemLen);
