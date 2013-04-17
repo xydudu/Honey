@@ -1,0 +1,200 @@
+<!DOCTYPE HTML>
+<html><head>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <title>Honey Demos - photoview.dialog style 2</title>
+    <link rel="stylesheet" href="http://honey.hunantv.com/css/honey.css" type="text/css">
+    <!-- Honey Core Start -->
+    <script>
+            var
+            PROJECT = 'i.hunantv', //绑定到项目中
+            VERSION = '20130314',
+            DEV = true,
+            COMBO = false,
+            COMBOURL = 'http://honey.hunantv.com/combo/',
+            ROOT = 'http://honey.hunantv.com/i/js',
+            PUBROOT = 'http://honey.hunantv.com/src',
+            //PUBROOT = 'http://honey.hunantv.com/honey-2.0/',
+            CSS = 'http://honey.hunantv.com/css',
+            IMG = 'http://honey.hunantv.com/img';
+    </script>
+    <script src="http://honey.hunantv.com/src/head.load.js"></script>     
+    <script src="http://honey.hunantv.com/src/honey.source.js"></script>     
+    <!-- Honey Core End -->
+</head>
+<body>
+    <h1 id="heading">Honey Demos - Photoview Dialog Style 2</h1>
+    <button id="trigger">点击打开</button>
+    
+    <!-- Template Start-->
+    <script type="template/html" id="photoview-tpl">
+        <div class="mod-photo-view">
+            <div class="mod-photo-view-con clearfix">
+                <span class="close-btn"></span>
+                <div class="clearfix"></div>
+                <div class="con-left">
+                    <a class="prev-cur" href="javascript:void(0);" hidefocus="true" target="_self" id="photo-prev"></a>
+                    <a class="next-cur photo-next" href="javascript:void(0);" hidefocus="true" target="_self" id="photo-next"></a>
+                    <div class="con-lpic-box" id="big_pic">
+                        <ul id="big-photo-box">
+                            <li class="cur">
+                            <span id="photo-view-loading" class="img-loading"></span>
+                            <img src="{{current.big}}" id="big-box">
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="con-left-handle">
+                        <span class="btn-left-rotate"></span><span class="btn-right-rotate right-s"></span>
+                    </div>
+                </div>
+                <!--<div class="con-right">
+                    <dl class="dl-userinfo clearfix">
+                        <dd class="dd-img"><span><img src="{{user.avatar}}"></span></dd>
+                        <dt><a href="http://i.hunantv.com/{{user.user_id}}">{{user.username}}</a></dt>
+                        <dd class="dd-txt"><span>专辑-《{{user.album_name}}》</span>{{user.photo_num}}张</dd>
+                    </dl>
+                    <div class="mess-box clearfix" id="honey-comment">
+                        <h3>评论 <span class="comments-total-nums">(loading...)</span></h3> 
+                        <div class="photo-view-comm clearfix">
+                            <div class="mod-590 fl">
+                                <ul class="honey-comment-list mod-590-list z1"></ul>
+                            </div>
+                        </div>
+                        <p class="honey-comment-pages"></p>
+                        <div class="honey-comment-text"></div>
+                    </div>
+                </div>-->
+            </div>       
+            <div class="photo-vlist">
+                <div class="mod-photo-view-ulbg clearfix"></div>
+                <div class="mod-photo-view-ulbox" id="honey-photoview-slide">
+                    <a href="javascript:" class="ulbox-btn hn-slide-prev"></a>
+                    <div class="ulbox-list hn-slide-con">
+                        <ul class="hn-slide-box mod-photo-view-ullist clearfix">
+                        {{#photos}}
+                            <li
+                            {{#isCurrent}}
+                                class="on" 
+                            {{/isCurrent}}
+                            id="photos-{{id}}"><a href="javascript:"><img src="{{small}}"></a></li>
+                        {{/photos}}
+
+                        </ul>
+                    </div>
+                    <a href="javascript:" class="ulbox-btn r-btn hn-slide-next"></a>
+                </div>
+            </div>               
+        </div> 
+    </script>
+    <!-- Template End-->
+
+    <script>
+        // Data for test /////////////////////////////////////////////////////////
+        var photos = [
+            {
+                id: 1,
+                big: 'http://honey.hunantv.com/i/image/active-factor/img/img9.jpg',
+                small: 'http://honey.hunantv.com/i/image/active-factor/img/img1.jpg'
+            }, {
+                id: 2,
+                big: 'http://honey.hunantv.com/i/image/active-factor/img/img9.jpg',
+                small: 'http://honey.hunantv.com/i/image/active-factor/img/img1.jpg'
+            }, {
+                id: 3,
+                big: 'http://honey.hunantv.com/i/image/active-factor/img/img9.jpg',
+                small: 'http://honey.hunantv.com/i/image/active-factor/img/img1.jpg'
+            }, {
+                id: 4,
+                big: 'http://honey.hunantv.com/i/image/active-factor/img/img9.jpg',
+                small: 'http://honey.hunantv.com/i/image/active-factor/img/img1.jpg'
+            }, {
+                id: 5,
+                big: 'http://honey.hunantv.com/i/image/active-factor/img/img9.jpg',
+                small: 'http://honey.hunantv.com/i/image/active-factor/img/img1.jpg'
+            }, {
+                id: 6,
+                big: 'http://honey.hunantv.com/i/image/active-factor/img/img9.jpg',
+                small: 'http://honey.hunantv.com/i/image/active-factor/img/img1.jpg'
+            }, {
+                id: 7,
+                big: 'http://honey.hunantv.com/i/image/active-factor/img/img9.jpg',
+                small: 'http://honey.hunantv.com/i/image/active-factor/img/img1.jpg'
+            }, {
+                id: 8,
+                big: 'http://honey.hunantv.com/i/image/active-factor/img/img9.jpg',
+                small: 'http://honey.hunantv.com/i/image/active-factor/img/img1.jpg'
+            }, {
+                id: 9,
+                big: 'http://honey.hunantv.com/i/image/active-factor/img/img9.jpg',
+                small: 'http://honey.hunantv.com/i/image/active-factor/img/img1.jpg'
+            }, {
+                id: 10,
+                big: 'http://honey.hunantv.com/i/image/active-factor/img/img9.jpg',
+                small: 'http://honey.hunantv.com/i/image/active-factor/img/img1.jpg'
+            }, {
+                id: 11,
+                big: 'http://honey.hunantv.com/i/image/active-factor/img/img9.jpg',
+                small: 'http://honey.hunantv.com/i/image/active-factor/img/img1.jpg'
+            }, {
+                id: 12,
+                big: 'http://honey.hunantv.com/i/image/active-factor/img/img9.jpg',
+                small: 'http://honey.hunantv.com/i/image/active-factor/img/img1.jpg'
+            }, {
+                id: 13,
+                big: 'http://honey.hunantv.com/i/image/active-factor/img/img9.jpg',
+                small: 'http://honey.hunantv.com/i/image/active-factor/img/img1.jpg'
+            }, {
+                id: 14,
+                big: 'http://honey.hunantv.com/i/image/active-factor/img/img9.jpg',
+                small: 'http://honey.hunantv.com/i/image/active-factor/img/img1.jpg'
+            }, {
+                id: 15,
+                big: 'http://honey.hunantv.com/i/image/active-factor/img/img9.jpg',
+                small: 'http://honey.hunantv.com/i/image/active-factor/img/img1.jpg'
+            }, {
+                id: 16,
+                big: 'http://honey.hunantv.com/i/image/active-factor/img/img9.jpg',
+                small: 'http://honey.hunantv.com/i/image/active-factor/img/img1.jpg'
+            }, {
+                id: 17,
+                big: 'http://honey.hunantv.com/i/image/active-factor/img/img9.jpg',
+                small: 'http://honey.hunantv.com/i/image/active-factor/img/img1.jpg'
+            }, {
+                id: 18,
+                big: 'http://honey.hunantv.com/i/image/active-factor/img/img9.jpg',
+                small: 'http://honey.hunantv.com/i/image/active-factor/img/img1.jpg'
+            }, {
+                id: 19,
+                big: 'http://honey.hunantv.com/i/image/active-factor/img/img9.jpg',
+                small: 'http://honey.hunantv.com/i/image/active-factor/img/img1.jpg'
+            }
+        ];
+        
+        ////////////////////////////////////////////////////////////////////////////
+
+        honey.go('lib:jquery, mod:slide, lib:mustache, plugin:rotate, plugin:center, '
+        + 'widget:photoview, mod_photoview2', function() {
+
+            var view = new honey.PhotoView({
+                slide_id: 'honey-photoview-slide',
+                big_photo_id: 'big-box',
+
+                template: '#photoview-tpl',
+                next_btn: '#photo-next',
+                prev_btn: '#photo-prev',
+                close_btn: '.close-btn',
+                rotate_left_btn: '.btn-left-rotate',
+                rotate_right_btn: '.btn-right-rotate',
+                data: {photos: photos}
+            });
+
+            $('#trigger').click(function() {
+                var current_id = 2; 
+                view.open(current_id);
+            });
+
+        });
+
+    </script>
+</body>
+</html>

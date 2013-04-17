@@ -57,7 +57,9 @@ honey.def('lib:jquery, lib:mustache', function(H) {
         _.nolist = _options.nolist || false
         _.subject = _options.subject_id
 
-        _.tpl = H.commentTpl[_.project]
+        _.tpl = _options.tpl 
+            ? H.commentTpl[_options.tpl]
+            : H.commentTpl[_.project]
         _.rules = rules[_.project]
         _.box = $('#honey-comment')
         _.listbox = _.box.find('ul')

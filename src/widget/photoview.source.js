@@ -102,6 +102,7 @@ Honey.def('jquery', function(H) {
             this.render()
             this.out_box.show() 
             if (H.slide && this.slide_options) {
+                console.log('slide build')
                 this.slide = this.makeSlide()
             }
         },
