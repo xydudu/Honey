@@ -55,12 +55,13 @@ jQuery.fn.rotate = function(angle,whence) {
 	canvas.id = p.id;
 	canvas.angle = p.angle;
 	p.parentNode.replaceChild(canvas, p);
+    return canvas; 
 }
 
 jQuery.fn.rotateRight = function(angle) {
-	this.rotate(angle==undefined?90:angle);
+	return this.rotate(angle==undefined?90:angle);
 }
 
 jQuery.fn.rotateLeft = function(angle) {
-	this.rotate(angle==undefined?-90:-angle);
+	return this.rotate(angle==undefined?-90:-angle);
 }

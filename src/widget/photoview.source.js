@@ -22,6 +22,8 @@ Honey.def('jquery', function(H) {
         _.slide_id = 'honey-photoview-slide'
         _.template = 'Error:template is empty'
         _.loading_id = 'photo-view-loading'
+        _.max_w = 780
+        _.max_h = 590
         
         
         this.rendered = false
@@ -115,7 +117,8 @@ Honey.def('jquery', function(H) {
                     clearTimeout(t)
                     t = null
                     //_t = now
-                    _.updateSize.call(_)
+                    //_.updateSize.call(_)
+                    _.setBoxSize.call(_, true)
                     //$('body').append('<p> fire resize</p>')
                 }, 600)
             })
@@ -129,11 +132,13 @@ Honey.def('jquery', function(H) {
         loadingShow: function() {
             this.loading = this.loading || this.find('#'+ this.loading_id)
             this.loading.show()
+            return this.loading
         },
         
         loadingHide: function() {
             this.loading = this.loading || this.find('#'+ this.loading_id)
             this.loading.hide()
+            return this.loading
         },
 
         changeCurrent: function(_id) {
@@ -142,6 +147,10 @@ Honey.def('jquery', function(H) {
 
         updateSize: function() {
             //  
+        },
+
+        setBoxSize: function() {
+        
         },
 
         open: function() {
@@ -160,15 +169,15 @@ Honey.def('jquery', function(H) {
         },
 
         rotateRight: function() {
-            if ($.fn.rotate)
-                this.getCurrentPhoto().rotateRight() 
-            this.updateSize()
+            if (!$.fn.rotate) return
+            var p = this.getCurrentPhoto().rotateRight() 
+            this.updateSize(p)
         },
 
         rotateLeft: function() {
-            if ($.fn.rotate)
-                this.getCurrentPhoto().rotateLeft() 
-            this.updateSize()
+            if (!$.fn.rotate) return
+            p = this.getCurrentPhoto().rotateLeft() 
+            this.updateSize(p)
         }
     }
     
