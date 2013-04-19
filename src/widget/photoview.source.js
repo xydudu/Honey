@@ -70,6 +70,55 @@ Honey.def('jquery', function(H) {
                     return false
                 })
             }) 
+
+            //var t
+            //window.addListener('onresize', function)
+            //function resize_viewport() {
+            //    var __ = this
+            //    $.event.remove(_, "resize", resize_viewport)
+            //    if (t) return
+            //    $('body').append('<p> fire  resize</p>')
+            //    t = setTimeout(function() {
+            //        clearTimeout(t)
+            //        t = null
+            //        _.updateSize.call(_)
+            //        $('body').append('<p> fire onload resize</p>')
+            //        //$.event.add(__, "resize", resize_viewport)
+            //    }, 1000)
+            //}
+
+
+            //var t = 0;
+            //window.onresize = function() {
+            //    var now = new Date();
+            //    now = now.getTime();
+            //    if (now - t > 1000) {
+            //        t = now;
+            //        $('body').append('<p> fire onload resize</p>')
+            //        _.updateSize.call(_)
+            //        //your resize event code here;
+            //        //document.getElementById('t').value += "resize";
+            //    }
+            //};
+
+            //resize_viewport();
+
+            //$(window).resize(resize_viewport())
+            // 未解决
+            // IE sp3 以下，window resize 会不停的触发，是否需要解决这个问题？这个版本的IE比例好像不多了
+            
+            var t//, _t = 0
+            $(window).on('resize', function() {
+                //var now = new Date().getTime()
+                if (t /*|| now - t < 300*/) return
+                t = setTimeout(function() {
+                    clearTimeout(t)
+                    t = null
+                    //_t = now
+                    _.updateSize.call(_)
+                    //$('body').append('<p> fire resize</p>')
+                }, 1000)
+            })
         },
 
         makeSlide: function() {
@@ -102,7 +151,6 @@ Honey.def('jquery', function(H) {
             this.render()
             this.out_box.show() 
             if (H.slide && this.slide_options) {
-                console.log('slide build')
                 this.slide = this.makeSlide()
             }
         },
