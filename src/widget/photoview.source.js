@@ -117,7 +117,7 @@ Honey.def('jquery', function(H) {
                     //_t = now
                     _.updateSize.call(_)
                     //$('body').append('<p> fire resize</p>')
-                }, 1000)
+                }, 600)
             })
         },
 
