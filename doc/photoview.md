@@ -60,12 +60,21 @@
 * rotate_left_btn 左90度旋转图片
 * totate_left_btn 右90度旋转图片
 * data 数据，将直接渲染到模板中，其中必须有 photos 字段，且 photos　规则如下：
-	* 	可传入 json 数组
-	*  可为函数返回 json 数组，比如：data: {photos: function() { return [{...}] }}
-	*  数组 item 必须要有 id, big, small 三个字段
+	* 可传入 json 数组
+	* 可为函数返回 json 数组，比如：data: {photos: function() { return [{...}] }}
+	* 数组 item 必须要有 id, big, small 三个字段
+    * **如果同一页面有多组不同数据需要展示，请使用 setData() 方法**
 * 实例化 photoview 后，只需要在页面中触发 view.open 方法即可打开控件弹层
 
 > 参数中带 **_btn** 后缀的，都可以使用默认值而省略
+
+### 外部方法
+    
+* open 打开弹层方法
+    * 只有一个参数，为当前大图的 id。不传则默认为第一张
+* setData 方法
+    * 动态填充数据，数据格式在上面的 **data** 字段已说明
+
 
 ## demo 地址
 

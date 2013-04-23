@@ -25,6 +25,7 @@
 <body>
     <h1 id="heading">Honey Demos - Photoview Dialog Style 2</h1>
     <button id="trigger">点击打开</button>
+    <button id="trigger-2">点击打开 列表2</button>
     <script>
         // Data for test /////////////////////////////////////////////////////////
         var photos = [
@@ -106,6 +107,72 @@
                 small: 'http://honey.hunantv.com/i/image/active-factor/img/img1.jpg'
             }
         ];
+
+
+        var photo2 = {
+                    photos: [
+                        {
+                            id: 1,
+                            small: 'http://img5.cache.netease.com/pcluster/bbsauto/post/294/751/cb2/a94156e7e1fad7787ac3ebc_120x0.jpg',
+                            big: 'http://img5.cache.netease.com/pcluster/bbsauto/post/294/751/cb2/a94156e7e1fad7787ac3ebc.jpg'
+                        },
+                        {
+                            id: 2,
+                            small: 'http://img1.cache.netease.com/pcluster/bbsauto/post/672/7ad/b90/81f083d802ae4bcc390505d_120x0.jpg',
+                            big: 'http://img1.cache.netease.com/pcluster/bbsauto/post/672/7ad/b90/81f083d802ae4bcc390505d.jpg'
+                        },
+                        {
+                            id: 3,
+                            small: 'http://img6.cache.netease.com/pcluster/bbsauto/post/179/61b/658/6ddea730db20270e2dc3f3c_120x0.jpg',
+                            big: 'http://img6.cache.netease.com/pcluster/bbsauto/post/179/61b/658/6ddea730db20270e2dc3f3c.jpg'
+                        },
+                        {
+                            id: 4,
+                            small: 'http://img5.cache.netease.com/pcluster/bbsauto/post/294/751/cb2/a94156e7e1fad7787ac3ebc_120x0.jpg',
+                            big: 'http://img5.cache.netease.com/pcluster/bbsauto/post/294/751/cb2/a94156e7e1fad7787ac3ebc.jpg'
+                        },
+                        {
+                            id: 5,
+                            small: 'http://img1.cache.netease.com/pcluster/bbsauto/post/672/7ad/b90/81f083d802ae4bcc390505d_120x0.jpg',
+                            big: 'http://img1.cache.netease.com/pcluster/bbsauto/post/672/7ad/b90/81f083d802ae4bcc390505d.jpg'
+                        },
+                        {
+                            id: 6,
+                            small: 'http://img6.cache.netease.com/pcluster/bbsauto/post/179/61b/658/6ddea730db20270e2dc3f3c_120x0.jpg',
+                            big: 'http://img6.cache.netease.com/pcluster/bbsauto/post/179/61b/658/6ddea730db20270e2dc3f3c.jpg'
+                        },
+                        {
+                            id: 7,
+                            small: 'http://img5.cache.netease.com/pcluster/bbsauto/post/294/751/cb2/a94156e7e1fad7787ac3ebc_120x0.jpg',
+                            big: 'http://img5.cache.netease.com/pcluster/bbsauto/post/294/751/cb2/a94156e7e1fad7787ac3ebc.jpg'
+                        },
+                        {
+                            id: 8,
+                            small: 'http://img1.cache.netease.com/pcluster/bbsauto/post/672/7ad/b90/81f083d802ae4bcc390505d_120x0.jpg',
+                            big: 'http://img1.cache.netease.com/pcluster/bbsauto/post/672/7ad/b90/81f083d802ae4bcc390505d.jpg'
+                        },
+                        {
+                            id: 9,
+                            small: 'http://img6.cache.netease.com/pcluster/bbsauto/post/179/61b/658/6ddea730db20270e2dc3f3c_120x0.jpg',
+                            big: 'http://img6.cache.netease.com/pcluster/bbsauto/post/179/61b/658/6ddea730db20270e2dc3f3c.jpg'
+                        },
+                        {
+                            id: 10,
+                            small: 'http://img5.cache.netease.com/pcluster/bbsauto/post/294/751/cb2/a94156e7e1fad7787ac3ebc_120x0.jpg',
+                            big: 'http://img5.cache.netease.com/pcluster/bbsauto/post/294/751/cb2/a94156e7e1fad7787ac3ebc.jpg'
+                        },
+                        {
+                            id: 11,
+                            small: 'http://img1.cache.netease.com/pcluster/bbsauto/post/672/7ad/b90/81f083d802ae4bcc390505d_120x0.jpg',
+                            big: 'http://img1.cache.netease.com/pcluster/bbsauto/post/672/7ad/b90/81f083d802ae4bcc390505d.jpg'
+                        },
+                        {
+                            id: 12,
+                            small: 'http://img6.cache.netease.com/pcluster/bbsauto/post/179/61b/658/6ddea730db20270e2dc3f3c_120x0.jpg',
+                            big: 'http://img6.cache.netease.com/pcluster/bbsauto/post/179/61b/658/6ddea730db20270e2dc3f3c.jpg'
+                        }
+                    ]
+                };
         
         ////////////////////////////////////////////////////////////////////////////
 
@@ -122,13 +189,18 @@
                 prev_btn: '#photo-prev',
                 close_btn: '.close-btn',
                 rotate_left_btn: '.btn-left-rotate',
-                rotate_right_btn: '.btn-right-rotate',
-                data: {photos: photos}
+                rotate_right_btn: '.btn-right-rotate'
+                /*, data: {photos: photos} */
             });
 
             $('#trigger').click(function() {
                 var current_id = 2; 
+                view.setData({photos: photos})
                 view.open(current_id);
+            });
+            $('#trigger-2').click(function() {
+                view.setData(photo2)
+                view.open();
             });
 
         });

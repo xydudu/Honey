@@ -24,6 +24,7 @@ Honey.def('jquery', function(H) {
         _.loading_id = 'photo-view-loading'
         _.max_w = 780
         _.max_h = 590
+        _.data_is_change = false
         
         
         this.rendered = false
@@ -51,6 +52,13 @@ Honey.def('jquery', function(H) {
                 : tpl
         },
 
+        setData: function(_data) {
+            this.data_is_change = true
+            this.data = $.isFunction(_data)
+                ? _data()
+                : _data
+        },
+
         render: function() {
             var 
             tpl = this._getTemplate(),
@@ -73,39 +81,6 @@ Honey.def('jquery', function(H) {
                 })
             }) 
 
-            //var t
-            //window.addListener('onresize', function)
-            //function resize_viewport() {
-            //    var __ = this
-            //    $.event.remove(_, "resize", resize_viewport)
-            //    if (t) return
-            //    $('body').append('<p> fire  resize</p>')
-            //    t = setTimeout(function() {
-            //        clearTimeout(t)
-            //        t = null
-            //        _.updateSize.call(_)
-            //        $('body').append('<p> fire onload resize</p>')
-            //        //$.event.add(__, "resize", resize_viewport)
-            //    }, 1000)
-            //}
-
-
-            //var t = 0;
-            //window.onresize = function() {
-            //    var now = new Date();
-            //    now = now.getTime();
-            //    if (now - t > 1000) {
-            //        t = now;
-            //        $('body').append('<p> fire onload resize</p>')
-            //        _.updateSize.call(_)
-            //        //your resize event code here;
-            //        //document.getElementById('t').value += "resize";
-            //    }
-            //};
-
-            //resize_viewport();
-
-            //$(window).resize(resize_viewport())
             // 未解决
             // IE sp3 以下，window resize 会不停的触发，是否需要解决这个问题？这个版本的IE比例好像不多了
             
@@ -130,19 +105,51 @@ Honey.def('jquery', function(H) {
         },
         
         loadingShow: function() {
-            this.loading = this.loading || this.find('#'+ this.loading_id)
-            this.loading.show()
-            return this.loading
+            //this.loading = this.loading || this.find('#'+ this.loading_id)
+            //this.loading.show()
+            //return this.loading
+            return this.find('#'+ this.loading_id).show()
+
         },
         
         loadingHide: function() {
-            this.loading = this.loading || this.find('#'+ this.loading_id)
-            this.loading.hide()
-            return this.loading
+            //this.loading = this.loading || this.find('#'+ this.loading_id)
+            //this.loading.hide()
+            //return this.loading
+            return this.find('#'+ this.loading_id).hide()
         },
 
         changeCurrent: function(_id) {
-            //   
+
+            var _ = this
+            _.currentid = _id ? ~~_id : _.data.photos[0].id
+            _.data = _.dealData(_.data)
+
+            _.loadingShow()
+            var 
+            src = _.data.current.big,
+            img = new Image,
+            photo = _.getCurrentPhoto().hide(),
+            current = _.find('#photos-'+ _.currentid)
+            
+            _.find('.on').removeClass('on')
+            current.addClass('on')
+            
+            _.slide.goTo(current.index())
+
+            img.onload = img.onerror = function() {
+                photo.replaceWith($('<img />').attr({
+                    id: _.big_photo_id,
+                    src: src
+                }))   
+                _.current_photo_size = {
+                    width: this.width,
+                    height: this.height,
+                    rate: this.width / this.height
+                }
+                _.updateSize(this)
+            }
+            img.src = src
         },
 
         updateSize: function() {
@@ -154,14 +161,19 @@ Honey.def('jquery', function(H) {
         },
 
         open: function() {
-            if (this.rendered) {
-                return this.out_box.show()
-            }
+            //if (this.rendered && !this.data_is_change) {
+            //    return this.justShow()
+            //}
             this.render()
-            this.out_box.show() 
+            this.justShow()
             if (H.slide && this.slide_options) {
                 this.slide = this.makeSlide()
             }
+        },
+
+        justShow: function() {
+            this.out_box.show() 
+            this.data_is_change = false
         },
         
         close: function() {
