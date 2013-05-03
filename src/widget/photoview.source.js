@@ -18,6 +18,7 @@ Honey.def('jquery', function(H) {
 
     var view = function() {
         var _ = this
+        _.html = $('html')
         _.id = 'honey-photoview'
         _.slide_id = 'honey-photoview-slide'
         _.template = 'Error:template is empty'
@@ -174,10 +175,15 @@ Honey.def('jquery', function(H) {
         justShow: function() {
             this.out_box.show() 
             this.data_is_change = false
+            //$('body', 'html').css('overflow', 'hidden')
+            //$('body').attr('scroll', 'no')
+            this.html.css("overflow", "hidden");
         },
         
         close: function() {
             this.out_box.hide() 
+            //$('body', 'html').css('overflow', 'auto')
+            this.html.css("overflow", "auto");
         },
 
         rotateRight: function() {

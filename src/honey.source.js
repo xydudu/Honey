@@ -63,6 +63,10 @@
         root = is_pub ? PUBROOT : ROOT,
         script = {},
         m = name.split(is_pub ? ':' : '_')
+
+        if (m[0] === 'package') {
+            window.package_name = m[1] 
+        }
         
         //var path = m[0] +'/'+ m[1] + ((DEV && !is_pub) ? '.source' : '') +'.js'
         var path = m[0] +'/'+ m[1] + (DEV ? '.source' : '') +'.js'
