@@ -21,6 +21,7 @@ honey.def('lib:jquery, lib:mustache', function(H) {
     rules = {
         ihunantv: {
             empty: '评论内容不能为空',
+            verify_err: '验证码不能为空',
             success: '<i></i> 评论提交成功',
             error: '<i></i> 评论提交失败，请刷新后重试',
             comment_max: [300, '输入字符过多，不能超过300字符'],
@@ -28,6 +29,7 @@ honey.def('lib:jquery, lib:mustache', function(H) {
         },
         enthunantv: {
             empty: '评论内容不能为空',
+            verify_err: '验证码不能为空',
             success: '<i></i> 评论提交成功',
             error: '<i></i> 评论提交失败，请刷新后重试',
             comment_max: [600, '输入字符过多，不能超过600字符'],
@@ -36,12 +38,20 @@ honey.def('lib:jquery, lib:mustache', function(H) {
     },
     win = $(window),
     current_user,
+    need_verify = false,
     no = 1, // 楼号
     page_number = 15, //每页条数
     total_number = 0, //总条数
     len = function(_str) {
         // 把中文字符替换为两个英文，并返回长度
         return _str.replace(/[^\x00-\xff]/g,"xx").length
+    },
+    refresh_verify = function() {
+        var 
+        img = this,
+        src = img.src +'?'+ Math.random()
+        img.src = src
+        return false
     },
     current_page = (function() {
         var page = ~~window.location.hash.replace('#', '')
@@ -115,6 +125,7 @@ honey.def('lib:jquery, lib:mustache', function(H) {
             fid: 0,
             mood: 0,
             method: 'post',
+            checkcode: '',
             url: current_url,
             comment_id: 0
         }, function(_name, _value) {
@@ -179,6 +190,9 @@ honey.def('lib:jquery, lib:mustache', function(H) {
             return false 
         })
 
+        // 验证码
+        box.on('click', '.verify-img', refresh_verify)
+
         // 显示回复框
         box.on('click', '.add-reply', function(e) {
             var 
@@ -198,7 +212,8 @@ honey.def('lib:jquery, lib:mustache', function(H) {
             if (!reply_box.length) {
                 reply_box = $(Mustache.render(tpl, {
                     user: current_user,
-                    id: id
+                    id: id,
+                    need_verify: need_verify
                 }))
                 reply_box.data({
                     id: id,
@@ -223,8 +238,10 @@ honey.def('lib:jquery, lib:mustache', function(H) {
             reply_box = $('#'+ o.val()),
             fid = reply_box.data('id'),
             input = reply_box.find('input'),
+            verify = reply_box.find('.verify-input'),
             notice = reply_box.find('.notice'),
             v = input.val(),
+            verify_code = verify.length ? verify.val() : '',
             l = len(v)
             
 
@@ -249,9 +266,17 @@ honey.def('lib:jquery, lib:mustache', function(H) {
                 return false
             }
 
+            if (verify.length && verify_code.length < 1) {
+                notice.text(_.rules.verify_err)._shakeElem()
+                verify.focus()
+                o.data('lock', false)
+                return false
+            } 
+
 
             _.hiddens.content.val(v)
             _.hiddens.fid.val(fid)
+            _.hiddens.checkcode.val(verify_code)
             _.form.submit()
 
             // 判断是否要跳到第一页
@@ -267,6 +292,7 @@ honey.def('lib:jquery, lib:mustache', function(H) {
                     
                     _.getList(current_page, function() {
                         _.hiddens.content.val('')
+                        _.hiddens.checkcode.val('')
                         _.hiddens.fid.val(0)
                         window.location.hash = key
                     })
@@ -286,6 +312,8 @@ honey.def('lib:jquery, lib:mustache', function(H) {
             thisbox = box.find('.honey-comment-text'),
             content = thisbox.find('textarea'),
             notice = thisbox.find('.notice'),
+            verify = thisbox.find('.verify-input'),
+            verify_code = verify.length ? verify.val() : '',
             v = content.val(),
             l = len(v)
 
@@ -309,9 +337,18 @@ honey.def('lib:jquery, lib:mustache', function(H) {
                 o.data('lock', false)
                 return false
             }
+
+            if (verify.length && verify_code.length < 1) {
+                notice.text(_.rules.verify_err)._shakeElem()
+                verify.focus()
+                o.data('lock', false)
+                return false
+            } 
             
             _.hiddens.content.val(v)
+            _.hiddens.checkcode.val(verify_code)
             _.form.submit()
+
             listenAPI(function(_data) {
                 var state = _data.err ? 'error' : 'success'
                 notice.addClass(state).html(_.rules[state]).show()
@@ -322,6 +359,8 @@ honey.def('lib:jquery, lib:mustache', function(H) {
                     }, 1000)
                 } else {
                     content.val('')
+                    verify.val('')
+                    _.hiddens.checkcode.val('')
                     _.hiddens.mood.val(0)
                     setTimeout(function() {
                         notice.fadeOut(500)
@@ -548,7 +587,9 @@ honey.def('lib:jquery, lib:mustache', function(H) {
         $.getJSON(url, function(_data) {
             _data.mood = _.hasmood
             var html = (~~_data.login)
-                ? (current_user = _data.user, Mustache.render(tpl, _data))
+                ? (current_user = _data.user,
+                    need_verify = _data.is_code,
+                    Mustache.render(tpl, _data))
                 : Mustache.render(tpl_nologin, _data)
             box.html(html)
         })

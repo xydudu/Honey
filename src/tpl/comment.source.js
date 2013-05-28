@@ -72,7 +72,21 @@ honey.def('lib:jquery', function(H) {
             + '</div>'
             + '<div class="actions clearfix">'
             + '{{#user.is_active}}'
-            + '<button class="btn fr comment-submit">发送</button>'
+
+            + '<div class="fr">'
+            
+            + '{{#is_code}}'
+            + '验证码：<input type="text" class="verify-input" maxlength="4" /> <img class="verify-img" src="http://comment.hunantv.com/comment/checkcode" />'
+            + '{{/is_code}}'
+
+            + '<button class="btn comment-submit">发送</button>'
+            + '</div>'
+
+            //+ '<span>验证码：'
+            //+ '<input type="text" maxlength="4"  />'
+            //+ '<img src="http://comment.hunantv.com/comment/checkcode?'
+            //+ Math.random() +'" /></span>'
+            //+ '<button class="btn fr comment-submit">发送</button>'
             + '{{/user.is_active}}'
             /*
             + '<div class="">'
@@ -92,26 +106,39 @@ honey.def('lib:jquery', function(H) {
         reply: '<div class="reply" id="reply-{{id}}">'
             + '<div class="arrow"></div>'
             + '<table>'
+            + '{{#user.is_active}}'
             + '<tr>'
             
-            + '{{#user.is_active}}'
             + '<td class="reply-input">'
             + '<div class="notice"></div>'
             + '<input type="text" />'
             + '</td>'
+
+            + '</tr>'
+            + '<tr>'
+
             + '<td class="reply-button">'
+
+            + '{{#need_verify}}'
+            + '验证码：<input type="text" maxlength="4" class="verify-input" /> <img class="verify-img" src="http://comment.hunantv.com/comment/checkcode" />'
+            + '{{/need_verify}}'
+
+
             + '<button class="btn" value="reply-{{id}}">发送</button></td>'
+
+            + '</tr>'
             + '{{/user.is_active}}'
 
             + '{{^user.is_active}}'
+            + '<tr>'
             + '<td class="reply-input">'
             + '<p><a target="_blank" href="http://i.hunantv.com/{{user.use_id}}">{{user.nickname}}</a> | '
             + '完善资料才可以发表评论 '
             + '<a target="_blank"  href="http://i.hunantv.com">马上完善</a></p>'
             + '</td>'
+            + '</tr>'
             + '{{/user.is_active}}'
 
-            + '</tr>'
             + '</table>'
             + '</div>',
 

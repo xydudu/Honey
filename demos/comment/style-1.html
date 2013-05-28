@@ -99,8 +99,17 @@
                             <div class="arrow"></div>
                             <table>
                                 <tr>
-                                    <td class="reply-input"><input type="text" /></td>
-                                    <td class="reply-button"><button class="btn">发送</button></td>
+                                    <td class="reply-input">
+                                        <div class="notice"></div>
+                                        <input type="text" /></td>
+                                </tr>
+                                <tr>
+                                    <td class="reply-button">
+                                        
+                                        验证码：<input type="text" maxlength="4" /> <img src="http://comment.hunantv.com/comment/checkcode" />
+                                        <button class="btn">发送</button>
+                                    
+                                    </td>
                                 </tr>
                             </table>
                         </div>
@@ -129,7 +138,10 @@
                     </div>
                 </div>
                 <div class="actions clearfix">
-                    <button class="btn fr">发送</button>
+                    <div class="fr">
+                        验证码：<input type="text" maxlength="4" /> <img src="http://comment.hunantv.com/comment/checkcode" />
+                        <button class="btn">发送</button>
+                    </div>
                     <div class="">
                         同步到：
                         <i class="sina-ico"></i> 新浪微博
