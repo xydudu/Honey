@@ -76,7 +76,8 @@ honey.def('lib:jquery', function(H) {
             + '<div class="fr">'
             
             + '{{#is_code}}'
-            + '验证码：<input type="text" class="verify-input" maxlength="4" /> <img class="verify-img" src="http://comment.hunantv.com/comment/checkcode" />'
+            + '验证码：<input type="text" class="verify-input" maxlength="4" /> <img class="verify-img" '
+            + 'src="http://comment.hunantv.com/comment/checkcode?'+ Math.random() +'" />'
             + '{{/is_code}}'
 
             + '<button class="btn comment-submit">发送</button>'
@@ -120,7 +121,8 @@ honey.def('lib:jquery', function(H) {
             + '<td class="reply-button">'
 
             + '{{#need_verify}}'
-            + '验证码：<input type="text" maxlength="4" class="verify-input" /> <img class="verify-img" src="http://comment.hunantv.com/comment/checkcode" />'
+            + '验证码：<input type="text" maxlength="4" class="verify-input" /> <img class="verify-img" '
+            + 'src="http://comment.hunantv.com/comment/checkcode?'+ Math.random() +'" />'
             + '{{/need_verify}}'
 
 
