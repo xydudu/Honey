@@ -227,9 +227,10 @@ honey.def('lib:jquery, lib:mustache', function(H) {
 
             if (need_verify) {
                 var src = api +'/comment/checkcode?'+ Math.random()
-                $('.reply .verify-img').each(function(_no, _img) {
-                    _img.src = src
-                })
+                $('.verify-img').attr('src', src)
+                //$('.verify-img').each(function(_no, _img) {
+                //    _img.src = src
+                //})
             }
              
             return false 
