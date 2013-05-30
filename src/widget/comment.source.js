@@ -203,9 +203,9 @@ honey.def('lib:jquery, lib:mustache', function(H) {
             reply_box = $('#reply-'+ id)
             
             if (need_verify) {
-                var src = api +'/comment/checkcode'
+                var src = api +'/comment/checkcode?'+ Math.random()
                 $('.reply .verify-img').each(function(_no, _img) {
-                    _img.src = src +'?'+ Math.random()
+                    _img.src = src
                 })
             }
             
