@@ -202,11 +202,18 @@ honey.def('lib:jquery, lib:mustache', function(H) {
             item_box = $('#honey-comment-item-'+ id).find('.honey-comment-body'),
             reply_box = $('#reply-'+ id)
             
+            if (need_verify) {
+                $('.reply .verify-img').each(function(_img) {
+                    var src = _img.src.split('?')[0] 
+                    _img.src = src +'?'+ Math.random()
+                })
+            }
+            
             if (reply_box.data('show')) {
                 reply_box.data('show', false).hide()
                 return false
             } else {
-                reply_box.data('show', true).hide()
+                reply_box.data('show', true)
                 reply_box.show()
             }
             if (!reply_box.length) {
