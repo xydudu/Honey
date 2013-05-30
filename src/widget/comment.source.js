@@ -202,13 +202,6 @@ honey.def('lib:jquery, lib:mustache', function(H) {
             item_box = $('#honey-comment-item-'+ id).find('.honey-comment-body'),
             reply_box = $('#reply-'+ id)
             
-            if (need_verify) {
-                var src = api +'/comment/checkcode?'+ Math.random()
-                $('.reply .verify-img').each(function(_no, _img) {
-                    _img.src = src
-                })
-            }
-            
             if (reply_box.data('show')) {
                 reply_box.data('show', false).hide()
                 return false
@@ -231,6 +224,13 @@ honey.def('lib:jquery, lib:mustache', function(H) {
             item_box.find('.origin-content').length
                 && reply_box.data('has-origin', true)
             reply_box.find('input').focus()
+
+            if (need_verify) {
+                var src = api +'/comment/checkcode?'+ Math.random()
+                $('.reply .verify-img').each(function(_no, _img) {
+                    _img.src = src
+                })
+            }
              
             return false 
         })
