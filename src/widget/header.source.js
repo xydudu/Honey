@@ -57,7 +57,6 @@ honey.def('lib:mustache, tpl:header, plugin:pswencode', function(H) {
         return false
     },
     loginSubmit = function() {
-        console.log('do login')
         var 
         form = doc.getElementById('top-login-form'),
         reg = /^([a-zA-Z0-9\_\.\-])+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/gi,
@@ -124,7 +123,6 @@ honey.def('lib:mustache, tpl:header, plugin:pswencode', function(H) {
                 ? tpl.basic
                 : [tpl.ok, data.actived = ~~data.active_type][0],
             html = Mustache.render(_tpl, data)
-            console.log(data)
             con.innerHTML = html
             //if (!data.userinfo) {
             bindEvent()
