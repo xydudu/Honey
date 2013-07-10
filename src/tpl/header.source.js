@@ -15,7 +15,7 @@ honey.def(function(H) {
             + '<div class="topnav-r" id="top-login-userinfo">'
             + '<div class="not-login">'
             + '<a href="/login">新用户注册</a>'
-            + '<a href="javascript:" id="top-login-trigger" class="login">登录</a>'
+            + '<a href="javascript:" id="top-login-trigger" class="login">登 录</a>'
             + '</div>' // .not-login
             + '<div id="top-login-box" style="display:none" class="login-con"></div>'
             + '</div>' // .topnav-r
@@ -61,7 +61,7 @@ honey.def(function(H) {
             + '<p><input id="top-login-password" name="password" placeholder="Password" '
             + 'class="txt-int" type="password"></p>'
             + '<p class="btn">'
-            + '<a href="javascript:" id="top-login-button" class="btn-login">登 陆</a>'
+            + '<a href="javascript:" id="top-login-button" class="btn-login">登 录</a>'
             + '<label><input type="checkbox" name="rem">下次自动登录 |</label>'
             + '<a href="#" class="forget">忘记密码</a>'
             + '</p>'
