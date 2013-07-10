@@ -76,6 +76,7 @@ honey.def(function(H) {
             + '</div>'
             + '</div>'
             + '</form>'
+            + '<iframe style="display:none" id="top-login-iframe" name="top-login-iframe"></iframe>'
     } 
 
 

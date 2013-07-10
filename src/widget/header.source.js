@@ -14,14 +14,15 @@ honey.def('lib:mustache, tpl:header, plugin:pswencode', function(H) {
     tpl = H.headerTpl,
     api = 'http://app.i.hunantv.com/api/newuserstatus/?jsoncallback=honey.header.back',
     con,
-    top_login_trigger,
-    iframe = (function() {
-        var iframe = doc.createElement('iframe')
-        iframe.style.display = 'none'
-        iframe.id = 'top-login-iframe'
-        body.appendChild(iframe)
-        return iframe
-    })()
+    top_login_trigger
+    //iframe = (function() {
+    //    var iframe = doc.createElement('iframe')
+    //    iframe.style.display = 'none'
+    //    iframe.id = 'top-login-iframe'
+    //    iframe.name = 'top-login-iframe'
+    //    body.appendChild(iframe)
+    //    return iframe
+    //})()
 
     // funcs
     var
