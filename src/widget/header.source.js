@@ -64,7 +64,8 @@ honey.def('lib:mustache, tpl:header, plugin:pswencode', function(H) {
         email = doc.getElementById('top-login-email'),
         emailv = email.value,
         pass = doc.getElementById('top-login-password'),
-        passv = pass.value
+        passv = pass.value,
+        encode_pass = doc.getElementById('top-login-encodepass')
         
         if (H.trim(emailv) == '') {
             alert('请输入您的金鹰网帐号')
@@ -84,7 +85,7 @@ honey.def('lib:mustache, tpl:header, plugin:pswencode', function(H) {
             return false
         }
          
-        pass.value = honey.encodePassword(passv)
+        encode_pass.value = honey.encodePassword(passv)
         form.submit()
         var t = setTimeout(function() {
             H.header.init()
