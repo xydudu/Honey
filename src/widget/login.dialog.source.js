@@ -115,9 +115,13 @@ honey.def('mod:dialog, plugin:pswencode ', function(H) {
 
     function third() {
         var 
-        type = this.href.split('#')[1],
-		url = 'http://passport2.hunantv.com/oauth/?action=step&step=ca2e2a4d9872750a49778920e284c000&type='+ type +'&rs='+ current_url
+        type = ''+ this.href.split('#')[1],
+        urls = {
+            '100': 'qq', '110': 'tencent', '200': 'weibo'
+        }
+		url = 'http://oauth.hunantv.com/'+ urls[type] +'/login/web?rs='+ current_url
 		window.location = url
+
     }
 
 })

@@ -10,6 +10,7 @@ honey.def('lib:mustache, tpl:header, plugin:pswencode', function(H) {
     var 
     script,
     doc = window.document,
+    current_url = window.location.href,
     body = doc.body, 
     tpl = H.headerTpl,
     api = 'http://app.i.hunantv.com/api/newuserstatus/?jsoncallback=honey.header.back',
@@ -38,7 +39,10 @@ honey.def('lib:mustache, tpl:header, plugin:pswencode', function(H) {
             funcs = {
                 "top-login-trigger": showLogin,
                 "top-login-button": loginSubmit,
-                "top-msg-trigger": showMsgBox
+                "top-msg-trigger": showMsgBox,
+                "third-login-sina": thirdLogin,
+                "third-login-tqq": thirdLogin,
+                "third-login-qq": thirdLogin
             }
             return funcs[target.id] && funcs[target.id].call(target)
         }
@@ -105,6 +109,16 @@ honey.def('lib:mustache, tpl:header, plugin:pswencode', function(H) {
         box.style.display = display[0]
         this.className = display[1]
 
+        return false
+    },
+    thirdLogin = function() {
+        var 
+        type = ''+ this.href.split('#')[1],
+        urls = {
+            '100': 'qq', '110': 'tencent', '200': 'weibo'
+        },
+		url = 'http://oauth.hunantv.com/'+ urls[type] +'/login/web?rs='+ current_url
+		window.location = url
         return false
     }
 
