@@ -27,6 +27,10 @@ honey.def('lib:mustache, tpl:header, plugin:pswencode', function(H) {
 
     // funcs
     var
+    contains = function(container, maybe) {
+        return container.contains ? container.contains(maybe) :
+            !!(container.compareDocumentPosition(maybe) & 16);
+    },
     removeTag = function() {
         body.removeChild(script) 
         script = null
@@ -46,6 +50,41 @@ honey.def('lib:mustache, tpl:header, plugin:pswencode', function(H) {
             }
             return funcs[target.id] && funcs[target.id].call(target)
         }
+
+        con.onmouseover = function(_e) {
+            var 
+            event = _e || window.event,
+            target = event.target || event.srcElement
+
+            if (target.id === 'top-msg-trigger') {
+                showMsgBox.call(target)
+            }
+            return false
+        }
+
+        con.onmouseout = function(_e) {
+            var 
+            event = _e || window.event,
+            target = event.target || event.srcElement,
+            relTarg = event.relatedTarget || event.fromElement,
+            _ = document.getElementById('top-msg-trigger'),
+            box = document.getElementById('top-msg-box')
+
+            if (!contains(box, relTarg)) {
+                showMsgBox.call(_)
+            }
+
+            //if (target.id === 'top-msg-box') {
+            //}
+            return false
+        }
+
+        //var login_trigger = document.getElementById('top-login-trigger')
+        //
+        //login_trigger.onmouseover = function(_e) {
+        //    showLogin.call(this)
+        //    return false
+        //}
     },
     showLogin = function() {
         var 
