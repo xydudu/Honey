@@ -70,7 +70,11 @@ honey.def('lib:mustache, tpl:header, plugin:pswencode', function(H) {
             _ = document.getElementById('top-msg-trigger'),
             box = document.getElementById('top-msg-box')
 
-            if (!contains(box, relTarg)) {
+            console.log(target, relTarg, contains(box, relTarg));
+
+            if (!contains(box, relTarg) && 
+                    (contains(box, target) 
+                     || target.id === 'top-msg-box')) {
                 showMsgBox.call(_)
             }
 
