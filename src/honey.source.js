@@ -14,7 +14,7 @@
 (function(w, doc, undefined) {
     
     var H = function() { 
-        this.version = '3.0'
+        this.version = '3.2'
     }
 
     H.go = function(_mods, _fn) {

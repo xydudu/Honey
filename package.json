@@ -1,7 +1,23 @@
 {
     "name": "Honey",
     "description": "Simple Javascript Module Loader Build on Headjs, And Hunantv.com is Using",
-    "version": "2.0",
+    "version": "3.1.2",
     "author": "Lian Hsueh",
-    "license": "MIT"
+    "repository": {
+        "type" : "git",
+        "url" : "https://github.com/xydudu/Honey.git"
+    },
+    "bugs" : { "url" : "http://github.com/xydudu/Honey/issues" },
+    "licenses" : [
+        { 
+            "type" : "MIT",
+            "url" : "http://github.com/xydudu/Honey/raw/master/LICENSE"
+        }
+    ],
+    "devDependencies": {
+        "grunt-karma": "",
+        "karma-mocha": "",
+        "should": ""
+    },
+    "engines": { "node": ">= 0.8.0" }
 }
