@@ -24,7 +24,7 @@
     </style>
 </head>
 <body>
-    <h1>Hunantv Comment Widget Style 1</h1>    
+    <h1>Hunantv Comment Widget New Style 1</h1>    
     <div class="outer">
 
         <div id="honey-comment">
@@ -37,13 +37,14 @@
     </div> 
     <script>
         honey.go('lib:jquery, lib:mustache, plugin:pswencode, '
-        + 'tpl:comment, widget:comment', 
+        + 'tpl:commentnew, widget:comment', 
         function() {
             new honey.comment({
                 project: 'ihunantv',
                 subject_id: '1664379',
                 type: 'ent',
-                mood: true
+                mood: true,
+                css: 'http://honey.hunantv.com/css/widget/comment-new.css'
             }); 
         })
     </script>

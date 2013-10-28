@@ -33,6 +33,7 @@
     } 
 
     H.ready = head.ready 
+    H.load = head.load 
 
     H.def = function(_deps, _fn) {
         if (arguments.length == 1) {
@@ -70,7 +71,11 @@
         
         //var path = m[0] +'/'+ m[1] + ((DEV && !is_pub) ? '.source' : '') +'.js'
         var path = m[0] +'/'+ m[1] + (DEV ? '.source' : '') +'.js'
-        script[name] = root +'/'+ path +'?v'+ VERSION
+
+        path = root +'/'+ path +'?v'+ VERSION
+        path = path.replace(/([^:])\/\//g, '$1/')
+
+        script[name] = path
 
         return script
     }

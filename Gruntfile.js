@@ -1,3 +1,4 @@
+'use strict';
 module.exports = function(grunt) {
 
     //grunt.loadNpmTasks('grunt-conventional-changelog');
@@ -6,25 +7,17 @@ module.exports = function(grunt) {
         karma: {
             options: {
                 browsers: ['Chrome'],
+                port: 9999,
                 files: [
                     'test/**/*.js'
                 ],
                 frameworks: ['mocha'],
-                plugins: ['karma-mocha', 'karma-chrome-launcher']
-            },
-            continuous: {
-              singleRun: true
-            },
-            dev: {
-                reporters: 'dots',
-                background: true
+                autoWatch: false,
+                plugins: ['karma-mocha', 'karma-chrome-launcher', 'karma-ievms']
             }
-            //auto: {
-            //    autoWatch: true
-            //}
         }
     });
 
-    //grunt.registerTask('test', 'karam');
-    grunt.registerTask('test', ['karma:continuous']);
+    grunt.registerTask('test', ['karma']);
+    //grunt.registerTask('test', ['karma']);
 };

@@ -6,9 +6,6 @@
 
 honey.def('lib:jquery, lib:mustache', function(H) {
     
-    // TODO
-    //  if css loader errors, must do something
-    H.css(CSS +'/widget/comment.css')
 
     var 
     api = 'http://comment.hunantv.com',
@@ -66,6 +63,9 @@ honey.def('lib:jquery, lib:mustache', function(H) {
         _.hasmood = _options.mood || false
         _.nolist = _options.nolist || false
         _.subject = _options.subject_id
+
+        var css = _options.css || CSS +'/widget/comment.css'
+        H.css(css)
 
         _.tpl = _options.tpl 
             ? H.commentTpl[_options.tpl]
@@ -181,6 +181,31 @@ honey.def('lib:jquery, lib:mustache', function(H) {
             select_ico.css('left', o.position().left)
             return false
         }) 
+
+        box.on('click', '.combox-face>a', function(e) {
+            var o = $(this)
+
+            o.parent('p').find('a').removeClass('on')
+
+            var
+            selected_mood = _.hiddens.mood.val(),
+            mood = o.attr('class').split('-')[1]
+
+            //select_ico = o.parent().find('.selected')
+            _.hiddens.mood.val(mood)
+
+            if (selected_mood === mood) {
+                //select_ico.remove()
+                _.hiddens.mood.val(0)
+                o.removeClass('on')
+            } else o.addClass('on')
+
+            //if (!select_ico.length)
+            //    select_ico = $('<i class="selected" ></i>').insertAfter(o)
+            //select_ico.css('left', o.position().left)
+
+            return false
+        })
         
         // 分页
         box.on('click', '.honey-comment-pages>a', function(e) {

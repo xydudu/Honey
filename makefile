@@ -1,43 +1,50 @@
 compress:
-	@uglifyjs -nc src/config.js > svn/honey.js
+	@uglifyjs -nc src/configs/config.js > svn/honey.js
 	@uglifyjs -nc src/head.load.js >> svn/honey.js
 	@uglifyjs -nc src/honey.source.js >> svn/honey.js
 
 imgotv:
 	@echo 芒果TV 压缩中。。。
-	@uglifyjs -nc src/config.imgotv.js > svn/honey.imgotv.js
+	@uglifyjs -nc src/configs/config.imgotv.js > svn/honey.imgotv.js
 	@uglifyjs -nc src/head.load.js >> svn/honey.imgotv.js
 	@uglifyjs -nc src/honey.source.js >> svn/honey.imgotv.js
 
 ihunantv:
 	@echo 芒果微空间 压缩中。。。
-	@uglifyjs -nc src/config.ihunantv.js > svn/honey.ihunantv.js
+	@uglifyjs -nc src/configs/config.ihunantv.js > svn/honey.ihunantv.js
 	@uglifyjs -nc src/head.load.js >> svn/honey.ihunantv.js
 	@uglifyjs -nc src/honey.source.js >> svn/honey.ihunantv.js
 
 hunantv:
 	@echo 金鹰网 压缩中。。。
-	@uglifyjs -nc src/config.hunantv.js > svn/honey.hunantv.js
+	@uglifyjs -nc src/configs/config.hunantv.js > svn/honey.hunantv.js
 	@uglifyjs -nc src/head.load.js >> svn/honey.hunantv.js
 	@uglifyjs -nc src/honey.source.js >> svn/honey.hunantv.js
 
 datahunantv:
 	@echo 资讯数据 data.hunantv 压缩中。。。
-	@uglifyjs -nc src/config.datahunantv.js > svn/honey.data.js
+	@uglifyjs -nc src/configs/config.datahunantv.js > svn/honey.data.js
 	@uglifyjs -nc src/head.load.js >> svn/honey.data.js
 	@uglifyjs -nc src/honey.source.js >> svn/honey.data.js
 
 monitor:
 	@echo 监控 压缩中。。。
-	@uglifyjs -nc src/config.monitor.js > svn/honey.monitor.js
+	@uglifyjs -nc src/configs/config.monitor.js > svn/honey.monitor.js
 	@uglifyjs -nc src/head.load.js >> svn/honey.monitor.js
 	@uglifyjs -nc src/honey.source.js >> svn/honey.monitor.js
 
 newhunantv:
 	@echo 新金鹰网 压缩中。。。
-	@uglifyjs -nc src/config.newhunantv.js > svn/honey.newhunantv.js
+	@uglifyjs -nc src/configs/config.newhunantv.js > svn/honey.newhunantv.js
 	@uglifyjs -nc src/head.load.js >> svn/honey.newhunantv.js
 	@uglifyjs -nc src/honey.source.js >> svn/honey.newhunantv.js
+
+
+admanager:
+	@echo 广告系统 压缩中。。。
+	@uglifyjs -nc src/configs/config.admanager.js > svn/honey.admanager.js
+	@uglifyjs -nc src/head.load.js >> svn/honey.admanager.js
+	@uglifyjs -nc src/honey.source.js >> svn/honey.admanager.js
 
 
 
@@ -54,7 +61,7 @@ docx:
 #uglifyjs $${origin} >> svn/; 
 #echo $${dirname}; 
 
-svn: hunantv compress imgotv ihunantv datahunantv monitor newhunantv docx
+svn: hunantv compress imgotv ihunantv datahunantv monitor newhunantv admanager
 	@for dirname in src/*; do \
 		if [ -d $${dirname} ]; then \
 			for file in $${dirname}/*.source.js; do \

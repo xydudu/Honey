@@ -15,8 +15,10 @@
         }
     ],
     "devDependencies": {
+        "iectrl": "",
         "grunt-karma": "",
         "karma-mocha": "",
+        "karma-ievms": "",
         "should": ""
     },
     "engines": { "node": ">= 0.8.0" }
