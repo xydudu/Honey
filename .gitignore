@@ -4,7 +4,6 @@ lib-cov
 .svn
 _*
 
-*config*
 *.seed
 *.log
 *.csv
