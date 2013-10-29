@@ -144,6 +144,20 @@ honey.def('lib:jquery', function(H) {
             + '</div>'
 
         , pageList: ''
+            + '<a href="#{{prev}}" class="prev page-btnl">&nbsp;</a>'
+
+            + '{{#pages}}'
+            + '<a href="#{{.}}" '
+
+            + '{{#current}}'
+            + ' class="on" '
+            + '{{/current}}'
+
+            + '>{{.}}</a>'
+            + '{{/pages}}'
+
+            + '<a href="#{{next}}" class="next page-btnr">&nbsp;</a>'
+
         , list: '<li id="honey-comment-item-{{comment_id}}" class="clearfix">'
             + '<div class="honey-comment-avatar">'
 
