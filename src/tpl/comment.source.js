@@ -71,8 +71,9 @@ honey.def('lib:jquery', function(H) {
             + '</div>'
             + '<div class="actions clearfix">'
             + '<div class="fr">'
-            + '验证码：<input type="text" maxlength="4" /> <img src="http://comment.hunantv.com/comment/checkcode" />'
-            + '<button class="btn">发表 Ctrl+Enter</button>'
+            + '验证码：<input type="text" maxlength="4" /> '
+            + '<img width="90" height="30" src="http://comment.hunantv.com/comment/checkcode?'+ Math.random() +'" />'
+            + ' <button class="btn">发表</button>'
             + '</div>'
             + '<span>文明上网，理性发言</span>'
             + '</div>'
@@ -97,7 +98,7 @@ honey.def('lib:jquery', function(H) {
             + '{{#need_verify}}'
             + '<div class="fr">'
             + '验证码：<input type="text" maxlength="4" class="verify-input" /> <img class="verify-img" '
-            + 'src="http://comment.hunantv.com/comment/checkcode?'+ Math.random() +'" />'
+            + 'src="http://comment.hunantv.com/comment/checkcode?'+ Math.random() +'" width="90" height="30" />'
             + '</div>'
             + '{{/need_verify}}'
 
@@ -199,7 +200,7 @@ honey.def('lib:jquery', function(H) {
             + '</p>'
             
             + '<p class="actions">'
-            + '<a href="#{{comment_id}}" class="add-reply">回应</a>'
+            + '<a href="#{{comment_id}}" class="add-reply">回复</a>'
             + '</p>'
             + '</div>'
             + '</li>'
@@ -211,7 +212,45 @@ honey.def('lib:jquery', function(H) {
         , reply: H.commentTpl.ihunantv.reply
         , reply_nologin: H.commentTpl.ihunantv.reply_nologin
         , pageList: H.commentTpl.ihunantv.pageList
-        , list: ''
+        , list: '<li id="honey-comment-item-{{comment.comment_id}}" class="clearfix">'
+            + '<div class="honey-comment-avatar">'
+            + '<a href="http://i.hunantv.com/{{comment.user.user_id}}" id="position-{{comment.floor_id }}">'
+            + '<img src="{{comment.user.avatar_key}}" width="50"/>'
+            + '</a>'
+            
+            + '<p>{{no}} 楼</p>'
+            + '</div>'
+            + '<div class="honey-comment-body">'
+            + '<p class="top">'
+            + '<span class="fr time">{{comment.create_time}}</span>'
+            + '<a href="http://i.hunantv.com/{{comment.user.user_id}}" >{{comment.user.nickname}}</a> [{{comment.user.location}}]'
+            + '</p>'
+
+            + '{{#comments}}'
+            + '<div class="origin-contents">' 
+            + '{{/comments}}'
+
+            + '{{#comments}}'
+            + '<p>'
+            + '<small>{{no}}</small>'
+            + '<span><a href="http://i.hunantv.com/{{user.user_id}}">回复 {{user.nickname}}</a> [{{user.location}}]</span>'
+            + '{{content}}'
+            + '</p>'
+            + '</div>'
+            + '{{/comments}}'
+
+            + '<p class="content">'
+            + '{{comment.content}}'
+            + '</p>'
+            
+            + '<p class="actions">'
+            + '<a href="#{{comment.floor_id}}" class="up-comment">顶 '
+            + '<strong>[ {{comment.up_num}} ]</strong></a>'
+            + '<a href="#{{comment.comment_id}}" class="add-reply">回应</a>'
+            //+ '<a href="#{{comment.comment_id}}" class="copy">复制</a>'
+            + '</p>'
+            + '</div>'
+            + '</li>'
     }
 
 })
