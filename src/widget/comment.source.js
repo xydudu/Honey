@@ -182,6 +182,22 @@ honey.def('lib:jquery, lib:mustache', function(H) {
             return false
         }) 
 
+        box.on('click', '.all-a', function(e) {
+            var 
+            o = $(this),
+            facebox = o.next('.combox-face')
+            if (o.data('opend')) {
+                o.data('opend', false)
+                o.removeClass('on')
+                facebox.hide() 
+            } else {
+                o.data('opend', true)
+                o.addClass('on')
+                facebox.show() 
+            }
+            return false
+        })
+
         box.on('click', '.combox-face>a', function(e) {
             var o = $(this)
 

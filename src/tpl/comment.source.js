@@ -54,13 +54,16 @@ honey.def('lib:jquery', function(H) {
             + '</h5>'
 
             + '{{#mood}}'
+            + '<div class="combox-face-main clearfix">'
+            + '<a href="javascript:" class="all-a" ></a>'
             + '<p class="combox-face">'
             + '<a href="javascript:" class="face-1"></a>'
-            + '<a href="javascript:" class="face-2 on"></a>'
+            + '<a href="javascript:" class="face-2"></a>'
             + '<a href="javascript:" class="face-3"></a>'
             + '<a href="javascript:" class="face-4"></a>'
             + '<a href="javascript:" class="face-5"></a>'
             + '</p>'
+            + '</div>'
             + '{{/mood}}'
 
             + '</div>'
@@ -95,15 +98,15 @@ honey.def('lib:jquery', function(H) {
             + '<td class="reply-button">'
             + '<span>文明上网，理性发言</span>'
 
-            + '{{#need_verify}}'
             + '<div class="fr">'
+            + '{{#need_verify}}'
             + '验证码：<input type="text" maxlength="4" class="verify-input" /> <img class="verify-img" '
             + 'src="http://comment.hunantv.com/comment/checkcode?'+ Math.random() +'" width="90" height="30" />'
-            + '</div>'
             + '{{/need_verify}}'
 
 
-            + '<button class="btn" value="reply-{{id}}">发送</button></td>'
+            + ' <button class="btn" value="reply-{{id}}">发送</button></td>'
+            + '</div>'
 
             + '</tr>'
             + '{{/user.is_active}}'
