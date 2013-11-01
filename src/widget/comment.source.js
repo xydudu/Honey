@@ -199,7 +199,7 @@ honey.def('lib:jquery, lib:mustache', function(H) {
         })
 
         $(document).click(function(e) {
-            e.proventDefault()
+            e.preventDefault()
             var 
             o = box.find('.all-a'),
             facebox = o.next('.combox-face')
