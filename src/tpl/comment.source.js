@@ -215,7 +215,7 @@ honey.def('lib:jquery', function(H) {
         , list: '<li id="honey-comment-item-{{comment.comment_id}}" class="clearfix">'
             + '<div class="honey-comment-avatar">'
             + '<a href="http://i.hunantv.com/{{comment.user.user_id}}" id="position-{{comment.floor_id }}">'
-            + '<img src="{{comment.user.avatar_key}}" width="50"/>'
+            + '<img src="{{comment.user.avatar_key}}" width="60"/>'
             + '</a>'
             
             + '<p>{{no}} 楼</p>'
