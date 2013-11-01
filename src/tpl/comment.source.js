@@ -75,7 +75,7 @@ honey.def('lib:jquery', function(H) {
             + '<div class="actions clearfix">'
             + '<div class="fr">'
             + '验证码：<input type="text" maxlength="4" /> '
-            + '<img width="90" height="30" src="http://comment.hunantv.com/comment/checkcode?'+ Math.random() +'" />'
+            + '<img width="90" style="display:inline-block" height="30" src="http://comment.hunantv.com/comment/checkcode?'+ Math.random() +'" />'
             + ' <button class="btn">发表</button>'
             + '</div>'
             + '<span>文明上网，理性发言</span>'
