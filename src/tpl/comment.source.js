@@ -75,8 +75,12 @@ honey.def('lib:jquery', function(H) {
             + '</div>'
             + '<div class="actions clearfix">'
             + '<div class="fr">'
+
+            + '{{#is_code}}'
             + '验证码：<input type="text" maxlength="4" /> '
-            + '<img width="90" style="display:inline-block" height="30" src="http://comment.hunantv.com/comment/checkcode?'+ Math.random() +'" />'
+            + '<img width="90" class="verify-img" style="display:inline-block" height="30" src="http://comment.hunantv.com/comment/checkcode?'+ Math.random() +'" />'
+            + '{{/is_code}}'
+
             + ' <button class="btn comment-submit">发表</button>'
             + '</div>'
             + '<span>文明上网，理性发言</span>'
