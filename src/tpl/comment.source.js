@@ -77,7 +77,7 @@ honey.def('lib:jquery', function(H) {
             + '<div class="fr">'
 
             + '{{#is_code}}'
-            + '验证码：<input type="text" maxlength="4" /> '
+            + '验证码：<input type="text" class="verify-input" maxlength="4" /> '
             + '<img width="90" class="verify-img" style="display:inline-block" height="30" src="http://comment.hunantv.com/comment/checkcode?'+ Math.random() +'" />'
             + '{{/is_code}}'
 
