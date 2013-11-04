@@ -207,6 +207,7 @@ honey.def('lib:jquery, lib:mustache', function(H) {
             o.data('opend', false)
             o.removeClass('on')
             facebox.hide() 
+
         })
 
         box.on('click', '.combox-face>a', function(e) {
@@ -289,7 +290,7 @@ honey.def('lib:jquery, lib:mustache', function(H) {
         })
 
         // 回复
-        box.on('click', '.reply-button>button.btn', function() {
+        box.on('click', '.reply-button button.btn', function() {
             var o = $(this)
             if (o.data('lock')) return false
             o.data('lock', true)
