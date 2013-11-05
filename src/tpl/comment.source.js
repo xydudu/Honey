@@ -15,7 +15,8 @@ honey.def('lib:jquery', function(H) {
 
         actions_nologin: ''
             + '<div class="comment-input" id="honey-comment-login-form">'
-            + '<form method="post" '
+
+            + (H.loginDialog ? '' : ('<form method="post" '
             + 'action="http://spp.hunantv.com/passport/service.php?action=login">'
             + '<input type="hidden" name="ref" value="'+ current_url +'" />'
             + '<p> '
@@ -25,9 +26,10 @@ honey.def('lib:jquery', function(H) {
             + '<button class="btn submit" value="honey-comment-login-form" >登录</button>'
             + '<a target="_blank" href="http://i.hunantv.com/register" >新用户注册</a>'
             + '</p>'
-            + '</form>'
+            + '</form>'))
+
             + '<div class="textarea">'
-            + '<textarea disabled="disabled">请登录后评论</textarea>'
+            + '<textarea placeholder="请登录后评论" class="no-login"></textarea>'
             + '</div>'
             + '</div>'
 

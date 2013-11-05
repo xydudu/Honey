@@ -72,11 +72,19 @@ honey.def('mod:dialog, plugin:pswencode ', function(H) {
                 html: html,
                 content: con_html,
                 height: 332,
-                width: 355
+                width: 355,
+                opacity: 0.5
             })
             dialog.init()
             dialog.find('#honey-dialog-submit').click(login)
             dialog.find('.thired-parts a').click(third)
+
+            $(document).keydown(function(event){
+                var keycode = (event.keyCode ? event.keyCode : event.which);
+                if(keycode == '13'){
+                    login.call(this, event)
+                }
+            })
         }
         dialog.open()
     }

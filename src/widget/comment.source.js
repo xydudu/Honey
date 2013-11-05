@@ -199,14 +199,16 @@ honey.def('lib:jquery, lib:mustache', function(H) {
         })
 
         $(document).click(function(e) {
-            e.preventDefault()
+            //e.preventDefault()
             var 
             o = box.find('.all-a'),
             facebox = o.next('.combox-face')
 
-            o.data('opend', false)
-            o.removeClass('on')
-            facebox.hide() 
+            if (o.data('opend')) {
+                o.data('opend', false)
+                o.removeClass('on')
+                facebox.hide() 
+            }
 
         })
 
@@ -248,6 +250,11 @@ honey.def('lib:jquery, lib:mustache', function(H) {
 
         // 显示回复框
         box.on('click', '.add-reply', function(e) {
+
+            if (H.loginDialog && !current_user) {
+                return H.loginDialog()
+            }
+
             var 
             o = $(this),
             id = o.attr('href').split('#')[1],
@@ -456,6 +463,9 @@ honey.def('lib:jquery, lib:mustache', function(H) {
             form.submit()
             return false
         })
+
+        // 如果有公共登录框
+        H.loginDialog && box.on('click', 'textarea.no-login', H.loginDialog)
 
         // 顶一条评论
         box.on('click', '.up-comment', function(e) {

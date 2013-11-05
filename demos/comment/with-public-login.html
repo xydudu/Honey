@@ -1,0 +1,53 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <title>Hunantv Comment Widget With Public Login</title>
+    <link rel="stylesheet" href="http://honey.hunantv.com/css/honey.css" type="text/css">
+    <script src="../../src/configs/config.js"></script>
+    <script src="../../src/head.load.js"></script>
+    <script src="../../src/honey.source.js"></script>
+    <style type="text/css" media="screen">
+        .outer {
+            background-color: #fff;
+            width: 80%;
+            margin-top: 30px;
+            text-align: left;
+            margin-left: auto;
+            margin-right: auto;
+            padding: 10px;
+        } 
+        h1 {
+            font-size: 16px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>Hunantv Comment Widget New Style 1</h1>    
+    <div class="outer">
+
+        <div id="honey-comment">
+            <h3>评论 <span class="comments-total-nums">(loading...)</span></h3> 
+            <ul class="honey-comment-list"></ul>
+            <p class="honey-comment-pages"></p>
+            <div class="honey-comment-text"></div>
+        </div>
+
+    </div> 
+    <script>
+        honey.go('lib:jquery, lib:mustache, plugin:pswencode, '
+        + 'mod:dialog, widget:login.dialog, ' 
+        + 'tpl:comment, widget:comment', 
+        function() {
+            new honey.comment({
+                project: 'ihunantv',
+                subject_id: '1664379',
+                type: 'ent',
+                mood: true
+                //css: 'http://honey.hunantv.com/css/widget/comment-new.css'
+            }); 
+        })
+    </script>
+</body>
+</html>
