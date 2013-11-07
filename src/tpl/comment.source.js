@@ -197,7 +197,7 @@ honey.def('lib:jquery', function(H) {
 
             
             + '{{#origin_comment}}'
-            + '<div class="origin-content">'
+            + '<div class="origin-content clearfix">'
             + '<div class="arrow"></div>'
             + '<p>'
             + '<em><a target="_blank" href="http://i.hunantv.com/{{user.user_id}}">{{origin_comment.user.nickname}}</a>： </em>'
