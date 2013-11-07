@@ -252,6 +252,7 @@ honey.def('lib:jquery, lib:mustache', function(H) {
         box.on('click', '.add-reply', function(e) {
 
             if (H.loginDialog && !current_user) {
+                window.location.hash = 'comment--'
                 return H.loginDialog()
             }
 
