@@ -29,7 +29,7 @@ honey.def('lib:jquery', function(H) {
             + '</form>'))
 
             + '<div class="textarea">'
-            + '<textarea placeholder="请登录后评论" class="no-login"></textarea>'
+            + '<textarea placeholder="输入你想说的话" class="no-login"></textarea>'
             + '</div>'
             + '</div>'
 
@@ -46,7 +46,7 @@ honey.def('lib:jquery', function(H) {
             + '{{/user.is_active}}'
 
             + '{{#user.is_active}}'
-            + '<a href="http://i.hunantv.com/comment">我的评论</a>'
+            + '<a target="_blank" href="http://i.hunantv.com/comment">我的评论</a>'
             + '{{/user.is_active}}'
 
             + '<span>|</span>'
@@ -182,7 +182,7 @@ honey.def('lib:jquery', function(H) {
             + '{{/ie}}'
             + '{{/mood}}'
 
-            + '<a href="http://i.hunantv.com/{{user.user_id}}" '
+            + '<a target="_blank" href="http://i.hunantv.com/{{user.user_id}}" '
             + ' id="position-{{comment_id}}">'
             + '<img src="{{user.avatar_key}}" width="60"/></a>'
 
@@ -192,15 +192,15 @@ honey.def('lib:jquery', function(H) {
             + '<div class="honey-comment-body">'
             + '<p class="top">'
             + '<span class="fr time">{{create_time}}</span>'
-            + '<a href="http://i.hunantv.com/{{user.user_id}}" >{{user.nickname}}</a> [{{user.location}}]'
+            + '<a target="_blank" href="http://i.hunantv.com/{{user.user_id}}" >{{user.nickname}}</a> [{{user.location}}]'
             + '</p>'
 
             
             + '{{#origin_comment}}'
             + '<div class="origin-content">'
-            //+ '<div class="arrow"></div>'
+            + '<div class="arrow"></div>'
             + '<p>'
-            + '回复 <a href="http://i.hunantv.com/{{user.user_id}}">{{origin_comment.user.nickname}}</a>： '
+            + '<em><a target="_blank" href="http://i.hunantv.com/{{user.user_id}}">{{origin_comment.user.nickname}}</a>： </em>'
             + '{{origin_comment.content}}</p>'
             + '</div>'
             + '{{/origin_comment}}'
@@ -224,7 +224,7 @@ honey.def('lib:jquery', function(H) {
         , pageList: H.commentTpl.ihunantv.pageList
         , list: '<li id="honey-comment-item-{{comment.comment_id}}" class="clearfix">'
             + '<div class="honey-comment-avatar">'
-            + '<a href="http://i.hunantv.com/{{comment.user.user_id}}" id="position-{{comment.floor_id }}">'
+            + '<a target="_blank" href="http://i.hunantv.com/{{comment.user.user_id}}" id="position-{{comment.floor_id }}">'
             + '<img src="{{comment.user.avatar_key}}" width="60"/>'
             + '</a>'
             
@@ -233,7 +233,7 @@ honey.def('lib:jquery', function(H) {
             + '<div class="honey-comment-body">'
             + '<p class="top">'
             + '<span class="fr time">{{comment.create_time}}</span>'
-            + '<a href="http://i.hunantv.com/{{comment.user.user_id}}" >{{comment.user.nickname}}</a> [{{comment.user.location}}]'
+            + '<a target="_blank" href="http://i.hunantv.com/{{comment.user.user_id}}" >{{comment.user.nickname}}</a> [{{comment.user.location}}]'
             + '</p>'
 
             + '{{#comments}}'
@@ -243,7 +243,7 @@ honey.def('lib:jquery', function(H) {
             + '{{#comments}}'
             + '<p>'
             + '<small>{{no}}</small>'
-            + '<span><a href="http://i.hunantv.com/{{user.user_id}}">回复 {{user.nickname}}</a> [{{user.location}}]</span>'
+            + '<span><a target="_blank" href="http://i.hunantv.com/{{user.user_id}}">回复 {{user.nickname}}</a> [{{user.location}}]</span>'
             + '{{content}}'
             + '</p>'
             + '</div>'
