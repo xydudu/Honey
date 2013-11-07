@@ -195,6 +195,9 @@ honey.def('lib:jquery', function(H) {
             + '<a target="_blank" href="http://i.hunantv.com/{{user.user_id}}" >{{user.nickname}}</a> [{{user.location}}]'
             + '</p>'
 
+            + '<p class="content">'
+            + '{{content}}'
+            + '</p>'
             
             + '{{#origin_comment}}'
             + '<div class="origin-content clearfix">'
@@ -205,9 +208,6 @@ honey.def('lib:jquery', function(H) {
             + '</div>'
             + '{{/origin_comment}}'
 
-            + '<p class="content">'
-            + '{{content}}'
-            + '</p>'
             
             + '<p class="actions">'
             + '<a href="#{{comment_id}}" class="add-reply">回复</a>'
