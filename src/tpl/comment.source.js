@@ -42,7 +42,7 @@ honey.def('lib:jquery', function(H) {
 
             + '{{^user.is_active}}'
             + '<a target="_blank" href="http://i.hunantv.com">'
-            + '<em>完善资料</em>才可以发表评论</a>'
+            + '<em>完善资料</em></a> 才可以发表评论'
             + '{{/user.is_active}}'
 
             + '{{#user.is_active}}'
@@ -256,7 +256,7 @@ honey.def('lib:jquery', function(H) {
             + '<p class="actions">'
             + '<a href="#{{comment.floor_id}}" class="up-comment">顶 '
             + '<strong>[ {{comment.up_num}} ]</strong></a>'
-            + '<a href="#{{comment.comment_id}}" class="add-reply">回应</a>'
+            + '<a href="#{{comment.comment_id}}" class="add-reply">回复</a>'
             //+ '<a href="#{{comment.comment_id}}" class="copy">复制</a>'
             + '</p>'
             + '</div>'

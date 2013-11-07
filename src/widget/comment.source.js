@@ -421,9 +421,10 @@ honey.def('lib:jquery, lib:mustache', function(H) {
                 var state = _data.err ? 'error' : 'success'
                 notice.addClass(state).html(_.rules[state]).show()
                 if (_data.err) {
-                    notice.html(_data.msg)
+                    notice.html('<i></i> '+ _data.msg)
                     setTimeout(function() {
                         notice.fadeOut(500)
+                        notice.removeClass(state)
                     }, 1000)
                 } else {
                     content.val('')
@@ -432,9 +433,11 @@ honey.def('lib:jquery, lib:mustache', function(H) {
                     _.hiddens.mood.val(0)
                     setTimeout(function() {
                         notice.fadeOut(500)
+                        notice.removeClass(state)
                         _.getList(1)
                     }, 1000)
                 }
+                box.find('.verify-img').trigger('click')
                 o.data('lock', false)
             }) 
             return false
