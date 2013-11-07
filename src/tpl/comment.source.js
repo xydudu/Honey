@@ -89,7 +89,7 @@ honey.def('lib:jquery', function(H) {
             + '</div>'
 
         , reply: '<div class="reply" id="reply-{{id}}">'
-            + '<div class="arrow"></div>'
+            + '<div class="arrow" [style]></div>'
             + '<table>'
             + '{{#user.is_active}}'
             + '<tr>'
@@ -219,7 +219,7 @@ honey.def('lib:jquery', function(H) {
     H.commentTpl.enthunantv = {
         actions_nologin: H.commentTpl.ihunantv.actions_nologin
         , actions: H.commentTpl.ihunantv.actions
-        , reply: H.commentTpl.ihunantv.reply
+        , reply: H.commentTpl.ihunantv.reply.replace('[style]', 'style="left:50px"')
         , reply_nologin: H.commentTpl.ihunantv.reply_nologin
         , pageList: H.commentTpl.ihunantv.pageList
         , list: '<li id="honey-comment-item-{{comment.comment_id}}" class="clearfix">'
