@@ -253,7 +253,8 @@ honey.def('lib:jquery, lib:mustache', function(H) {
 
             if (H.loginDialog && !current_user) {
                 window.location.hash = 'comment--'
-                return H.loginDialog()
+                H.loginDialog()
+                return false
             }
 
             var 
