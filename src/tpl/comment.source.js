@@ -38,7 +38,7 @@ honey.def('lib:jquery', function(H) {
             + '<img src="{{user.avatar}}" width="30"/>'
             + '<a name="comment--" target="_blank" '
             + 'href="http://i.hunantv.com/{{user.user_id}}">'
-            + '<em>{{user.nickname}} </em>欢迎您！ </a>'
+            + '<em>{{user.nickname}} </em></a> 欢迎您！ '
 
             + '{{^user.is_active}}'
             + '<a target="_blank" href="http://i.hunantv.com">'
