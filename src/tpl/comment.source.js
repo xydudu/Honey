@@ -243,7 +243,7 @@ honey.def('lib:jquery', function(H) {
             + '{{#comments}}'
             + '<p>'
             + '<small>{{no}}</small>'
-            + '<span><a target="_blank" href="http://i.hunantv.com/{{user.user_id}}">回复 {{user.nickname}}</a> [{{user.location}}]</span>'
+            + '<span><a target="_blank" href="http://i.hunantv.com/{{user.user_id}}">{{user.nickname}}</a> [{{user.location}}] 的原帖：</span>'
             + '{{content}}'
             + '</p>'
             + '</div>'
