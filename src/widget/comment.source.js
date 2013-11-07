@@ -265,9 +265,11 @@ honey.def('lib:jquery, lib:mustache', function(H) {
             reply_box = $('#reply-'+ id)
             
             if (reply_box.data('show')) {
+                o.css('color', '#ccc')
                 reply_box.data('show', false).hide()
                 return false
             } else {
+                o.css('color', '#ff8400')
                 reply_box.data('show', true)
                 reply_box.show()
             }
