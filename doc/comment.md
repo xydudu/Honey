@@ -63,3 +63,7 @@
     
     http://honey.hunantv.com/honey/demos/comment/
     // 需配host
+
+## update
+
+> 可引入公共登录弹层进行登录操作，只需要引入公共登录弹层的相关模块即可。
