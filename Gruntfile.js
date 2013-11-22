@@ -1,23 +1,34 @@
 'use strict';
 module.exports = function(grunt) {
 
+    //frameworks = ["requirejs"];
     //grunt.loadNpmTasks('grunt-conventional-changelog');
     grunt.loadNpmTasks('grunt-karma');
     grunt.initConfig({
         karma: {
             options: {
                 browsers: ['Chrome'],
-                port: 9999,
+                runnerPort: 9999,
                 files: [
-                    'test/**/*.js'
+                    //'node_modules/karma-mocha/lib/index.js',
+                    //'node_modules/karma-mocha/lib/adapter.js',
+                    'src/head.load.js',
+                    'src/honey.source.js',
+                    'test/honey.js'
                 ],
-                frameworks: ['mocha'],
-                autoWatch: false,
-                plugins: ['karma-mocha', 'karma-chrome-launcher', 'karma-ievms']
-            }
+                frameworks: ['mocha', 'chai'],
+                autoWatch: true,
+                colors : true,
+                plugins: ['karma-mocha', 'karma-spec-reporter', 'karma-chai', 'karma-chrome-launcher']
+            },
+            continuous: {
+                singleRun: true,
+                browsers: ['Chrome'],
+                reporters : ['spec']
+            },
         }
     });
 
-    grunt.registerTask('test', ['karma']);
+    grunt.registerTask('test', ['karma:continuous']);
     //grunt.registerTask('test', ['karma']);
 };

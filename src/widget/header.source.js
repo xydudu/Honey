@@ -28,6 +28,7 @@ honey.def('lib:mustache, tpl:header, plugin:pswencode', function(H) {
     // funcs
     var
     contains = function(container, maybe) {
+        if (!container) return false
         return container.contains ? container.contains(maybe) :
             !!(container.compareDocumentPosition(maybe) & 16);
     },
@@ -36,6 +37,32 @@ honey.def('lib:mustache, tpl:header, plugin:pswencode', function(H) {
         script = null
     },
     bindEvent = function() {
+        var 
+        box = doc.getElementById('top-login-box'),
+        login_trigger = doc.getElementById('top-login-trigger')
+
+        //top-login-trigger
+        window.onclick = function(_e) {
+            var 
+            event = _e || window.event,
+            target = event.target || event.srcElement,
+            display = box.style.display
+
+            console.log(contains(box, target))
+            console.log(contains(login_trigger, target))
+
+            if (
+                !contains(box, target) 
+                && !contains(login_trigger, target)) {
+                box.style.display = 'none'
+            }
+            //if(!contains(box, target) && display !== 'none') {
+            //    box.style.display = 'none'
+            //    console.log('hidden')
+            //}
+            //return false
+        }
+
         con.onclick = function(_e) {
             var 
             event = _e || window.event,
@@ -70,7 +97,7 @@ honey.def('lib:mustache, tpl:header, plugin:pswencode', function(H) {
             _ = document.getElementById('top-msg-trigger'),
             box = document.getElementById('top-msg-box')
 
-            console.log(target, relTarg, contains(box, relTarg));
+            //console.log(target, relTarg, contains(box, relTarg));
 
             if (!contains(box, relTarg) && 
                     (contains(box, target) 
