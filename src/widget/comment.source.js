@@ -651,7 +651,7 @@ honey.def('lib:jquery, lib:mustache', function(H) {
             pages: pages,
             current: current,
             next: (current_page + 1 > max_page) ? max_page : (current_page + 1),
-            end: max_page > max ? max_page : 0,
+            end: max < max_page ? max_page : 0,
             more_next: max_page - max > 1,
             more_prev: min - 1 > 1
         },
