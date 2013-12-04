@@ -157,8 +157,11 @@ honey.def('lib:jquery', function(H) {
         , pageList: ''
             + '<a href="#{{prev}}" class="prev page-btnl">&nbsp;</a>'
 
-            + '{{#more_prev}}'
+            + '{{#first}}'
             + '<a href="#first">{{first}}</a>'
+            + '{{/first}}'
+
+            + '{{#more_prev}}'
             + '<a href="javascript:">...</a>'
             + '{{/more_prev}}'
 
@@ -174,8 +177,11 @@ honey.def('lib:jquery', function(H) {
 
             + '{{#more_next}}'
             + '<a href="javascript:">...</a>'
-            + '<a href="#{{end}}">{{end}}</a>'
             + '{{/more_next}}'
+
+            + '{{#end}}'
+            + '<a href="#{{end}}">{{end}}</a>'
+            + '{{/end}}'
 
             + '<a href="#{{next}}" class="next page-btnr">&nbsp;</a>'
 
