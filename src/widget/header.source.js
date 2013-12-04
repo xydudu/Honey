@@ -47,20 +47,11 @@ honey.def('lib:mustache, tpl:header, plugin:pswencode', function(H) {
             event = _e || window.event,
             target = event.target || event.srcElement,
             display = box.style.display
-
-            console.log(contains(box, target))
-            console.log(contains(login_trigger, target))
-
             if (
                 !contains(box, target) 
                 && !contains(login_trigger, target)) {
-                box.style.display = 'none'
-            }
-            //if(!contains(box, target) && display !== 'none') {
-            //    box.style.display = 'none'
-            //    console.log('hidden')
-            //}
-            //return false
+                    box.style.display = 'none'
+                }
         }
 
         con.onclick = function(_e) {
@@ -85,6 +76,14 @@ honey.def('lib:mustache, tpl:header, plugin:pswencode', function(H) {
 
             if (target.id === 'top-msg-trigger') {
                 showMsgBox.call(target)
+            }
+            return false
+        }
+
+        con.onkeyup = function(_e) {
+            var event = _e || window.event
+            if (event.keyCode === 13) {
+                loginSubmit() 
             }
             return false
         }

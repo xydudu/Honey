@@ -37,7 +37,7 @@ honey.def('lib:jquery, lib:mustache', function(H) {
     current_user,
     need_verify = false,
     no = 1, // 楼号
-    page_number = 15, //每页条数
+    page_number = 15, //每页条数  不可更改，后端没接口啊。。。
     total_number = 0, //总条数
     len = function(_str) {
         // 把中文字符替换为两个英文，并返回长度
@@ -638,19 +638,26 @@ honey.def('lib:jquery, lib:mustache', function(H) {
                 ? 1 
                 : max - 5
         }
-        for (; min < max; min ++) {
-            pages.push(min)
+        for (var i = min; i < max; i ++) {
+            pages.push(i)
         }
 
+        //if (max_page - max > 1) {
+        //    
+        //}
         var data = {
             first: 1,
             prev: (current_page - 1 < 1) ? 1 : (current_page - 1),
             pages: pages,
             current: current,
             next: (current_page + 1 > max_page) ? max_page : (current_page + 1),
-            end: max_page
+            end: max_page,
+            more_next: max_page - max > 1,
+            more_prev: min - 1 > 1
         },
         html = Mustache.render(tpl, data)
+        
+
         box.html(html)
         
     }
