@@ -16,53 +16,54 @@ honey.def('mod:dialog, plugin:pswencode ', function(H) {
     current_url = window.location.href,
     id = 'honey-login-dialog',
     texts = {
-        title: '使用金鹰网帐号登录',
-        email: '注册邮箱',
-        password: '密码',
+        title: '帐号登录',
+        email: '邮箱帐号',
+        password: '请输入密码',
         submit: '登 录',
-        setcookie: '自动登录',
+        setcookie: '下次自动登录',
         forgetpass: '忘记密码？',
-        signup: '还没有金鹰网帐号？<a target="_blank" href="http://i.hunantv.com/register">马上注册</a>'
+        needsignup: '还没有帐号？',
+        signup: '<a target="_blank" class="zc-btn" href="http://i.hunantv.com/register">马上注册</a>'
     },
     html = [
-        '<div class="mod-dialog pr" id="'+ id +'">',
-            '<div class="black pa"></div>',
-            '<div class="dialog-wrap honey-dialog-conBox">',
+        '<div class="mod-play-login" id="'+ id +'">',
+            '<div class="honey-dialog-conBox">',
             '</div>',
         '</div>'
     ].join(''),
     con_html = [
-        '<h3 class="clearfix">',
-            '<span class="fl ml15">'+ texts.title +'</span>',
-            '<a href="javascript:" class="fr cancel-dialog-bt hide-text honey-dialog-close" title="关闭">关闭</a>',
-        '</h3>',
-        '<div class="info">',
-            '<form action="http://spp.hunantv.com/passport/service.php?action=login" method="post" >',
-            '<p class="h10"></p>',
-            '<p><input class="honey-login-input email" name="email" type="text" placeholder="'+ texts.email +'"/></p>',
-            '<p><input class="honey-login-input password" name="password" type="password" placeholder="'+ texts.password +'"/></p>',
-            '<div class="clearfix mt10 actions">',
-                '<input type="button" id="honey-dialog-submit" class="honey-login-submit" value="'+ texts.submit +'">',
-                '<span class="set-cookies">',
-                '<input type="checkbox" name="rem" class="honey-login-checkbox">',
-                '<label>'+ texts.setcookie +'</label>',
-                '</span>',
-                '<span class="forget-pass">',
-                '<a target="_blank" href="http://passport2.hunantv.com/index.php?ac=findpass" >'+ texts.forgetpass +'</a>',
-                '</span>',
-                '<p class="clearfix noborder">'+ texts.signup +'</p>',
-                '<p class="clearfix thired-parts">',
-                '<span>',
-                '第三方帐号登录',
-                '</span>',
-                '<a href="#200"><i class="sina"></i>新浪微博</a>',
-                '<a href="#110"><i class="tqq" ></i>腾讯微博</a>',
-                '<a href="#100"><i class="qq"  ></i>QQ帐号</a>',
-                '</p>',
-                '<input type="hidden" name="ref" value="'+ current_url +'" />',
-            '</div>',
-            '</form>',
-        '</div>'
+        
+        '<a href="#" class="play-login-close"></a>',
+        '<form action="http://spp.hunantv.com/passport/service.php?action=login" method="post" >',
+        '<div class="con-box clearfix">',
+        '<div class="cb-l">',
+        '<p class="login-til">'+ texts.title +' | <em>LOGIN</em></p>',
+        '<p>',
+        '<input type="text" class="txt-int email" placeholder="'+ texts.email +'" name="email" />',
+        '</p>',
+        '<p>',
+        '<input type="password" class="txt-int1 password1" placeholder="'+ texts.password +'" />',
+        '</p>',
+        '<input type="hidden" class="password" name="password" />',
+        '<p class="btn">',
+        '<a class="btn-login" id="honey-dialog-submit" href="javascript:">'+ texts.submit +' <em class="loading" style="display:none"></em></a>',
+        '<label>',
+        '<input type="checkbox" name="rem" />'+ texts.setcookie +' | </label>',
+        '<a class="forget" href="http://passport2.hunantv.com/index.php?ac=findpass" target="_blank">'+ texts.forgetpass +'</a>',
+        '</p>',
+        '</div>',
+        '<div class="cb-r">',
+        '<p class="wb-til">'+ texts.needsignup +'</p>',
+        texts.signup,
+        '<p class="wb-til">第三方帐号登录</p>',
+        '<p class="weibo thired-parts">',
+        '<a class="sina" href="#200">新浪</a>',
+        '<a class="tx" href="#110">腾讯微博</a>',
+        '<a class="qq" href="#100">QQ</a>',
+        '</p>',
+        '</div>',
+        '</div>',
+        '</form>'
     ].join('')
 
     H.loginDialog = function() {
@@ -71,8 +72,8 @@ honey.def('mod:dialog, plugin:pswencode ', function(H) {
                 id: 'honey-login-dialog',
                 html: html,
                 content: con_html,
-                height: 332,
-                width: 355,
+                height: 370,
+                width: 630,
                 opacity: 0.5
             })
             dialog.init()
@@ -89,35 +90,51 @@ honey.def('mod:dialog, plugin:pswencode ', function(H) {
         dialog.open()
     }
 
+    function showLoading(_) {
+        _.addClass('bl-loading')
+        _.find('em').show()
+    }
+    function hideLoading(_) {
+        _.removeClass('bl-loading')
+        _.find('em').hide()
+    }
+
     function login(e) {
         e.preventDefault() 
         var 
+        _ = $(this),
         reg = /^([a-zA-Z0-9\_\.\-])+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/gi,
         form = dialog.find('form'),
         email = form.find('.email'),
         emailv = email.val(),
-        pass = form.find('.password'),
+        pass1 = form.find('.password'),
+        pass = form.find('.password1'),
         passv = pass.val()
+
+        showLoading(_)
         
         if ($.trim(emailv) == '') {
             alert('请输入您的金鹰网帐号')
             email.focus()
+            hideLoading(_)
             return false
         }
 
         if (!reg.test(emailv)) {
             alert('邮箱格式不正确')
             email.focus()
+            hideLoading(_)
             return false
         }
 
         if ($.trim(passv) == '') {
             alert('密码不能为空')
             pass.focus()
+            hideLoading(_)
             return false
         }
          
-        pass.val(honey.encodePassword(passv))
+        pass1.val(honey.encodePassword(passv))
         form.submit()
     }
 
