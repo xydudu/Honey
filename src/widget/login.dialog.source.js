@@ -33,7 +33,7 @@ honey.def('mod:dialog, plugin:pswencode ', function(H) {
     ].join(''),
     con_html = [
         
-        '<a href="#" class="play-login-close"></a>',
+        '<a href="#" class="honey-dialog-close play-login-close"></a>',
         '<form action="http://spp.hunantv.com/passport/service.php?action=login" method="post" >',
         '<div class="con-box clearfix">',
         '<div class="cb-l">',
@@ -86,6 +86,9 @@ honey.def('mod:dialog, plugin:pswencode ', function(H) {
                     login.call(this, event)
                 }
             })
+            if ($.fn.placeholder) {
+                dialog.find('input').placeholder()
+            }
         }
         dialog.open()
     }

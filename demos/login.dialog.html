@@ -13,8 +13,35 @@
 <body>
     <h1 id="heading">Honey Demos - Login Dialog</h1>
     <button id="trigger">点击打开</button>
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <input type="text" width="600px" />
+    <input type="text" width="600px" />
+    <input type="text" width="600px" />
+    <input type="text" width="600px" />
+    <input type="text" width="600px" />
+    <input type="text" width="600px" />
+    <select>
+        <option>1</option>
+        <option>1</option>
+        <option>1</option>
+        <option>1</option>
+        <option>1</option>
+        <option>1</option>
+        <option>1</option>
+        <option>1</option>
+    </select>
     <script>
-        honey.go('lib:jquery, plugin:pswencode, mod:dialog, widget:login.dialog', function() {
+        honey.go('lib:jquery, plugin:pswencode, mod:dialog, plugin:placeholder, widget:login.dialog', function() {
             var trigger = $('#trigger');
             trigger.click(function() {
                 honey.loginDialog();

@@ -85,8 +85,12 @@ honey.def('mod:dialog, plugin:pswencode ', function(H) {
                     login.call(this, event)
                 }
             })
+            if ($.fn.placeholder) {
+                dialog.find('input').placeholder()
+            }
         }
         dialog.open()
+        
     }
 
     function login(e) {
