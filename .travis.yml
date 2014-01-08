@@ -4,3 +4,5 @@ node_js:
   - 0.10.11
 before_install:
   - git checkout honey-2.1.0
+script: 
+  - grunt test
