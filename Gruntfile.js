@@ -7,7 +7,8 @@ module.exports = function(grunt) {
     grunt.initConfig({
         karma: {
             options: {
-                browsers: ['Chrome'],
+                browsers: ['PhantomJS' /*'Chrome', 'Firefox'*/],
+                //browsers: ['PhantomJS', 'PhantomJS_custom'],
                 runnerPort: 9999,
                 files: [
                     //'node_modules/karma-mocha/lib/index.js',
@@ -19,11 +20,18 @@ module.exports = function(grunt) {
                 frameworks: ['mocha', 'chai'],
                 autoWatch: true,
                 colors : true,
-                plugins: ['karma-mocha', 'karma-spec-reporter', 'karma-chai', 'karma-chrome-launcher']
+                plugins: [
+                    'karma-mocha',
+                    'karma-spec-reporter',
+                    'karma-chai',
+                    //'karma-chrome-launcher',
+                    //'karma-firefox-launcher',
+                    'karma-phantomjs-launcher'
+                ]
             },
             continuous: {
                 singleRun: true,
-                browsers: ['Chrome'],
+                browsers: ['PhantomJS'],
                 reporters : ['spec']
             },
         }
