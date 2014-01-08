@@ -17,6 +17,7 @@
     }
   ],
   "devDependencies": {
+    "grunt": "~0.4.2",
     "karma": "~0.10.9",
     "grunt-karma": "~0.6.2",
     "karma-mocha": "",
