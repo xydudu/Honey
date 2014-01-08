@@ -5,4 +5,5 @@ node_js:
 before_install:
   - git checkout honey-2.1.0
 script: 
+  - npm install -g grunt-cli
   - grunt test
