@@ -1,4 +1,6 @@
-nguage: node_js
+language: node_js
 node_js:
   - 0.8
   - 0.10.11
+before_install:
+  - git checkout honey-2.1.0
