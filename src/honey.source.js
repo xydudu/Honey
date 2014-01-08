@@ -44,10 +44,14 @@
             return H
         }
 
+        /*
+         * 直接传入配置文件URL
+         *
         if (H.isString(_configs) && /^http\:\/\/(.+)hunantv(.+)\.js/.test(_configs) ) {
             head.js.call(w, _configs, _fun)
             return H
         }
+        */
         
         if (_fun === undefined && !H.isString(_configs)) {
             for(var key in _configs) {

@@ -10,17 +10,20 @@ describe("Honey", function () {
         honey.should.have.property('config');
     });
 
-    describe('配置项:直接传入项目配置文件URL', function() {
-        this.timeout(2000)
-        it("自动取得相关配置", function(done) {
-            var config_url = 'http://honey.hunantv.com/src/configs/config.ihunantv.js' 
-            honey.config(config_url, function() {
-                PROJECT.should.equal('i.hunantv')
-                ROOT.should.equal('http://honey.hunantv.com/i/js')
-                done()
-            })
-        })
-    })
+    /*
+     * 此功能还需考虑再确定是否需要添加
+     * */
+    //describe('配置项:直接传入项目配置文件URL', function() {
+    //    this.timeout(2000)
+    //    it("自动取得相关配置", function(done) {
+    //        var config_url = 'http://honey.hunantv.com/src/configs/config.ihunantv.js' 
+    //        honey.config(config_url, function() {
+    //            PROJECT.should.equal('i.hunantv')
+    //            ROOT.should.equal('http://honey.hunantv.com/i/js')
+    //            done()
+    //        })
+    //    })
+    //})
 
     describe('配置项:直接传入配置项', function() {
         it("手动传入单项配置", function() {
