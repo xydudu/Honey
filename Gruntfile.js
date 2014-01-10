@@ -54,5 +54,4 @@ module.exports = function(grunt) {
 
     grunt.registerTask('test:honey', ['karma:continuous']);
     grunt.registerTask('test:debug', ['karma:debug']);
-    //grunt.registerTask('test', ['karma']);
 };
