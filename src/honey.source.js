@@ -17,6 +17,7 @@
         this.version = '2.1.0'
     }
 
+
     H.go = function(_mods, _fn) {
         var 
         mods = _mods.split(','),

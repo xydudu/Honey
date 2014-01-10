@@ -4,6 +4,7 @@ module.exports = function(grunt) {
     //frameworks = ["requirejs"];
     //grunt.loadNpmTasks('grunt-conventional-changelog');
     grunt.loadNpmTasks('grunt-karma');
+
     grunt.initConfig({
         karma: {
             options: {
@@ -24,8 +25,6 @@ module.exports = function(grunt) {
                     'karma-mocha',
                     'karma-spec-reporter',
                     'karma-chai',
-                    //'karma-chrome-launcher',
-                    //'karma-firefox-launcher',
                     'karma-phantomjs-launcher'
                 ]
             },

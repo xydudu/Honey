@@ -22,9 +22,9 @@
     "grunt-karma": "~0.6.2",
     "karma-mocha": "",
     "karma-chai": "",
+    "should": "",
     "karma-spec-reporter": "",
     "phantomjs": "~1.9.0-1",
-    "should": "",
     "karma-phantomjs-launcher": "~0.1.1"
   },
   "engines": {

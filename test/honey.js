@@ -41,9 +41,61 @@ describe("Honey", function () {
     })
 
     
+    describe('引入模块', function() {
+        before(function() {
+            honey.config({
+                'PROJECT': 'honey.dev',
+                'ROOT': 'http://honey.hunantv.com/honey-2.0/',
+                'PUBROOT': 'http://honey.hunantv.com/honey-2.0/',
+                'DEV': false,
+                'VERSION': '20140110'
+            })
+        }) 
+        it('honey.go 引入单一模块', function(done) {
+            honey.go('lib:jquery', function() {
+                jQuery.should.be.ok
+                jQuery = null
+                done()
+            })
+            honey.go('lib_jquery1101', function() {
+                jQuery.should.be.ok
+                done()
+            })
+        })
+        it('honey.go 引入多个模块', function(done) {
+            honey.go('mod_pusher, mod_dialog', function() {
+                honey.pusher.should.be.ok
+                honey.dialog.should.be.ok
+                done()
+            })
+        })
+         
+    })
 
-    //it("引入一个文件", function(done) {
-    //    //honey.go('') 
-    //});
+    describe('ready 模块引入后触发对应绑定方法', function() {
+         before(function() {
+            honey.config({
+                'PROJECT': 'honey.dev',
+                'ROOT': 'http://honey.hunantv.com/honey-2.0/',
+                'PUBROOT': 'http://honey.hunantv.com/honey-2.0/',
+                'DEV': false,
+                'VERSION': '20140110'
+            })
+        })
+        it('honey.ready 模块引入后', function(done) {
+            honey.ready('lib_jquery1101', function() {
+                $.should.be.ok
+                done() 
+            })
+        })
+        it('honey.ready 模块引入前', function(done) {
+            honey.ready('mod:slide', function() {
+                honey.slide.should.be.ok
+                done() 
+            })
+            honey.go('mod:slide')
+        })
+    })
+
 
 });
