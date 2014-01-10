@@ -9,15 +9,12 @@ module.exports = function(grunt) {
         karma: {
             options: {
                 browsers: ['PhantomJS' /*'Chrome', 'Firefox'*/],
-                //browsers: ['PhantomJS', 'PhantomJS_custom'],
                 runnerPort: 9999,
-                files: [
-                    //'node_modules/karma-mocha/lib/index.js',
-                    //'node_modules/karma-mocha/lib/adapter.js',
-                    'src/head.load.js',
-                    'src/honey.source.js',
-                    'test/honey.js'
-                ],
+                //files: [
+                //    'src/head.load.js',
+                //    'src/honey.source.js',
+                //    'test/honey.js'
+                //],
                 frameworks: ['mocha', 'chai'],
                 autoWatch: true,
                 colors : true,
@@ -31,11 +28,31 @@ module.exports = function(grunt) {
             continuous: {
                 singleRun: true,
                 browsers: ['PhantomJS'],
-                reporters : ['spec']
+                reporters : ['spec'],
+                options: {
+                    files: [
+                        'src/head.load.js',
+                        'src/honey.source.js',
+                        'test/honey.js'
+                    ]
+                }
             },
+            debug: {
+                singleRun: true,
+                browsers: ['PhantomJS'],
+                reporters : ['spec'],
+                options: {
+                    files: [
+                        'src/head.load.js',
+                        'src/honey.source.js',
+                        'test/debug.js'
+                    ]
+                }
+            }
         }
     });
 
-    grunt.registerTask('test', ['karma:continuous']);
+    grunt.registerTask('test:honey', ['karma:continuous']);
+    grunt.registerTask('test:debug', ['karma:debug']);
     //grunt.registerTask('test', ['karma']);
 };
