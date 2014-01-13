@@ -1,29 +1,33 @@
 {
-    "name": "Honey",
-    "description": "Simple Javascript Module Loader Build on Headjs, And Hunantv.com is Using",
-    "version": "3.1.2",
-    "author": "Lian Hsueh",
-    "repository": {
-        "type" : "git",
-        "url" : "https://github.com/xydudu/Honey.git"
-    },
-    "bugs" : { "url" : "http://github.com/xydudu/Honey/issues" },
-    "licenses" : [
-        { 
-            "type" : "MIT",
-            "url" : "http://github.com/xydudu/Honey/raw/master/LICENSE"
-        }
-    ],
-    "devDependencies": {
-        "karma": "~0.10",
-        "iectrl": "",
-        "karma-requirejs": "",
-        "grunt-karma": "",
-        "karma-mocha": "",
-        "karma-chai": "",
-        "karma-ievms": "",
-        "karma-spec-reporter": "",
-        "should": ""
-    },
-    "engines": { "node": ">= 0.8.0" }
+  "name": "Honey",
+  "description": "Simple Javascript Module Loader Build on Headjs, And Hunantv.com is Using",
+  "version": "3.1.2",
+  "author": "Lian Hsueh",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/xydudu/Honey.git"
+  },
+  "bugs": {
+    "url": "http://github.com/xydudu/Honey/issues"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "http://github.com/xydudu/Honey/raw/master/LICENSE"
+    }
+  ],
+  "devDependencies": {
+    "grunt": "~0.4.2",
+    "karma": "~0.10.9",
+    "grunt-karma": "~0.6.2",
+    "karma-mocha": "",
+    "karma-chai": "",
+    "should": "",
+    "karma-spec-reporter": "",
+    "phantomjs": "~1.9.0-1",
+    "karma-phantomjs-launcher": "~0.1.1"
+  },
+  "engines": {
+    "node": ">= 0.8.0"
+  }
 }

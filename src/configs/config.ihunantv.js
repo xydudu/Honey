@@ -1,6 +1,6 @@
 // project config
 var
-PROJECT = 'i.hunantv', //绑定到项目中
+PROJECT = 'ihunantv', //绑定到项目中
 VERSION = '20130314',
 DEV = !!window.DEV, 
 COMBO = false,

@@ -4,31 +4,54 @@ module.exports = function(grunt) {
     //frameworks = ["requirejs"];
     //grunt.loadNpmTasks('grunt-conventional-changelog');
     grunt.loadNpmTasks('grunt-karma');
+
     grunt.initConfig({
         karma: {
             options: {
-                browsers: ['Chrome'],
+                browsers: ['PhantomJS' /*'Chrome', 'Firefox'*/],
                 runnerPort: 9999,
-                files: [
-                    //'node_modules/karma-mocha/lib/index.js',
-                    //'node_modules/karma-mocha/lib/adapter.js',
-                    'src/head.load.js',
-                    'src/honey.source.js',
-                    'test/honey.js'
-                ],
+                //files: [
+                //    'src/head.load.js',
+                //    'src/honey.source.js',
+                //    'test/honey.js'
+                //],
                 frameworks: ['mocha', 'chai'],
                 autoWatch: true,
                 colors : true,
-                plugins: ['karma-mocha', 'karma-spec-reporter', 'karma-chai', 'karma-chrome-launcher']
+                plugins: [
+                    'karma-mocha',
+                    'karma-spec-reporter',
+                    'karma-chai',
+                    'karma-phantomjs-launcher'
+                ]
             },
             continuous: {
                 singleRun: true,
-                browsers: ['Chrome'],
-                reporters : ['spec']
+                browsers: ['PhantomJS'],
+                reporters : ['spec'],
+                options: {
+                    files: [
+                        'src/head.load.js',
+                        'src/honey.source.js',
+                        'test/honey.js'
+                    ]
+                }
             },
+            debug: {
+                singleRun: true,
+                browsers: ['PhantomJS'],
+                reporters : ['spec'],
+                options: {
+                    files: [
+                        'src/head.load.js',
+                        'src/honey.source.js',
+                        'test/debug.js'
+                    ]
+                }
+            }
         }
     });
 
-    grunt.registerTask('test', ['karma:continuous']);
-    //grunt.registerTask('test', ['karma']);
+    grunt.registerTask('test:honey', ['karma:continuous']);
+    grunt.registerTask('test:debug', ['karma:debug']);
 };

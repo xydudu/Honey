@@ -1,21 +1,22 @@
 /*
  * Honey 是基于 headjs(headjs.com) 的加载工具，目前应用于hunantv.com旗下大部分项目
  *   
- * version 3.1
+ * version 2.1.0
  *
  * Lian Hsueh 
  * 
  * Changelog
  *  直接引入无修改版headjs，便于与headjs最新版同步
- *  
+ *  添加honey.config方法 2014/01/07 Lian Hsueh
  *
  * */
 
 (function(w, doc, undefined) {
     
     var H = function() { 
-        this.version = '3.2'
+        this.version = '2.1.0'
     }
+
 
     H.go = function(_mods, _fn) {
         var 
@@ -35,6 +36,33 @@
     H.ready = head.ready 
     H.load = head.load 
 
+    H.config = function(_configs, _fun) {
+        // config options
+        // PROJECT, VERSION, DEV, ROOT, PUBROOT, CSS, IMG, COMBO, COMBOURL 
+        
+        if (H.isString(_configs) && H.isString(_fun)) {
+            w[_configs] = _fun
+            return H
+        }
+
+        /*
+         * 直接传入配置文件URL
+         *
+        if (H.isString(_configs) && /^http\:\/\/(.+)hunantv(.+)\.js/.test(_configs) ) {
+            head.js.call(w, _configs, _fun)
+            return H
+        }
+        */
+        
+        if (_fun === undefined && !H.isString(_configs)) {
+            for(var key in _configs) {
+                w[key] = _configs[key]
+            } 
+            return H
+        }
+
+    }
+
     H.def = function(_deps, _fn) {
         if (arguments.length == 1) {
             _fn = _deps
@@ -52,6 +80,7 @@
         fn()
         //H.ready(deps[deps.length - 1], fn) 
     }
+
 
     H.trim = function(_a) {
         return _a.replace( /^\s+|\s+$/g, '' )
