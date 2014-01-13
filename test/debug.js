@@ -21,7 +21,7 @@ describe("Honey debug 模块", function () {
 
     it("honey.debug 打印字符串", function() {
         honey.debug('test string')
-        var text = $('#honey-debug span.console').html()
+        var text = $('.honey_panel_item .hc').html()
         text.should.equal('test string')
     })
 })
