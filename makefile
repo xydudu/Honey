@@ -79,6 +79,7 @@ svn: hunantv compress imgotv ihunantv datahunantv monitor newhunantv admanager
 		fi; \
 	done
 	@cd svn/; \
+		svn up; \
 		svn add *.js; \
 		echo 提交svn; \
 		svn ci -m 'honey 2.0 svn deploy xydudu'; 
