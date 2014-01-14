@@ -4,9 +4,17 @@
     <meta http-equiv="content-type" content="text/html; charset=utf-8">
     <title>Honey Demos - Debug</title>
     <link rel="stylesheet" href="http://honey.hunantv.com/css/honey.css" type="text/css">
-    <script src="http://honey.com/src/configs/config.debug.js"></script>
-    <script src="http://honey.com/src/head.load.js"></script>
-    <script src="http://honey.com/src/honey.source.js"></script>
+    <script src="http://honey.hunantv.com/honey/src/head.load.js"></script>
+    <script src="http://honey.hunantv.com/honey/src/honey.source.js"></script>
+    <script>
+        honey.config({
+            'PUBROOT': 'http://honey.hunantv.com/honey/src', 
+            'ROOT': 'http://honey.hunantv.com/honey/src', 
+            'DEV': true,
+            'VERSION': 1,
+            'CSS': 'http://honey.hunantv.com/css'
+        })
+    </script>
     <style type="text/css" media="screen">
         html,body {
             background-color: #fff;
@@ -164,7 +172,7 @@
     <p>asdddddddddddddddddddddddd</p>
     <p>ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss</p>
     <script>
-        honey.go('lib:jquery, lib:Debug', function(){
+        honey.go('lib:jquery, lib:debug', function(){
 
             honey.debug(honey, {"id": 20}, "N");
             honey.debug("asdasd");
@@ -191,7 +199,7 @@
     </script>
     <script>
         
-        honey.go('lib:Debug', function(){
+        honey.ready('lib:debug', function(){
 
           for(var index = 2; index < 20; index++){
                 honey.debug("22222222222222222","E");

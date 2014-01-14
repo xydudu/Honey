@@ -1,28 +1,29 @@
 chai.should();
 
-
 describe("Honey debug 模块", function () {
-
-    beforeEach(function(done) {
+    before(function(done) {
+        window.location.hash = '#debug'
         honey.config({
-            'PROJECT': 'honey.dev',
-            'ROOT': 'http://honey.com/src/',
-            'PUBROOT': 'http://honey.com/src/',
+            'PUBROOT': 'http://honey.hunantv.com/honey/src', 
+            'ROOT': 'http://honey.hunantv.com/honey/src', 
             'DEV': true,
-            'VERSION': '20140110'
+            'VERSION': 1,
+            'CSS': 'http://honey.hunantv.com/css'
         })
-
         honey.go('lib:jquery, lib:debug', done)
     })
 
     it("初始化", function () {
         honey.debug.should.be.ok
+        honey.debug("test")
+        $('#honey_panel').length.should.equal(1)
     });
 
     it("honey.debug 打印字符串", function() {
-        honey.debug('test string')
-        var text = $('.honey_panel_item .hc').html()
-        text.should.equal('test string')
+        var expect = 'test string'
+        honey.debug(expect)
+        var result = $('.honey_panel_item').last().children('em').text()
+        result.should.equal(expect)
     })
 })
 
