@@ -48,10 +48,23 @@ module.exports = function(grunt) {
                         'test/debug.js'
                     ]
                 }
+            },
+            all: {
+                singleRun: true,
+                browsers: ['PhantomJS'],
+                reporters : ['spec'],
+                options: {
+                    files: [
+                        'src/head.load.js',
+                        'src/honey.source.js',
+                        'test/*.js'
+                    ]
+                }
             }
         }
     });
 
     grunt.registerTask('test:honey', ['karma:continuous']);
     grunt.registerTask('test:debug', ['karma:debug']);
+    grunt.registerTask('test', ['karma:all']);
 };
