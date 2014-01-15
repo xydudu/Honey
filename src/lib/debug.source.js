@@ -68,7 +68,7 @@ honey.def(function(H) {
 		_switch = _checkSwitch();
 		if (!_switch) return;
 
-		H.css(_css);
+		H.css(_css+"?33");
 		//turn arguments to array
 		var _a = Array.prototype.slice.call(arguments, 0);
 		_arg = [];
@@ -128,9 +128,9 @@ honey.def(function(H) {
 		var str = "{";
 		for (var p in obj) {
 			if (typeof obj[p] == 'object') {
-				str += "<em class='key'>" + p + "</em>:  " + _showObj(obj[p]) + ", ";
+				str += "<em class='hdi_key'>" + p + "</em>:  " + _showObj(obj[p]) + ", ";
 			} else {
-				str += "<em class='key'>" + p + "</em>:  " + obj[p] + ", ";
+				str += "<em class='hdi_key'>" + p + "</em>:  " + obj[p] + ", ";
 			}
 
 		}
@@ -157,14 +157,13 @@ honey.def(function(H) {
 	}
 
 	function _builderBox() {
-		var html = '<div id="honey_panel"></div>';
 		var _p = _doc.createElement("div");
-		_p.setAttribute("id", "honey_panel");
-		_p.innerHTML = "<div id='hp_nav'><span id='hp_title'>Honey Debugger v0.5</span><a id='hp_close' href='javascript:void(0)'>X</a></div> \
-						<div id='hp_list'></div>";
+		_p.setAttribute("id", "hd_panel");
+		_p.innerHTML = "<div id='hdp_nav'><span id='hdp_title'>Honey Debugger v0.5</span><a id='hp_close' href='javascript:void(0)'>X</a></div> \
+						<div id='hdp_list'></div>";
 		_panel = _p;
 		_doc.getElementsByTagName("body")[0].appendChild(_p);
-		_list = _doc.getElementById("hp_list");
+		_list = _doc.getElementById("hdp_list");
 	}
 
 	function _show(arr) {
@@ -172,20 +171,20 @@ honey.def(function(H) {
 			className = "";
 		switch (arr.pop()) {
 			case _N:
-				className = "notice";
+				className = "hdi_notice";
 				break;
 			case _E:
-				className = "error";
+				className = "hdi_error";
 				break;
 		}
-		text = "<i class='hn'>" + (++_num) + ". </i><em class='hc " + className + "'>" + arr + "</em>";
+		text = "<i class='hdn'>" + (++_num) + ". </i><em class='hdc " + className + "'>" + arr + "</em>";
 
 		_addText(text);
 	}
 
 	function _addText(t) {
 		var _i = _doc.createElement("p");
-		_i.className = "honey_panel_item";
+		_i.className = "hdp_item";
 		_i.innerHTML = t;
 		_list.appendChild(_i);
 		_list.scrollTop = _list.scrollHeight;

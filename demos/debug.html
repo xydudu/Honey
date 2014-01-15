@@ -3,16 +3,16 @@
 <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8">
     <title>Honey Demos - Debug</title>
-    <link rel="stylesheet" href="http://honey.hunantv.com/css/honey.css" type="text/css">
-    <script src="http://honey.hunantv.com/honey/src/head.load.js"></script>
-    <script src="http://honey.hunantv.com/honey/src/honey.source.js"></script>
+    <link rel="stylesheet" href="http://honeycss.hunantv.com/css/honey.css" type="text/css">
+    <script src="http://honey.hunantv.com/src/head.load.js"></script>
+    <script src="http://honey.hunantv.com/src/honey.source.js"></script>
     <script>
         honey.config({
-            'PUBROOT': 'http://honey.hunantv.com/honey/src', 
-            'ROOT': 'http://honey.hunantv.com/honey/src', 
+            'PUBROOT': 'http://honey.hunantv.com/src', 
+            'ROOT': 'http://honey.hunantv.com/src', 
             'DEV': true,
             'VERSION': 1,
-            'CSS': 'http://honey.hunantv.com/css'
+            'CSS': 'http://honeycss.hunantv.com/css'
         })
     </script>
     <style type="text/css" media="screen">
@@ -21,107 +21,7 @@
             height: 100%;
         }
 
-        * html,* html body {background-image:url(about:blank);background-attachment:fixed;}
-        .demos {
-            padding: 20px;
-        }
-        p {
-            margin: 10px;
-            
-        }
-        a, a:hover {
-            font-size: 18px;
-            cursor: pointer;
-            font-weight: bold;
-            text-decoration: none;
-        }
-
-        #honey_panel{
-            width: 100%;
-            height: 320px;
-            padding: 0px;
-            position: fixed;
-            _position: absolute;
-            bottom: 0px;
-            left: 0;
-            _top:expression(eval(document.documentElement.scrollTop+document.documentElement.clientHeight-this.offsetHeight-(parseInt(this.currentStyle.marginTop,10)||0)-(parseInt(this.currentStyle.marginBottom,10)||0)));
-            overflow: hidden;
-            background-color: white;
-        }
-
-        #hp_nav{
-            background-color: black;
-            height: 20px;
-        }
-
-        #hp_nav a{
-            display: block;
-            color: white;
-            font-weight: bolder;
-            margin-right: 3px;
-            line-height: 20px;
-            cursor: pointer;
-            float: right;
-            font-size: 12px;
-            padding: 0px 3px;
-        }
-
-        #hp_nav a:hover{
-            background-color: white;
-            color: black;
-        }
-
-        #hp_list{
-            overflow-y: scroll;
-            height: 300px;
-        }
-
-        .honey_panel_item{
-            padding: 5px 20px 5px;
-            margin: 0;
-            margin-left: -10px;
-            border-bottom: 1px solid black;
-            font-weight: bolder;
-        }
-
-        .hn{
-            color: gray;
-            font-weight: normal;
-        }
-
-        .hc{
-            padding-right: 200px;
-            font-size: 14px;
-        }
-
-        .ht{
-            float: right;
-            color: gray;
-            font-weight: normal;
-            font-size: 12px;
-        }
-
-        #hp_title{
-            float:left;
-            color: white;
-            margin-left: 10px;
-            line-height: 20px;
-        }
-
-        .key{
-            font-size: 12px;
-            font-weight: normal;
-        }
-
-        .notice{
-            color: black;
-        }
-
-        .error{
-            color: #cc0000;
-        }
-
-        .clearfix{overflow:auto;_height:1%}
+        
     </style>
 </head>
 <body>
