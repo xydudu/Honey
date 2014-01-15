@@ -65,8 +65,10 @@ honey.def(function(H) {
 	H.debug = function() {
 
 		//check if the switchis open
-		_switch = _checkSwitch();
-		if (!_switch) return;
+        // 不应该在内部进行是否显示的判断，这一步应该在外部判断。 Lian Hsueh 1.15
+		//_switch = _checkSwitch();
+        //alert(_switch)
+		//if (!_switch) return;
 
 		H.css(_css+"?33");
 		//turn arguments to array
@@ -88,9 +90,9 @@ honey.def(function(H) {
 	/*
 	 *check if the switchis open
 	 */
-	function _checkSwitch() {
-		return (window.location.href.indexOf("#debug") > -1);
-	}
+	//function _checkSwitch() {
+	//	return (window.location.href.indexOf("#debug") > -1);
+	//}
 
 	/*
 	 * check the arguments' format

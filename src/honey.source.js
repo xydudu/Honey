@@ -16,6 +16,8 @@
     var H = function() { 
         this.version = '2.1.0'
     }
+    
+    var has_debug_hash = w.location.hash.match(/\bdebug\b/)
 
 
     H.go = function(_mods, _fn) {
@@ -24,6 +26,9 @@
         fn = _fn || null,
         scripts = []
         
+        if ((has_debug_hash || DEV) && !w.console) {
+            mods.splice(0, 0, 'lib:debug')
+        }
         
         while (mods.length)
             scripts.push(labelScript(mods.shift()))
@@ -125,18 +130,20 @@
     // ----------------------------------------------------------
     // http://james.padolsey.com/javascript/detect-ie-in-js-using-conditional-comments/
 
-    H.ie = (function() {
-        var
-        undef,
-        v = 3,
-        div = document.createElement('div')
+    H.ie = (function(){
+ 
+        var undef,
+            v = 3,
+            div = document.createElement('div'),
+            all = div.getElementsByTagName('i')
 
-        while(
-            div.innerHTML = '<!--[if gt IE '+ (++v) +']><i></i><![endif]-->',
-            div.getElementsByTagName('i')[0]
-        ) {
-            return v > 3 ? v : undef
-        }
+        while (
+            div.innerHTML = '<!--[if gt IE ' + (++v) + ']><i></i><![endif]-->',
+            all[0]
+        );
+
+        return v > 4 ? v : undef
+
     }())
     
     //判断_a是否在数组_b中
@@ -173,6 +180,18 @@
                     return _rules[ selector ].apply( target, $.makeArray( arguments ) )
         }
     }
+
+
+    // default debug
+    H.debug = 
+        w.console
+        ? console.log 
+        : function() {} 
+        
+    
+    //if (DEV && !w.console) {
+    //     
+    //}
 
     w.H = w.Honey = w.honey = w.HN = H
 })(window, document)
