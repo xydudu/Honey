@@ -1,5 +1,5 @@
 /*
- * Honey Debugger v0.5
+ * Honey Debugger v0.8
  * Author: lanbin
  * Date: 2014-01-13
  *
@@ -16,7 +16,12 @@
  * });
  *
  * ** F10 is shortcut for open and close the panel.
- */
+ *
+ * changelog
+ * 01-16
+ * 1). support "undefined" & "null"
+ * 2). Array's quota change from {} to []
+ */ 
 
 honey.def(function(H) {
 
@@ -70,13 +75,19 @@ honey.def(function(H) {
         //alert(_switch)
 		//if (!_switch) return;
 
-		H.css(_css+"?33");
+		H.css(_css);
 		//turn arguments to array
 		var _a = Array.prototype.slice.call(arguments, 0);
 		_arg = [];
 
 		for (var p in _a) {
-			_arg.push(arguments[p]);
+			if(typeof arguments[p] == 'undefined') {
+				_arg.push('undefined');
+			}else if(arguments[p] === null){
+				_arg.push('null');
+			}else{
+				_arg.push(arguments[p]);
+			}
 		}
 
 		if (!_builded) {
@@ -108,11 +119,12 @@ honey.def(function(H) {
 				type = "";
 
 			if (inArray(last, _types)) {  
-				ret = [_showObj(arg).replace(/^{|}$/g, ""), last];
+				type = last;
 			} else {
 				type = _N;
-				ret = [_showObj(arg.push(last)).replace(/^{|}$/g, ""), type];
+				arg.push(last);
 			}
+			ret = [_showObj(arg), type];
 		}
 		return ret;
 	}
@@ -136,7 +148,12 @@ honey.def(function(H) {
 			}
 
 		}
-		return (str += "}").replace(", }", "}");
+		str = (str += "}").replace(", }", "}");
+
+		if(obj instanceof Array) {
+			str = str.replace(/^{/, "[").replace(/}$/, "]");
+		}
+		return str;
 	}
 
 	function _eventBind() {
@@ -179,6 +196,7 @@ honey.def(function(H) {
 				className = "hdi_error";
 				break;
 		}
+
 		text = "<i class='hdn'>" + (++_num) + ". </i><em class='hdc " + className + "'>" + arr + "</em>";
 
 		_addText(text);
