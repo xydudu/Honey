@@ -14,16 +14,26 @@ describe("Honey debug 模块", function () {
     })
 
     it("初始化", function () {
-        honey.debug.should.be.ok
         honey.debug("test")
-        $('#honey_panel').length.should.equal(1)
+        $('#hd_panel').length.should.equal(1)
     });
 
     it("honey.debug 打印字符串", function() {
         var expect = 'test string'
         honey.debug(expect)
-        var result = $('.honey_panel_item').last().children('em').text()
+        var result = $('.hdp_item').last().children('em').text()
         result.should.equal(expect)
+    })
+
+    it("honey.debug null undefined", function() {
+        var expect;
+        honey.debug(expect)
+        var result = $('.hdp_item').last().children('em').text()
+        result.should.equal('undefined')
+        expect = null
+        honey.debug(expect)
+        var result = $('.hdp_item').last().children('em').text()
+        result.should.equal('null')
     })
 })
 

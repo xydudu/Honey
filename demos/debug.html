@@ -74,40 +74,29 @@
     <script>
         honey.go('lib:jquery, lib:debug', function(){
 
-            honey.debug(honey, {"id": 20}, "N");
-            honey.debug("asdasd");
-            //honey.debug("asdasd", {"id": 20}, "N");
-            honey.debug("asdasdasdasdasdasda", honey, [20,30,"ddd",20,30,"ddd",20,30,"ddd",20,30,"ddd",20,30,"ddd",20,30,"ddd"], [20,30,"ddd",20,30,"ddd",20,30,"ddd",20,30,"ddd",20,30,"ddd",20,30,"ddd"],"N");
-            honey.debug("asdasd", {"id": 20}, "N");
-            honey.debug("asdasd", {"id": 20}, "E");
-            honey.debug("asdasd", {"id": 20}, "N");
-            honey.debug("asdasd", {"id": 20}, "N");
-            honey.debug("asdasd", {"id": 20}, "N");
-            honey.debug("asdasd", {"id": 20}, "N");
-            honey.debug("asdasd", {"id": 20}, "N");
-            honey.debug("asdasd", {"id": 20}, "N");
-            honey.debug("asdasd", {"id": 20}, "N");
-            honey.debug("asdasd", {"id": 20}, "N");
-            honey.debug("asdasd", {"id": 20}, "N");
-            honey.debug("asdasd", {"id": 20}, "N");
-            honey.debug("asdasd", {"id": 20}, "E");
-            honey.debug("asdasd", {"id": 20}, "N");
-            honey.debug("asdasd", {"id": 20}, "N");
-            // 
-           
+            // honey.debug(honey, {"id": 20}, "N");
+            // honey.debug("asdasd");
+            // //honey.debug("asdasd", {"id": 20}, "N");
+             honey.debug("asdasdasdasdasdasda", honey, [20,30,"ddd",20,30,"ddd",20,30,"ddd",20,30,"ddd",{"id": "23"},30,"ddd",[20,30,"ddd"],30,"ddd"], [20,30,"ddd",20,30,"ddd",20,30,"ddd",20,30,"ddd",20,30,"ddd",20,30,"ddd"],"N");
+            // honey.debug("asdasd", {"id": 20}, "N");
+            // honey.debug("asdasd", {"id": 20}, "E");
+            // honey.debug("asdasd", {"id": 20}, "N");
+            // honey.debug("asdasd", {"id": 20}, "N");
+            // honey.debug("asdasd", {"id": 20}, "N");
+            // honey.debug("asdasd", {"id": 20}, "N");
+            // honey.debug("asdasd", {"id": 20}, "N");
+            honey.debug(honey, {"id": 20, status: {'hp':100, "mp": 200}, sayHello:function(){var words = "hello"}}, "N");
+            var a,
+                b = null,
+                c = {
+                    id: "23",
+                    name: "sss",
+                    age: "22",
+                    fight: function(){}
+                }
+            honey.debug(a, b, c);
+            honey.debug(a);
         });
-    </script>
-    <script>
-        
-        honey.ready('lib:debug', function(){
-
-          for(var index = 2; index < 20; index++){
-                honey.debug("22222222222222222","E");
-            }
-           
-        });
-
- 
     </script>
 </body>
 </html>
