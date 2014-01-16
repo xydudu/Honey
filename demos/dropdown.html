@@ -1,0 +1,153 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <title>Honey Demos - dropdown</title>
+    <link rel="stylesheet" href="http://honey.hunantv.com/css/honey.css" type="text/css">
+    <script src="http://honey.hunantv.com/honey/src/head.load.js"></script>
+    <script src="http://honey.hunantv.com/honey/src/honey.source.js"></script>
+    <script>
+        honey.config({
+            'PUBROOT': 'http://honey.hunantv.com/honey/src', 
+            'ROOT': 'http://honey.hunantv.com/honey/src', 
+            'DEV': true,
+            'VERSION': 1,
+            'CSS': 'http://honey.hunantv.com/css'
+        })
+    </script>
+    <style type="text/css" media="screen">
+        html,body {
+            background-color: #fff;
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div class="demos">
+        <h1 id="heading">Honey Demos - dropdown</h1>
+    </div>
+    <style>
+        #s1, #s2{
+            width: 400px;
+            height: 40px;
+            line-height: 40px;
+            position: relative;
+        }
+
+        #s2{
+            margin-left: 200px;
+            margin-top: 400px;
+        }
+
+            
+        .hdd-body{
+            position: absolute;
+            overflow: hidden;
+            width: 100%;
+        }
+
+        .hdd-title{
+            width: 100%;
+            height: 100%;
+            cursor: pointer;
+            background-color: #ff3333;
+        }
+
+        .hdd-text{
+            width: 80%;
+            float: left;
+            text-align: center;
+            vertical-align: middle;
+        }
+
+        .hdd-tip{
+            position: relative;
+        }
+
+        .hdd-pouter, .hdd-pinner{
+            position: absolute;
+            color: #ff3333;
+            top: -3px;
+            font-size: 12px;
+            font-style: normal;
+        }
+
+        .hdd-pinner{
+            color: black;
+            top: -2px;
+        }
+
+        .hdd-list-box{
+            width: 100%;
+            background-color: #999;
+        }
+
+        .hdd-list li{
+            padding-left: 10px;
+        }
+
+        .hdd-slide{
+            float:right;
+            width: 10px;
+            height: 150px;
+            background-color: #f0f0f0;
+            position: relative;
+            display: block;
+        }
+
+        .hdd-slider{
+            width: 100%;
+            height: 100%;
+            background-color: red;
+        }
+         
+    </style>
+    <div id="s1">
+        <div class="hdd-title clearfix">
+            <div class="hdd-text">dddd</div>
+            <span class="hdd-tip"><em class="hdd-pinner">◆</em><em class="hdd-pouter">◆</em></span>
+        </div>
+        <div class="hdd-body clearfix">
+            <div class="hdd-slide">
+                <div class="hdd-slider"></div>
+            </div>
+            <div class="hdd-list-box">
+                <ul class="hdd-list">
+                    <li>d</li>
+                    <li>d</li>
+                    <li>d</li>
+                    <li>d</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div id="s2">
+        <div class="hdd-title clearfix">
+            <div class="hdd-text">dddd</div>
+            <span class="hdd-tip"><em class="hdd-pinner">◆</em><em class="hdd-pouter">◆</em></span>
+        </div>
+        <div class="hdd-body clearfix">
+            <div class="hdd-slide">
+                <div class="hdd-slider"></div>
+            </div>
+            <div class="hdd-list-box">
+                <ul class="hdd-list">
+                    <li>d</li>
+                    <li>d</li>
+                    <li>d</li>
+                    <li>d</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <script>
+        honey.go('mod:dropdown', function(){
+            H.dropdown("#s1", {
+                assoc: "#s2",
+
+
+            });
+        });
+    </script>
+</body>
+</html>
