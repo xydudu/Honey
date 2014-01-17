@@ -40,11 +40,7 @@
         }
 
             
-        .hdd-body{
-            position: absolute;
-            overflow: hidden;
-            width: 100%;
-        }
+        
 
         .hdd-title{
             width: 100%;
@@ -62,6 +58,9 @@
 
         .hdd-tip{
             position: relative;
+            top: 30% !important;
+            _top: 0px;
+            +top: 0px;
         }
 
         .hdd-pouter, .hdd-pinner{
@@ -77,76 +76,94 @@
             top: -2px;
         }
 
-        .hdd-list-box{
+        .hdd-list{
             width: 100%;
+            height: 100%;
             background-color: #999;
         }
 
-        .hdd-list li{
+        .hdd-list a{
+            text-decoration: none;
+            display: block;
+            width: 100%;
+            height: 100%;
             padding-left: 10px;
         }
 
-        .hdd-slide{
-            float:right;
-            width: 10px;
-            height: 150px;
-            background-color: #f0f0f0;
-            position: relative;
-            display: block;
+        .hdd-list a:hover{
+            background-color: #f00;
+            color: white;
         }
 
-        .hdd-slider{
+        .hdd-body{
+            position: absolute;
+            overflow: hidden;
             width: 100%;
+            height: 200px;
+        }
+
+        .hdd_verticalBar{
+            position: absolute;
+            right: 0px;
+            top: 0px;
             height: 100%;
-            background-color: red;
+        }
+
+        .hdd_track{
+            width: 12px;
+            height: 100%;
+            background-color: #eee;
+        }
+
+        .hdd_dragButton{
+            position: absolute;
+            left: 1px;
+            top:0px;
+            width:10px;
+            height: 20px;
+            background-color: #999;
+            cursor: pointer;
         }
          
     </style>
     <div id="s1">
-        <div class="hdd-title clearfix">
-            <div class="hdd-text">dddd</div>
-            <span class="hdd-tip"><em class="hdd-pinner">◆</em><em class="hdd-pouter">◆</em></span>
-        </div>
-        <div class="hdd-body clearfix">
-            <div class="hdd-slide">
-                <div class="hdd-slider"></div>
-            </div>
-            <div class="hdd-list-box">
-                <ul class="hdd-list">
-                    <li>d</li>
-                    <li>d</li>
-                    <li>d</li>
-                    <li>d</li>
-                </ul>
-            </div>
-        </div>
+        
     </div>
     <div id="s2">
         <div class="hdd-title clearfix">
             <div class="hdd-text">dddd</div>
             <span class="hdd-tip"><em class="hdd-pinner">◆</em><em class="hdd-pouter">◆</em></span>
         </div>
-        <div class="hdd-body clearfix">
-            <div class="hdd-slide">
-                <div class="hdd-slider"></div>
-            </div>
-            <div class="hdd-list-box">
-                <ul class="hdd-list">
-                    <li>d</li>
-                    <li>d</li>
-                    <li>d</li>
-                    <li>d</li>
-                </ul>
+        <div class="hdd-body">
+            <ul class="hdd-list">
+                <li>d</li>
+                <li>d</li>
+                <li>d</li>
+                <li>3</li>
+                <li>2</li>
+                <li>e</li>
+                <li>s</li>
+            </ul>
+            <div class="hdd_verticalBar">
+                <div class="hdd_track">
+                    <div class="hdd_dragButton"></div>
+                </div>
             </div>
         </div>
+
     </div>
     <script>
         honey.go('mod:dropdown', function(){
-            H.dropdown("#s1", {
+            var dd1 = H.dropdown("#s1", {
                 assoc: "#s2",
-
-
+                data: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'],
+                showNum: 4,
+                listHeight: 200,
+                itemHeight: 40,
+                defaultIndex: 1
             });
+
+          //  console.log(dd1.getvalue());
         });
     </script>
 </body>
