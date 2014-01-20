@@ -28,25 +28,23 @@
     </div>
     <style>
         #s1, #s2{
-            width: 400px;
+            width: 100px;
             height: 40px;
-            line-height: 40px;
             position: relative;
+            line-height: 40px;
+            float: left;
         }
 
         #s2{
-            margin-left: 200px;
-            margin-top: 400px;
+            margin-left: 50px;
         }
-
-            
-        
 
         .hdd-title{
             width: 100%;
             height: 100%;
             cursor: pointer;
-            background-color: #ff3333;
+            color: white;
+            background-color: #E06C45;
         }
 
         .hdd-text{
@@ -61,25 +59,25 @@
             top: 30% !important;
             _top: 0px;
             +top: 0px;
+            right: 10%;
         }
 
         .hdd-pouter, .hdd-pinner{
             position: absolute;
-            color: #ff3333;
+            color: #E06C45;
             top: -3px;
             font-size: 12px;
             font-style: normal;
         }
 
         .hdd-pinner{
-            color: black;
+            color: white;
             top: -2px;
         }
 
         .hdd-list{
             width: 100%;
-            height: 100%;
-            background-color: #999;
+            line-height: 40px;
         }
 
         .hdd-list a{
@@ -87,12 +85,15 @@
             display: block;
             width: 100%;
             height: 100%;
-            padding-left: 10px;
+            color: #909090;
+            text-align: center;
+            margin-left: -5%;
         }
 
         .hdd-list a:hover{
-            background-color: #f00;
+            background-color: #E06C45;
             color: white;
+            text-decoration: none;
         }
 
         .hdd-body{
@@ -100,6 +101,9 @@
             overflow: hidden;
             width: 100%;
             height: 200px;
+            background-color: #EEEEEE;
+            display: none;
+            z-index: 9999;
         }
 
         .hdd_verticalBar{
@@ -110,60 +114,55 @@
         }
 
         .hdd_track{
-            width: 12px;
+            width: 8px;
             height: 100%;
-            background-color: #eee;
+            background-color: #c8c8c8;
         }
 
         .hdd_dragButton{
             position: absolute;
-            left: 1px;
             top:0px;
-            width:10px;
-            height: 20px;
-            background-color: #999;
+            width: 8px;
+            background-color: #E06C45;
             cursor: pointer;
+        }
+
+        #getBtn{
+            width: 200;
+            padding: 10px 20px;
+            height: 100;
         }
          
     </style>
-    <div id="s1">
-        
-    </div>
-    <div id="s2">
-        <div class="hdd-title clearfix">
-            <div class="hdd-text">dddd</div>
-            <span class="hdd-tip"><em class="hdd-pinner">◆</em><em class="hdd-pouter">◆</em></span>
-        </div>
-        <div class="hdd-body">
-            <ul class="hdd-list">
-                <li>d</li>
-                <li>d</li>
-                <li>d</li>
-                <li>3</li>
-                <li>2</li>
-                <li>e</li>
-                <li>s</li>
-            </ul>
-            <div class="hdd_verticalBar">
-                <div class="hdd_track">
-                    <div class="hdd_dragButton"></div>
-                </div>
-            </div>
-        </div>
-
-    </div>
+    <div id="s1"></div>
+    <div id="s2"></div>
+    <button id="getBtn">Get</button>
     <script>
         honey.go('mod:dropdown', function(){
-            var dd1 = H.dropdown("#s1", {
-                assoc: "#s2",
-                data: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'],
-                showNum: 4,
+            var dd2 = H.dropdown("#s2", {
+                slave: true ,//congshu
+                data: [["1日","2日","3日","4日","5日"],
+                ["3日","4日","5日","6日","7日","8日","9日","10日","11日"]],
+                showNum: 5,
                 listHeight: 200,
                 itemHeight: 40,
-                defaultIndex: 1
+                slaveIndex: 4  //slaveOnly startFrom 1
+
             });
 
-          //  console.log(dd1.getvalue());
+            var dd1 = H.dropdown("#s1", {
+    //              assoc: dd2,
+                data: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'],
+                showNum: 5,
+                itemHeight: 40,
+                defaultIndex: 2  //main only startFrom 1
+            });
+
+            document.getElementById("getBtn").onclick = function(){
+                alert(dd2.getValue());
+                alert(dd1.getValue());
+                dd1.onChange(3);
+            }
         });
     </script>
 </body>
