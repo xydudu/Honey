@@ -1,5 +1,5 @@
 /*
- * Honey Debugger v0.8
+ * Honey Debugger v0.9
  * Author: lanbin
  * Date: 2014-01-13
  *
@@ -21,14 +21,14 @@
  * 01-16
  * 1). support "undefined" & "null"
  * 2). Array's quota change from {} to []
- */ 
+ */
 
 honey.def(function(H) {
 
 	var _N = "N", //N == notice
 		_E = "E", //E == error
 		_num = 0, //Message's order number
-		_css = CSS +'/widget/debug.css', //css url
+		_css = CSS + '/widget/debug.css', //css url
 		_builded = false,
 		_types = [_N, _E],
 		_F10 = 121, //keyCode of F10
@@ -70,9 +70,9 @@ honey.def(function(H) {
 	H.debug = function() {
 
 		//check if the switchis open
-        // 不应该在内部进行是否显示的判断，这一步应该在外部判断。 Lian Hsueh 1.15
+		// 不应该在内部进行是否显示的判断，这一步应该在外部判断。 Lian Hsueh 1.15
 		//_switch = _checkSwitch();
-        //alert(_switch)
+		//alert(_switch)
 		//if (!_switch) return;
 
 		H.css(_css);
@@ -81,12 +81,22 @@ honey.def(function(H) {
 		_arg = [];
 
 		for (var p in _a) {
-			if(typeof arguments[p] == 'undefined') {
+			var ap = arguments[p];
+			if (typeof ap == 'undefined') {
 				_arg.push('undefined');
-			}else if(arguments[p] === null){
+			} else if (ap === null) {
 				_arg.push('null');
-			}else{
-				_arg.push(arguments[p]);
+			} else if (typeof ap == 'string' && ap.match(/<[^>]+>/g)) {
+				var rows = ap.match(/\n/g).length + 1;
+				_arg.push("<textarea class='hdp_ta' rows=" + rows + ">" + ap + "</textarea>");
+			} else if (typeof ap == 'object' && !(ap instanceof Array)) {
+				var obj = {};
+				for (var k in ap) {
+					obj[k] = ap[k];
+				}
+				_arg.push(obj);
+			} else {
+				_arg.push(ap);
 			}
 		}
 
@@ -118,7 +128,7 @@ honey.def(function(H) {
 			var last = arg.pop(),
 				type = "";
 
-			if (inArray(last, _types)) {  
+			if (inArray(last, _types)) {
 				type = last;
 			} else {
 				type = _N;
@@ -144,13 +154,18 @@ honey.def(function(H) {
 			if (typeof obj[p] == 'object') {
 				str += "<em class='hdi_key'>" + p + "</em>:  " + _showObj(obj[p]) + ", ";
 			} else {
-				str += "<em class='hdi_key'>" + p + "</em>:  " + obj[p] + ", ";
+				var objStr = obj[p].toString();
+				if (objStr.indexOf("textarea") < 0) {
+					//替换< >符号
+					objStr = objStr.replace(/</g, "&lt;").replace(/>/g, "&gt;");
+				}
+				str += "<em class='hdi_key'>" + p + "</em>:  " + objStr + ", ";
 			}
 
 		}
 		str = (str += "}").replace(", }", "}");
 
-		if(obj instanceof Array) {
+		if (obj instanceof Array) {
 			str = str.replace(/^{/, "[").replace(/}$/, "]");
 		}
 		return str;
@@ -178,7 +193,7 @@ honey.def(function(H) {
 	function _builderBox() {
 		var _p = _doc.createElement("div");
 		_p.setAttribute("id", "hd_panel");
-		_p.innerHTML = "<div id='hdp_nav'><span id='hdp_title'>Honey Debugger v0.5</span><a id='hp_close' href='javascript:void(0)'>X</a></div> \
+		_p.innerHTML = "<div id='hdp_nav'><span id='hdp_title'>Honey Debugger v0.9</span><a id='hp_close' href='javascript:void(0)'>X</a></div> \
 						<div id='hdp_list'></div>";
 		_panel = _p;
 		_doc.getElementsByTagName("body")[0].appendChild(_p);

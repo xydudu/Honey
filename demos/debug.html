@@ -71,13 +71,25 @@
     <p>asdddddddddddddddddddddddd</p>
     <p>asdddddddddddddddddddddddd</p>
     <p>ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss</p>
+    <div id="dd">
+    asds
+    <p>aaaaaaaaaaa
+    </p><p>aaaaaaaaaaa
+    </p><p>aaaaaaaaaaa
+    </p><p>aaaaaaaaaaa
+    </p><p>aaaaaaaaaaa
+    </p><p>aaaaaaaaaaa
+    </p><p>aaaaaaaaaaa
+    </p>
+    <script></script>
+    </div>
     <script>
         honey.go('lib:jquery, lib:debug', function(){
 
             // honey.debug(honey, {"id": 20}, "N");
             // honey.debug("asdasd");
             // //honey.debug("asdasd", {"id": 20}, "N");
-             honey.debug("asdasdasdasdasdasda", honey, [20,30,"ddd",20,30,"ddd",20,30,"ddd",20,30,"ddd",{"id": "23"},30,"ddd",[20,30,"ddd"],30,"ddd"], [20,30,"ddd",20,30,"ddd",20,30,"ddd",20,30,"ddd",20,30,"ddd",20,30,"ddd"],"N");
+             //honey.debug("asdasdasdasdasdasda", honey, [20,30,"ddd",20,30,"ddd",20,30,"ddd",20,30,"ddd",{"id": "23"},30,"ddd",[20,30,"ddd"],30,"ddd"], [20,30,"ddd",20,30,"ddd",20,30,"ddd",20,30,"ddd",20,30,"ddd",20,30,"ddd"],"N");
             // honey.debug("asdasd", {"id": 20}, "N");
             // honey.debug("asdasd", {"id": 20}, "E");
             // honey.debug("asdasd", {"id": 20}, "N");
@@ -85,7 +97,7 @@
             // honey.debug("asdasd", {"id": 20}, "N");
             // honey.debug("asdasd", {"id": 20}, "N");
             // honey.debug("asdasd", {"id": 20}, "N");
-            honey.debug(honey, {"id": 20, status: {'hp':100, "mp": 200}, sayHello:function(){var words = "hello"}}, "N");
+           // honey.debug(honey, {"id": 20, status: {'hp':100, "mp": 200}, sayHello:function(){var words = "hello"}}, "N");
             var a,
                 b = null,
                 c = {
@@ -94,8 +106,9 @@
                     age: "22",
                     fight: function(){}
                 }
-            honey.debug(a, b, c);
-            honey.debug(a);
+            //honey.debug(a, b, c);
+            honey.debug($("#dd").html());
+            honey.debug($.each, $.inArray, "《ddd》");
         });
     </script>
 </body>
