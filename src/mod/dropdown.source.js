@@ -1,9 +1,5 @@
 honey.def(function(H) {
 
-	//todo
-	//dragButton height calculate
-	//dragButton move relationship
-	//wheel event
 	var Event = function() {
 		this.addEvent = function(type, handler, capture) {
 			if (this.addEventListener) {
@@ -30,7 +26,7 @@ honey.def(function(H) {
 			assoc: null, //associated selector
 			data: [],
 			_box: null,
-			showNum: 4,
+			showNum: 0,
 			defaultIndex: 1,
 			listHeight: 200,
 			itemHeight: 40,
@@ -60,7 +56,7 @@ honey.def(function(H) {
 			},
 			changeTo: function(index) {
 				if (_opt.slave) {
-					var options = _buildList(_opt.data[index]),
+					var options = _buildList(_opt.data[index], _opt.itemHeight),
 						list = doc.getElementById("list_" + _opt.mod_id),
 						text = doc.getElementById("text_" + _opt.mod_id);
 					_opt.defaultIndex = parseInt(index) + 1;
@@ -99,17 +95,17 @@ honey.def(function(H) {
 		if (_opt.slave) {
 			textStr = _opt.data[defaultIndex - 1][slaveIndex - 1];
 			if (_opt.data[defaultIndex - 1].length > 0) {
-				options = _buildList(_opt.data[defaultIndex - 1]);
+				options = _buildList(_opt.data[defaultIndex - 1], _opt.itemHeight);
 			}
 		} else {
 			textStr = _opt.data[defaultIndex - 1];
 			if (_opt.data.length > 0) {
-				options = _buildList(_opt.data);
+				options = _buildList(_opt.data, _opt.itemHeight);
 			}
 		}
-		var html = "<div class='hdd-title clearfix' id='title_" + _opt.mod_id + "'> \
+		var html = "<div class='hdd-title clearfix disable-select' id='title_" + _opt.mod_id + "'> \
             <div class='hdd-text' id='text_" + _opt.mod_id + "'>" + textStr + "</div> \
-            <span class='hdd-tip'><em class='hdd-pinner'>◆</em><em class='hdd-pouter'>◆</em></span></div>\
+            <span class='hdd-tip'><em class='hdd-pinner' id='inner_" + _opt.mod_id + "'>◆</em><em class='hdd-pouter'  id='outer_" + _opt.mod_id + "'>◆</em></span></div>\
         	<div class='hdd-body' id='body_" + _opt.mod_id + "'> \
 	            <ul class='hdd-list' id='list_" + _opt.mod_id + "'> \
 	            " + options + " </ul> \
@@ -123,17 +119,17 @@ honey.def(function(H) {
 
 	}
 
-	function _buildList($data) {
+	function _buildList($data, $itemHeight) {
 		var index = 0,
 			option = "";
 		for (var i in $data) {
-			option += "<li><a href='javascript:void(0);' value='" + index + "'>" + $data[i] + "</a></li>";
+			option += "<li class='disable-select'><a style='height:" + $itemHeight + "px' href='javascript:void(0);' value='" + index + "'>" + $data[i] + "</a></li>";
 			index++;
 		}
 		return option;
 	}
 
-	function _setListStyle(_opt){
+	function _setListStyle(_opt) {
 		var dragButton = doc.getElementById("db_" + _opt.mod_id),
 			track = doc.getElementById("track_" + _opt.mod_id),
 			listBody = doc.getElementById("body_" + _opt.mod_id);
@@ -143,26 +139,35 @@ honey.def(function(H) {
 		var len = parseInt(((_opt.slave) ? (_opt.data[_opt.defaultIndex - 1].length) : (_opt.data.length)));
 		//等分滚动条
 		_opt.perItem = _opt.listHeight / len;
+
+		_opt.showNum = _opt.listHeight / _opt.itemHeight;
+
 		//设置滚动条Bar的长度，perItem必须取整，不然滚动条移动不到距离的时候最后一项无法显示
-		_opt.btnHeight = (len <= _opt.showNum) ? _opt.listHeight : (_opt.showNum * (_opt.perItem >> 0));
+		_opt.btnHeight = (len <= _opt.showNum) ? _opt.listHeight : (_opt.showNum * (_opt.perItem));
+
 		//设置滚动条Bar的长度
 		dragButton.style.height = _opt.btnHeight + "px";
 
-		 var links = listBody.getElementsByTagName("a");
+		var links = listBody.getElementsByTagName("a");
 
-		 //move a to right
-		if (_opt.btnHeight >= _opt.listHeight) {
-			track.style.display = "none";
-			for(var l in links) {
-				//links[l].style.border = "1px";
-				console.log(links[l]);
+		try {
+			if (_opt.btnHeight >= _opt.listHeight) {
+				track.style.display = "none";
+				listBody.style.borderRight = "1px solid #B2B2B2";
+				listBody.style.width = "50px";
+				for (var l in links) {
+					links[l].style.marginLeft = "0";
+				}
+			} else {
+				track.style.display = "block";
+				listBody.style.borderRight = "none";
+				listBody.style.width = "51px";
+				for (var l in links) {
+					links[l].style.marginLeft = "-5%";
+				}
 			}
-		}else{
-			track.style.display = "block";
-			for(var l in links) {
-				//links[l].style.border = "0px";
-			}
-		}
+		} catch (e) {}
+
 	}
 
 	//=========================Event====================
@@ -181,38 +186,24 @@ honey.def(function(H) {
 		var box = _opt._box,
 			mod_id = _opt.mod_id,
 			dragButton = doc.getElementById("db_" + mod_id),
-			listBody = doc.getElementById("body_" + mod_id),
 			list = doc.getElementById("list_" + mod_id),
+			listBody = doc.getElementById("body_" + mod_id),
 			title = doc.getElementById("title_" + mod_id),
 			text = doc.getElementById("text_" + mod_id),
 			oTop = 0,
 			oScreenY = 0,
 			db_down = false;
 
-		// listBody.style.height = _opt.listHeight + "px";
-		// //获取列表的数据长度，如果是从下拉框的话则获取相应列表的长度。
-		// var len = parseInt(((_opt.slave) ? (_opt.data[_opt.defaultIndex].length) : (_opt.data.length)));
-		// //等分滚动条
-		// var perItem = _opt.listHeight / len;
-		// //设置滚动条Bar的长度，perItem必须取整，不然滚动条移动不到距离的时候最后一项无法显示
-		// btnHeight = (len <= _opt.showNum) ? _opt.listHeight : (_opt.showNum * (perItem >> 0));
-		// dragButton.style.height = btnHeight + "px";
-
-		// //hide the track and bar if dropdown don't need scroll
-		// if (btnHeight >= _opt.listHeight) {
-		// 	track.style.display = "none";
-		// }
-
 		evt.addEvent.apply(dragButton, ['mousedown',
-			function(evt) {
+			function(event) {
 				oTop = getStyles(dragButton).top.replace("px", "");
-				oScreenY = evt.screenY;
+				oScreenY = event.screenY;
 				db_down = true;
 			}
 		]);
 
 		evt.addEvent.apply(doc, ['mouseup',
-			function(evt) {
+			function(event) {
 				db_down = false;
 				oTop = oScreenY = 0;
 			}
@@ -222,17 +213,32 @@ honey.def(function(H) {
 			function(evt) {
 				if (db_down) {
 					var disY = evt.screenY - oScreenY;
-					var newTop = parseInt(oTop) + parseInt(disY);
-					if (newTop < 0) {
-						newTop = 0
-					} else if (newTop > (_opt.listHeight - _opt.btnHeight)) {
-						newTop = _opt.listHeight - _opt.btnHeight;
-					}
-					dragButton.style.top = newTop + "px";
-					//获取移动的绝对距离除以每一等分，获取应该移动多少等分。
-					var downNum = (newTop / _opt.perItem) >> 0;
-					var h = getStyles(list).lineHeight.replace("px", "");
-					list.style.marginTop = "-" + (downNum * h) + "px";
+					_scrollMove(parseFloat(oTop), parseFloat(disY), _opt);
+				}
+			}
+		]);
+		
+		evt.addEvent.apply(listBody, ["selectstart",
+			function(evt) {
+				return false;
+			}
+		]);
+
+		var outer = doc.getElementById("outer_" + _opt.mod_id);
+		var inner = doc.getElementById("inner_" + _opt.mod_id);
+
+		evt.addEvent.apply(title, ["click",
+			function(evt) {
+				if (listBody.style.display == "block") {
+					title.setAttribute("class", "hdd-title clearfix disable-select");
+					listBody.style.display = "none";
+					outer.style.color = "white";
+					inner.style.color = "black";
+				} else {
+					title.setAttribute("class", "hdd-title clearfix disable-select hdd-title-select");
+					listBody.style.display = "block";
+					outer.style.color = "#E06C45";
+					inner.style.color = "white";
 				}
 			}
 		]);
@@ -251,7 +257,7 @@ honey.def(function(H) {
 
 					text.innerHTML = value;
 					_opt.selectKeyValue = [key, value];
-					listBody.style.display = "none";
+					title.click();
 
 					if (_opt.assoc) {
 						_opt.assoc.changeTo(key);
@@ -261,33 +267,39 @@ honey.def(function(H) {
 			}
 		]);
 
-		evt.addEvent.apply(listBody, ["selectstart",
+		var mousewheelevt = (/Firefox/i.test(navigator.userAgent)) ? "DOMMouseScroll" : "mousewheel";
+
+		evt.addEvent.apply(listBody, [mousewheelevt,
 			function(evt) {
-				return false;
+
+				var delta = evt.detail ? evt.detail * (-120) : evt.wheelDelta;
+				var startTop = getStyles(dragButton).top.replace("px", "");
+				var disY = _opt.perItem;
+				if (delta > 0) {
+					_scrollMove(startTop, -disY, _opt);
+				} else {
+					_scrollMove(startTop, disY, _opt);
+				}
 			}
 		]);
-
-		evt.addEvent.apply(title, ["click",
-			function(evt) {
-				listBody.style.display = (listBody.style.display == "block") ?
-					"none" : "block";
-			}
-		]);
-
-
-		// evt.addEvent.apply(listBody, ['mousewheel', function(evt){
-		// 	var delta = 0;
-		// 	delta = (evt.wheelDelta) ? evt.wheelDelta : evt.detail;
-
-		// 	if(delta > 0) {
-
-		// 	}else {
-
-		// 	}
-		// }]);
 	}
 
-	//=========================Event====================
+	function _scrollMove($start, $dis, _opt) {
+		var dragButton = doc.getElementById("db_" + _opt.mod_id),
+			list = doc.getElementById("list_" + _opt.mod_id),
+			newTop = parseFloat($start) + parseFloat($dis),
+			maxDis = parseFloat(_opt.listHeight) - parseFloat(_opt.btnHeight);
 
+		if (newTop < 0) {
+			newTop = 0
+		} else if (newTop > maxDis) {
+			newTop = maxDis;
+		}
+		dragButton.style.top = newTop + "px";
+		//获取移动的绝对距离除以每一等分，获取应该移动多少等分。
+		var downNum = (newTop / _opt.perItem);
+		var h = _opt.itemHeight;
+		list.style.marginTop = "-" + (downNum * h) + "px";
+	}
 
 });
