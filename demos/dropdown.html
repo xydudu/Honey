@@ -1,5 +1,6 @@
 <!DOCTYPE HTML>
 <html>
+
 <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8">
     <title>Honey Demos - dropdown</title>
@@ -7,147 +8,70 @@
     <script src="http://honey.hunantv.com/honey/src/head.load.js"></script>
     <script src="http://honey.hunantv.com/honey/src/honey.source.js"></script>
     <script>
-        honey.config({
-            'PUBROOT': 'http://honey.hunantv.com/honey/src', 
-            'ROOT': 'http://honey.hunantv.com/honey/src', 
-            'DEV': true,
-            'VERSION': 1,
-            'CSS': 'http://honey.hunantv.com/css'
-        })
+    honey.config({
+        'PUBROOT': 'http://honey.hunantv.com/honey/src',
+        'ROOT': 'http://honey.hunantv.com/honey/src',
+        'DEV': true,
+        'VERSION': 1,
+        'CSS': 'http://honey.hunantv.com/css'
+    })
     </script>
     <style type="text/css" media="screen">
-        html,body {
-            background-color: #fff;
-            height: 100%;
-        }
+    html, body {
+        background-color: #fff;
+        height: 100%;
+    }
+    #s1, #s2 {
+        width: 52px;
+        height: 30px;
+        position: relative;
+        line-height: 30px;
+        float: left;
+        margin-left: 50px;
+    }
+
+    #getBtn {
+        padding: 10px 20px;
+        margin-left: 200px;
+    }
     </style>
 </head>
+
 <body>
     <div class="demos">
         <h1 id="heading">Honey Demos - dropdown</h1>
     </div>
-    <style>
-        #s1, #s2{
-            width: 400px;
-            height: 40px;
-            line-height: 40px;
-            position: relative;
-        }
-
-        #s2{
-            margin-left: 200px;
-            margin-top: 400px;
-        }
-
-            
-        .hdd-body{
-            position: absolute;
-            overflow: hidden;
-            width: 100%;
-        }
-
-        .hdd-title{
-            width: 100%;
-            height: 100%;
-            cursor: pointer;
-            background-color: #ff3333;
-        }
-
-        .hdd-text{
-            width: 80%;
-            float: left;
-            text-align: center;
-            vertical-align: middle;
-        }
-
-        .hdd-tip{
-            position: relative;
-        }
-
-        .hdd-pouter, .hdd-pinner{
-            position: absolute;
-            color: #ff3333;
-            top: -3px;
-            font-size: 12px;
-            font-style: normal;
-        }
-
-        .hdd-pinner{
-            color: black;
-            top: -2px;
-        }
-
-        .hdd-list-box{
-            width: 100%;
-            background-color: #999;
-        }
-
-        .hdd-list li{
-            padding-left: 10px;
-        }
-
-        .hdd-slide{
-            float:right;
-            width: 10px;
-            height: 150px;
-            background-color: #f0f0f0;
-            position: relative;
-            display: block;
-        }
-
-        .hdd-slider{
-            width: 100%;
-            height: 100%;
-            background-color: red;
-        }
-         
-    </style>
-    <div id="s1">
-        <div class="hdd-title clearfix">
-            <div class="hdd-text">dddd</div>
-            <span class="hdd-tip"><em class="hdd-pinner">◆</em><em class="hdd-pouter">◆</em></span>
-        </div>
-        <div class="hdd-body clearfix">
-            <div class="hdd-slide">
-                <div class="hdd-slider"></div>
-            </div>
-            <div class="hdd-list-box">
-                <ul class="hdd-list">
-                    <li>d</li>
-                    <li>d</li>
-                    <li>d</li>
-                    <li>d</li>
-                </ul>
-            </div>
-        </div>
-    </div>
-    <div id="s2">
-        <div class="hdd-title clearfix">
-            <div class="hdd-text">dddd</div>
-            <span class="hdd-tip"><em class="hdd-pinner">◆</em><em class="hdd-pouter">◆</em></span>
-        </div>
-        <div class="hdd-body clearfix">
-            <div class="hdd-slide">
-                <div class="hdd-slider"></div>
-            </div>
-            <div class="hdd-list-box">
-                <ul class="hdd-list">
-                    <li>d</li>
-                    <li>d</li>
-                    <li>d</li>
-                    <li>d</li>
-                </ul>
-            </div>
-        </div>
-    </div>
+    <div id="s1"></div>
+    <div id="s2"></div>
+    <button id="getBtn">Get</button>
     <script>
-        honey.go('mod:dropdown', function(){
-            H.dropdown("#s1", {
-                assoc: "#s2",
+    honey.go('mod:dropdown', function() {
+        var dd2 = H.dropdown("#s2", {
+            slave: true, //congshu
+            data: [
+                ["1日", "2日", "3日", "4日", "8日", "5日"],
+                ["3日", "4日", "5日", "6日", "7日", "8日", "9日", "10日", "11日"]
+            ],
+            listHeight: 220,
+            itemHeight: 22,
+            slaveIndex: 4 //slaveOnly startFrom 1
 
-
-            });
         });
+
+        var dd1 = H.dropdown("#s1", {
+            assoc: dd2,
+            data: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月', '13月','1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月'],
+            itemHeight: 24,
+            listHeight: 286,
+            defaultIndex: 2 //main only startFrom 1
+        });
+
+        document.getElementById("getBtn").onclick = function() {
+            alert(dd2.getValue());
+            alert(dd1.getValue());
+        }
+    });
     </script>
 </body>
+
 </html>
