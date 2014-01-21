@@ -5,7 +5,7 @@
  * Date: 2014-01-19
  *
  *
- * 
+ *
  * honey.go('mod:dropdown', function() {
  *	 var dd = H.dropdown("id-selector", {
  *		assoc: dd-slave,     //slave dropdown
@@ -181,14 +181,14 @@ honey.def(function(H) {
 				track.style.display = "none";
 				listBody.style.borderRight = "1px solid #B2B2B2";
 				listBody.style.width = "51px";
-				for(var l=0;links.length > l;l++) {
+				for (var l = 0; links.length > l; l++) {
 					links[l].style.marginLeft = "0";
 				}
 			} else {
 				track.style.display = "block";
 				listBody.style.borderRight = "none";
 				listBody.style.width = "52px";
-				for(var l=0;links.length > l;l++) {
+				for (var l = 0; links.length > l; l++) {
 					links[l].style.marginLeft = "-5%";
 				}
 			}
@@ -254,6 +254,20 @@ honey.def(function(H) {
 
 		var outer = doc.getElementById("outer_" + _opt.mod_id);
 		var inner = doc.getElementById("inner_" + _opt.mod_id);
+
+		// evt.addEvent.apply(doc, ['click',
+		// 	function(evt) {
+		// 		console.log(evt.target);
+		// 		if (listBody.style.display == "block") {
+		// 			console.log(listBody.style.display);
+		// 			listBody.style.display = "none";
+		// 			outer.style.color = "white";
+		// 			inner.style.color = "black";
+		// 			title.style.color = "black";
+		// 			title.style.backgroundColor = "white";
+		// 		}
+		// 	}
+		// ]);
 
 		evt.addEvent.apply(title, ["click",
 			function(evt) {
