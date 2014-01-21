@@ -181,14 +181,14 @@ honey.def(function(H) {
 				track.style.display = "none";
 				listBody.style.borderRight = "1px solid #B2B2B2";
 				listBody.style.width = "51px";
-				for (var l in links) {
+				for(var l=0;links.length > l;l++) {
 					links[l].style.marginLeft = "0";
 				}
 			} else {
 				track.style.display = "block";
 				listBody.style.borderRight = "none";
 				listBody.style.width = "52px";
-				for (var l in links) {
+				for(var l=0;links.length > l;l++) {
 					links[l].style.marginLeft = "-5%";
 				}
 			}
