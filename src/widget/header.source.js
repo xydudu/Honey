@@ -69,6 +69,11 @@ honey.def('lib:mustache, tpl:header, plugin:pswencode', function(H) {
             return funcs[target.id] && funcs[target.id].call(target)
         }
 
+        if (H.placeholder) {
+
+            //H.placeholder()      
+        }
+
         con.onmouseover = function(_e) {
             var 
             event = _e || window.event,
@@ -116,14 +121,22 @@ honey.def('lib:mustache, tpl:header, plugin:pswencode', function(H) {
         //    return false
         //}
     },
+    bindPlaceHolder = function() {
+        //if (H.moduleLoaded('lib:'))
+        if (window.jQuery) return false 
+        if (H.placeholder) {
+            H.placeholder(doc.getElementById('top-login-email'))
+            H.placeholder(doc.getElementById('top-login-password'))
+        }
+    },
     showLogin = function() {
         var 
         box = doc.getElementById('top-login-box'),
         display = box.style.display
 
         if (display === 'none') {
-            (box.innerHTML === '')
-                && (box.innerHTML = tpl.login)
+            (box.innerHTML === '') &&
+                (box.innerHTML = tpl.login, bindPlaceHolder())
             box.style.display = 'block'
         } else {
             box.style.display = 'none'
