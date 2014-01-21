@@ -230,15 +230,17 @@ honey.def(function(H) {
 		evt.addEvent.apply(title, ["click",
 			function(evt) {
 				if (listBody.style.display == "block") {
-					title.setAttribute("class", "hdd-title clearfix disable-select");
 					listBody.style.display = "none";
 					outer.style.color = "white";
 					inner.style.color = "black";
+					title.style.color = "black";
+					title.style.backgroundColor = "white";
 				} else {
-					title.setAttribute("class", "hdd-title clearfix disable-select hdd-title-select");
 					listBody.style.display = "block";
 					outer.style.color = "#E06C45";
 					inner.style.color = "white";
+					title.style.color = "white";
+					title.style.backgroundColor = "#E06C45";
 				}
 			}
 		]);
