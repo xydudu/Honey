@@ -149,7 +149,7 @@ honey.def(function(H) {
 		var index = 0,
 			option = "";
 		for (var i in $data) {
-			option += "<li class='disable-select'><a style='height:" + $itemHeight + "px' href='javascript:void(0);' value='" + index + "'>" + $data[i] + "</a></li>";
+			option += "<li class='disable-select'><a style='height:" + $itemHeight + "px;line-height:" + $itemHeight + "px;' href='javascript:void(0);' value='" + index + "'>" + $data[i] + "</a></li>";
 			index++;
 		}
 		return option;
@@ -180,14 +180,14 @@ honey.def(function(H) {
 			if (_opt.btnHeight >= _opt.listHeight) {
 				track.style.display = "none";
 				listBody.style.borderRight = "1px solid #B2B2B2";
-				listBody.style.width = "50px";
+				listBody.style.width = "51px";
 				for (var l in links) {
 					links[l].style.marginLeft = "0";
 				}
 			} else {
 				track.style.display = "block";
 				listBody.style.borderRight = "none";
-				listBody.style.width = "51px";
+				listBody.style.width = "52px";
 				for (var l in links) {
 					links[l].style.marginLeft = "-5%";
 				}
@@ -218,7 +218,9 @@ honey.def(function(H) {
 			text = doc.getElementById("text_" + mod_id),
 			oTop = 0,
 			oScreenY = 0,
-			db_down = false;
+			db_down = false,
+			mousewheelevt = (/Firefox/i.test(navigator.userAgent)) ? "DOMMouseScroll" : "mousewheel";
+
 
 		evt.addEvent.apply(dragButton, ['mousedown',
 			function(event) {
@@ -263,10 +265,10 @@ honey.def(function(H) {
 					title.style.backgroundColor = "white";
 				} else {
 					listBody.style.display = "block";
-					outer.style.color = "#E06C45";
+					outer.style.color = "#e26c45";
 					inner.style.color = "white";
 					title.style.color = "white";
-					title.style.backgroundColor = "#E06C45";
+					title.style.backgroundColor = "#e26c45";
 				}
 			}
 		]);
@@ -295,7 +297,6 @@ honey.def(function(H) {
 			}
 		]);
 
-		var mousewheelevt = (/Firefox/i.test(navigator.userAgent)) ? "DOMMouseScroll" : "mousewheel";
 
 		evt.addEvent.apply(listBody, [mousewheelevt,
 			function(evt) {
