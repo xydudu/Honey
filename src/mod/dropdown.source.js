@@ -1,3 +1,27 @@
+/*
+ * Honey -- Dropdown v1.0
+ *
+ * Author: lanbin
+ * Date: 2014-01-19
+ *
+ *
+ * 
+ * honey.go('mod:dropdown', function() {
+ *	 var dd = H.dropdown("id-selector", {
+ *		assoc: dd-slave,     //slave dropdown
+ *		data: [],            //dropdown date, Array instances only
+ *		itemHeight: 24,      //every item's height
+ *		listHeight: 286,     //list's height
+ *		defaultIndex: 2,     //default value, the index starts from 1
+ *		slaveIndex: 4,       //default value of slave dropdown, the index start From 1
+ *		slave: true          // if this instance is slave, set true, default is false
+ *	 });
+ * });
+ *
+ */
+
+
+
 honey.def(function(H) {
 
 	var Event = function() {
@@ -18,12 +42,14 @@ honey.def(function(H) {
 		};
 	};
 	var evt = new Event(),
-		doc = document;
+		doc = document,
+		_css = CSS + '/widget/dropdown.css'; //css url
 
+	H.css(_css);
 	H.dropdown = function($dBox, $options) {
 
 		var _opt = {
-			assoc: null, //associated selector
+			assoc: null,
 			data: [],
 			_box: null,
 			showNum: 0,
@@ -217,7 +243,7 @@ honey.def(function(H) {
 				}
 			}
 		]);
-		
+
 		evt.addEvent.apply(listBody, ["selectstart",
 			function(evt) {
 				return false;
