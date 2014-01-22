@@ -60,7 +60,7 @@ honey.def(function(H) {
 
             + '</div>'
             + '<div class="topnav-r">'
-            + '<div class="login-after">'
+            + '<div class="login-after clearfix">'
             + '<a href="http://spp.hunantv.com/passport/service.php?action=logout&ref='
             + encodeURIComponent(window.location.href) +'"'
             + ' class="exit">退出</a>'
@@ -69,8 +69,12 @@ honey.def(function(H) {
             + '{{^actived}}'
             + '<a href="#" class="not-v">未验证用户</a>'
             + '{{/actived}}'
-            + '<a target="_blank"  href="'+ i +'/{{uid}}" '
-            + 'class="name"><span class="ico"></span><em>{{nickname}}</em><span class="txt">欢迎回来！</span></a>'
+
+            + '<p class="name">'
+            + '<span class="ico"></span>'
+            + '<a target="_blank"  href="'+ i +'/{{uid}}" >{{nickname}}</a>'
+            + '<span class="txt">欢迎回来！</span></p>'
+
             + '</div>'
             + '<ul class="mes-list" id="top-msg-box" style="display:none">'
             + '<li><a target="_blank" href="'+ i +'/message/unread"><span>新私信</span><em>{{message_count}}</em></a></li>'

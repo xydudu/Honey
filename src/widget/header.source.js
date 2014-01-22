@@ -44,6 +44,7 @@ honey.def('lib:mustache, tpl:header, plugin:pswencode', function(H) {
 
         //top-login-trigger
         window.onclick = function(_e) {
+            if (!box) return 
             var 
             event = _e || window.event,
             target = event.target || event.srcElement,
@@ -53,6 +54,7 @@ honey.def('lib:mustache, tpl:header, plugin:pswencode', function(H) {
                 && !contains(login_trigger, target)) {
                     box.style.display = 'none'
                 }
+            //return false
         }
 
         con.onclick = function(_e) {
