@@ -232,6 +232,14 @@ honey.def(function(H) {
 
 		evt.addEvent.apply(doc, ['mouseup',
 			function(event) {
+				if(!db_down){
+					//可以通过设置className来实现样式切换
+					listBody.style.display = "none";
+					outer.style.color = "white";
+					inner.style.color = "black";
+					title.style.color = "black";
+					title.style.backgroundColor = "white";
+				}
 				db_down = false;
 				oTop = oScreenY = 0;
 			}
@@ -254,20 +262,6 @@ honey.def(function(H) {
 
 		var outer = doc.getElementById("outer_" + _opt.mod_id);
 		var inner = doc.getElementById("inner_" + _opt.mod_id);
-
-		// evt.addEvent.apply(doc, ['click',
-		// 	function(evt) {
-		// 		console.log(evt.target);
-		// 		if (listBody.style.display == "block") {
-		// 			console.log(listBody.style.display);
-		// 			listBody.style.display = "none";
-		// 			outer.style.color = "white";
-		// 			inner.style.color = "black";
-		// 			title.style.color = "black";
-		// 			title.style.backgroundColor = "white";
-		// 		}
-		// 	}
-		// ]);
 
 		evt.addEvent.apply(title, ["click",
 			function(evt) {
@@ -301,7 +295,6 @@ honey.def(function(H) {
 
 					text.innerHTML = value;
 					_opt.selectKeyValue = [key, value];
-					title.click();
 
 					if (_opt.assoc) {
 						_opt.assoc.changeTo(key);
