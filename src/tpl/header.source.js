@@ -32,7 +32,7 @@ honey.def(function(H) {
             + '<span class="mobile"><a href="//www.hunantv.com/app" target="_blank"  >手机客户端</a></span>'
             
             + '{{#options.show_imgotv}}'
-            + '<span class="mgtvlogo"><a href="http://imgo.tv/" target="_blank"  >芒果TV</a></span>'
+            + '<span class="mgtvlogo"><a href="http://www.imgo.tv/" target="_blank"  >芒果TV</a></span>'
             + '{{/options.show_imgotv}}'
 
             + '</div>'
@@ -55,7 +55,7 @@ honey.def(function(H) {
             + '<span class="mobile"><a href="//www.hunantv.com/app" target="_blank"  >手机客户端</a></span>'
 
             + '{{#options.show_imgotv}}'
-            + '<span class="mgtvlogo"><a href="http://imgo.tv/" target="_blank"  >芒果TV</a></span>'
+            + '<span class="mgtvlogo"><a href="http://www.imgo.tv/" target="_blank"  >芒果TV</a></span>'
             + '{{/options.show_imgotv}}'
 
             + '</div>'
