@@ -2,6 +2,25 @@
 // Lian Hsueh
 //
 
+
+/*
+<div class="mod-snav clearfix">
+    <div class="topnav">
+        <div class="topnav-l">
+            <span class="home"><a href="#">设为首页</a></span>
+            <span class="mobile"><a href="#">手机客户端</a></span>
+            <span class="mgtvlogo"><a href="#">芒果TV</a></span>
+        </div>
+        <div class="topnav-r">
+            <div class="not-login">
+                <a href="#">新用户注册</a>
+                <a href="#" class="login">登录</a>
+            </div>
+        </div>
+    </div>
+</div>
+*/
+
 honey.def(function(H) {
     
     var i = '//i.hunantv.com'
@@ -11,6 +30,11 @@ honey.def(function(H) {
             + '<div class="topnav-l">'
             + '<span class="home"><a href="//www.hunantv.com" target="_blank" >金鹰网首页</a></span>'
             + '<span class="mobile"><a href="//www.hunantv.com/app" target="_blank"  >手机客户端</a></span>'
+            
+            + '{{#options.show_imgotv}}'
+            + '<span class="mgtvlogo"><a href="http://imgo.tv/" target="_blank"  >芒果TV</a></span>'
+            + '{{/options.show_imgotv}}'
+
             + '</div>'
             + '<div class="topnav-r" id="top-login-userinfo">'
             + '<div class="not-login">'

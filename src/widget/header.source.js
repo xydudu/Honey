@@ -15,7 +15,8 @@ honey.def('lib:mustache, tpl:header, plugin:pswencode', function(H) {
     tpl = H.headerTpl,
     api = 'http://app.i.hunantv.com/api/newuserstatus/?jsoncallback=honey.header.back',
     con,
-    top_login_trigger
+    top_login_trigger,
+    options = {}
     //iframe = (function() {
     //    var iframe = doc.createElement('iframe')
     //    iframe.style.display = 'none'
@@ -207,11 +208,12 @@ honey.def('lib:mustache, tpl:header, plugin:pswencode', function(H) {
     
     H.header = {
     
-        init: function(_id) {
+        init: function(_id, _options) {
             con = con || doc.getElementById(_id)
             script = doc.createElement('script')
             script.src = api
             body.appendChild(script)
+            options = _options || {}
         },
 
         back: function(_data) {
@@ -219,9 +221,15 @@ honey.def('lib:mustache, tpl:header, plugin:pswencode', function(H) {
             data = _data.result.userinfo,
             _tpl = (!data)
                 ? tpl.basic
-                : [tpl.ok, data.actived = ~~data.active_type][0],
+                : [tpl.ok, data.actived = ~~data.active_type][0]
+
+            !data && (data = {})
+            data.options = options
+
+            var
             html = Mustache.render(_tpl, data)
             con.innerHTML = html
+
             //if (!data.userinfo) {
             bindEvent()
             //}

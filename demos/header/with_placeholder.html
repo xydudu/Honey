@@ -1,0 +1,31 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>Public Header Basic DEMO</title>
+    <link rel="stylesheet" href="//honey.hunantv.com/hunantv.new/css/page-css/page-global.css" type="text/css" media="screen" charset="utf-8">
+    <script>
+        // project config
+        var
+        PROJECT = 'honey', //绑定到项目中
+        VERSION = '20130708',
+        DEV = true,
+        COMBO = false,
+        COMBOURL = 'http://honey.hunantv.com/combo/',
+        ROOT = 'http://honey.hunantv.com/honey/src',
+        PUBROOT = 'http://honey.hunantv.com/honey/src',
+        CSS = 'http://honey.hunantv.com/css',
+        IMG = 'http://honey.hunantv.com/img';
+    </script>
+</head>
+<body>
+    <div id="honey-header"></div> 
+    <script src="//honey.hunantv.com/honey/src/head.load.js"></script>
+    <script src="//honey.hunantv.com/honey/src/honey.source.js"></script>
+    <script>
+        honey.go('lib:mustache, tpl:header, widget:header, plugin:pswencode, plugin:placeholder', function() {
+            honey.header.init('honey-header');
+        });
+    </script>
+</body>
+</html>
