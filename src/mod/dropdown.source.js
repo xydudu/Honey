@@ -132,7 +132,7 @@ honey.def(function(H) {
 		var html = "<div class='hdd-title clearfix disable-select' id='title_" + _opt.mod_id + "'> \
             <div class='hdd-text' id='text_" + _opt.mod_id + "'>" + textStr + "</div> \
             <span class='hdd-tip'><em class='hdd-pinner' id='inner_" + _opt.mod_id + "'>◆</em><em class='hdd-pouter'  id='outer_" + _opt.mod_id + "'>◆</em></span></div>\
-        	<div class='hdd-body' id='body_" + _opt.mod_id + "'> \
+        	<div class='hdd-body' style='display:\"none\";' id='body_" + _opt.mod_id + "'> \
 	            <ul class='hdd-list' id='list_" + _opt.mod_id + "'> \
 	            " + options + " </ul> \
            	<div class='hdd_verticalBar' id='track_" + _opt.mod_id + "'> \
