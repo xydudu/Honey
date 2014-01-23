@@ -15,7 +15,8 @@ honey.def('lib:mustache, tpl:header, plugin:pswencode', function(H) {
     tpl = H.headerTpl,
     api = 'http://app.i.hunantv.com/api/newuserstatus/?jsoncallback=honey.header.back',
     con,
-    top_login_trigger
+    top_login_trigger,
+    options = {}
     //iframe = (function() {
     //    var iframe = doc.createElement('iframe')
     //    iframe.style.display = 'none'
@@ -43,6 +44,7 @@ honey.def('lib:mustache, tpl:header, plugin:pswencode', function(H) {
 
         //top-login-trigger
         window.onclick = function(_e) {
+            if (!box) return 
             var 
             event = _e || window.event,
             target = event.target || event.srcElement,
@@ -52,6 +54,7 @@ honey.def('lib:mustache, tpl:header, plugin:pswencode', function(H) {
                 && !contains(login_trigger, target)) {
                     box.style.display = 'none'
                 }
+            //return false
         }
 
         con.onclick = function(_e) {
@@ -60,6 +63,7 @@ honey.def('lib:mustache, tpl:header, plugin:pswencode', function(H) {
             target = event.target || event.srcElement,
             funcs = {
                 "top-login-trigger": showLogin,
+                "set-home": setHomePage,
                 "top-login-button": loginSubmit,
                 "top-msg-trigger": showMsgBox,
                 "third-login-sina": thirdLogin,
@@ -67,6 +71,11 @@ honey.def('lib:mustache, tpl:header, plugin:pswencode', function(H) {
                 "third-login-qq": thirdLogin
             }
             return funcs[target.id] && funcs[target.id].call(target)
+        }
+
+        if (H.placeholder) {
+
+            //H.placeholder()      
         }
 
         con.onmouseover = function(_e) {
@@ -116,14 +125,22 @@ honey.def('lib:mustache, tpl:header, plugin:pswencode', function(H) {
         //    return false
         //}
     },
+    bindPlaceHolder = function() {
+        //if (H.moduleLoaded('lib:'))
+        if (window.jQuery) return false 
+        if (H.placeholder) {
+            H.placeholder(doc.getElementById('top-login-email'))
+            H.placeholder(doc.getElementById('top-login-password'))
+        }
+    },
     showLogin = function() {
         var 
         box = doc.getElementById('top-login-box'),
         display = box.style.display
 
         if (display === 'none') {
-            (box.innerHTML === '')
-                && (box.innerHTML = tpl.login)
+            (box.innerHTML === '') &&
+                (box.innerHTML = tpl.login, bindPlaceHolder())
             box.style.display = 'block'
         } else {
             box.style.display = 'none'
@@ -189,16 +206,36 @@ honey.def('lib:mustache, tpl:header, plugin:pswencode', function(H) {
 		url = 'http://oauth.hunantv.com/'+ urls[type] +'/login/web?rs='+ current_url
 		window.location = url
         return false
+    },
+    setHomePage = function() {
+        var url = 'http://www.hunantv.com'
+        try {
+            body.style.behavior = 'url(#default#homepage)'
+            body.setHomePage(url)
+        } catch(e) {
+            if(window.netscape) {
+                try {
+                    netscape.security.PrivilegeManager.enablePrivilege("UniversalXPConnect")
+                } catch(e) {
+                    alert("抱歉，此操作被浏览器拒绝！\n\n请在浏览器地址栏输入“about:config”并回车然后将[signed.applets.codebase_principal_support]设置为'true'")
+                }
+            } else {
+                alert("抱歉，您所使用的浏览器无法完成此操作。\n\n您需要手动将【"+ url +"】设置为首页。")
+            }
+        }
+        return false
     }
+
 
     
     H.header = {
     
-        init: function(_id) {
+        init: function(_id, _options) {
             con = con || doc.getElementById(_id)
             script = doc.createElement('script')
             script.src = api
             body.appendChild(script)
+            options = _options || {}
         },
 
         back: function(_data) {
@@ -206,9 +243,15 @@ honey.def('lib:mustache, tpl:header, plugin:pswencode', function(H) {
             data = _data.result.userinfo,
             _tpl = (!data)
                 ? tpl.basic
-                : [tpl.ok, data.actived = ~~data.active_type][0],
+                : [tpl.ok, data.actived = ~~data.active_type][0]
+
+            !data && (data = {})
+            data.options = options
+
+            var
             html = Mustache.render(_tpl, data)
             con.innerHTML = html
+
             //if (!data.userinfo) {
             bindEvent()
             //}

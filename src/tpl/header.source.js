@@ -2,6 +2,25 @@
 // Lian Hsueh
 //
 
+
+/*
+<div class="mod-snav clearfix">
+    <div class="topnav">
+        <div class="topnav-l">
+            <span class="home"><a href="#">设为首页</a></span>
+            <span class="mobile"><a href="#">手机客户端</a></span>
+            <span class="mgtvlogo"><a href="#">芒果TV</a></span>
+        </div>
+        <div class="topnav-r">
+            <div class="not-login">
+                <a href="#">新用户注册</a>
+                <a href="#" class="login">登录</a>
+            </div>
+        </div>
+    </div>
+</div>
+*/
+
 honey.def(function(H) {
     
     var i = '//i.hunantv.com'
@@ -9,8 +28,13 @@ honey.def(function(H) {
         basic: '<div class="mod-snav clearfix">'
             + '<div class="topnav">'
             + '<div class="topnav-l">'
-            + '<span class="home"><a href="//www.hunantv.com" target="_blank" >金鹰网首页</a></span>'
+            + '<span class="home"><a href="//www.hunantv.com" target="_blank" id="set-home" >设为首页</a></span>'
             + '<span class="mobile"><a href="//www.hunantv.com/app" target="_blank"  >手机客户端</a></span>'
+            
+            + '{{#options.show_imgotv}}'
+            + '<span class="mgtvlogo"><a href="http://www.imgo.tv/" target="_blank"  >芒果TV</a></span>'
+            + '{{/options.show_imgotv}}'
+
             + '</div>'
             + '<div class="topnav-r" id="top-login-userinfo">'
             + '<div class="not-login">'
@@ -27,11 +51,16 @@ honey.def(function(H) {
             + '<div class="topnav-l">'
             //+ '<span class="home">金鹰网首页</span>'
             //+ '<span class="mobile">手机客户端</span>'
-            + '<span class="home"><a href="//www.hunantv.com" target="_blank" >金鹰网首页</a></span>'
+            + '<span class="home"><a href="//www.hunantv.com" target="_blank" id="set-home" >设为首页</a></span>'
             + '<span class="mobile"><a href="//www.hunantv.com/app" target="_blank"  >手机客户端</a></span>'
+
+            + '{{#options.show_imgotv}}'
+            + '<span class="mgtvlogo"><a href="http://www.imgo.tv/" target="_blank"  >芒果TV</a></span>'
+            + '{{/options.show_imgotv}}'
+
             + '</div>'
             + '<div class="topnav-r">'
-            + '<div class="login-after">'
+            + '<div class="login-after clearfix">'
             + '<a href="http://spp.hunantv.com/passport/service.php?action=logout&ref='
             + encodeURIComponent(window.location.href) +'"'
             + ' class="exit">退出</a>'
@@ -40,8 +69,12 @@ honey.def(function(H) {
             + '{{^actived}}'
             + '<a href="#" class="not-v">未验证用户</a>'
             + '{{/actived}}'
-            + '<a target="_blank"  href="'+ i +'/{{uid}}" '
-            + 'class="name"><span class="ico"></span><em>{{nickname}}</em><span class="txt">欢迎回来！</span></a>'
+
+            + '<p class="name">'
+            + '<span class="ico"></span>'
+            + '<a target="_blank"  href="'+ i +'/{{uid}}" >{{nickname}}</a>'
+            + '<span class="txt">欢迎回来！</span></p>'
+
             + '</div>'
             + '<ul class="mes-list" id="top-msg-box" style="display:none">'
             + '<li><a target="_blank" href="'+ i +'/message/unread"><span>新私信</span><em>{{message_count}}</em></a></li>'

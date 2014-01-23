@@ -97,5 +97,20 @@ describe("Honey", function () {
         })
     })
 
+    describe('功能函数', function() {
+        before(function() {
+            honey.config({
+                'PROJECT': 'honey.dev',
+                'ROOT': 'http://honey.hunantv.com/honey-2.0/',
+                'PUBROOT': 'http://honey.hunantv.com/honey-2.0/',
+                'DEV': false,
+                'VERSION': '20140110'
+            })
+            honey.go('mod:placeholder')
+        })
+        it('honey.moduleLoaded', function() {
+            //honey.
+        }) 
+    })
 
 });
