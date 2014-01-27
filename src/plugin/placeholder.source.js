@@ -6,52 +6,58 @@
  */
 
 honey.def(function(H) {
-    
-function inputPlaceholder (input, color) {
 
-	if (!input) return null;
+    function hasPlaceholderSupport() {
+        var input = document.createElement('input');
+        return ('placeholder' in input);
+    }
 
-	// Do nothing if placeholder supported by the browser (Webkit, Firefox 3.7)
-	if (input.placeholder && 'placeholder' in document.createElement(input.tagName)) return input;
+    //if (!hasPlaceholderSupport()) {
 
-	color = color || '#AAA';
-	var default_color = input.style.color;
-	var placeholder = input.getAttribute('placeholder');
+    //    var inputs = document.getElementsByTagName('input');
+    //    for (var i=0,  count = inputs.length; i<count; i++) {
+    //        if (inputs[i].getAttribute('placeholder')) {
 
-	if (input.value === '' || input.value == placeholder) {
-		input.value = placeholder;
-		input.style.color = color;
-		input.setAttribute('data-placeholder-visible', 'true');
-	}
+    //            inputs[i].style.cssText = "color:#939393;font-style:italic;"
+    //            inputs[i].value = inputs[i].getAttribute("placeholder");
+    //            inputs[i].onclick = function(){
+    //                if(this.value == this.getAttribute("placeholder")){
+    //                    this.value = '';
+    //                    this.style.cssText = "color:#000;font-style:normal;"
+    //                }
+    //            }
+    //            inputs[i].onblur = function(){
+    //                if(this.value == ''){
+    //                    this.value = this.getAttribute("placeholder");
+    //                    this.style.cssText = "color:#939393;font-style:italic;"
+    //                }
+    //            }
 
-	var add_event = /*@cc_on'attachEvent'||@*/'addEventListener';
+    //        }
+    //    }
 
-	input[add_event](/*@cc_on'on'+@*/'focus', function(){
-	 input.style.color = default_color;
-	 if (input.getAttribute('data-placeholder-visible')) {
-		 input.setAttribute('data-placeholder-visible', '');
-		 input.value = '';
-	 }
-	}, false);
+    //}
 
-	input[add_event](/*@cc_on'on'+@*/'blur', function(){
-		if (input.value === '') {
-			input.setAttribute('data-placeholder-visible', 'true');
-			input.value = placeholder;
-			input.style.color = color;
-		} else {
-			input.style.color = default_color;
-			input.setAttribute('data-placeholder-visible', '');
-		}
-	}, false);
+    H.placeholder = function(_input) {
+        if (hasPlaceholderSupport()) return false
+        if (_input.getAttribute('placeholder')) {
 
-	input.form && input.form[add_event](/*@cc_on'on'+@*/'submit', function(){
-		if (input.getAttribute('data-placeholder-visible')) {
-			input.value = '';
-		}
-	}, false);
+            _input.style.cssText = "color:#939393;font-style:italic;"
+            _input.value = _input.getAttribute("placeholder")
+            _input.onclick = function() {
+                if (this.value == this.getAttribute("placeholder")) {
+                    this.value = ''
+                    this.style.cssText = "color:#000;font-style:normal;"
+                }
+            }
+            _input.onblur = function() {
+                if (this.value == '') {
+                    this.value = this.getAttribute("placeholder")
+                    this.style.cssText = "color:#939393;font-style:italic;"
+                }
+            }
 
-	return input;
-}
-H.placeholder = inputPlaceholder
+        }
+    }
+
 })

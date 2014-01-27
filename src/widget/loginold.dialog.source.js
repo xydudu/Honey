@@ -131,7 +131,7 @@ honey.def('mod:dialog, plugin:pswencode ', function(H) {
         urls = {
             '100': 'qq', '110': 'tencent', '200': 'weibo'
         }
-		url = 'http://oauth.hunantv.com/'+ urls[type] +'/login/web?rs='+ current_url
+		url = 'http://oauth.hunantv.com/'+ urls[type] +'/login/web?from=www&rs='+ current_url
 		window.location = url
 
     }

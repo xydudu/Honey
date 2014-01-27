@@ -28,7 +28,15 @@ honey.def(function(H) {
         basic: '<div class="mod-snav clearfix">'
             + '<div class="topnav">'
             + '<div class="topnav-l">'
+
+            + '{{#is_home}}'
             + '<span class="home"><a href="//www.hunantv.com" target="_blank" id="set-home" >设为首页</a></span>'
+            + '{{/is_home}}'
+
+            + '{{^is_home}}'
+            + '<span class="home"><a href="//www.hunantv.com" target="_blank" >金鹰网首页</a></span>'
+            + '{{/is_home}}'
+
             + '<span class="mobile"><a href="//www.hunantv.com/app" target="_blank"  >手机客户端</a></span>'
             
             + '{{#options.show_imgotv}}'
@@ -51,8 +59,15 @@ honey.def(function(H) {
             + '<div class="topnav-l">'
             //+ '<span class="home">金鹰网首页</span>'
             //+ '<span class="mobile">手机客户端</span>'
+
+            + '{{#is_home}}'
             + '<span class="home"><a href="//www.hunantv.com" target="_blank" id="set-home" >设为首页</a></span>'
-            + '<span class="mobile"><a href="//www.hunantv.com/app" target="_blank"  >手机客户端</a></span>'
+            + '{{/is_home}}'
+
+            + '{{^is_home}}'
+            + '<span class="home"><a href="//www.hunantv.com" target="_blank" >金鹰网首页</a></span>'
+            + '{{/is_home}}'
+
 
             + '{{#options.show_imgotv}}'
             + '<span class="mgtvlogo"><a href="http://www.imgo.tv/" target="_blank"  >芒果TV</a></span>'
@@ -115,6 +130,7 @@ honey.def(function(H) {
             + '</div>'
             + '</form>'
             + '<iframe style="display:none" id="top-login-iframe" name="top-login-iframe"></iframe>'
+            //+ '<iframe style="position:absolute;left:0;top:0;z-index:9999;width:500px;height:500px;" id="top-login-iframe" name="top-login-iframe"></iframe>'
     } 
 
 

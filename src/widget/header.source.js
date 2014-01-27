@@ -5,7 +5,7 @@
 
 honey.def('lib:mustache, tpl:header, plugin:pswencode', function(H) {
 
-    'use strict'
+    //'use strict'
     
     var 
     script,
@@ -34,7 +34,10 @@ honey.def('lib:mustache, tpl:header, plugin:pswencode', function(H) {
             !!(container.compareDocumentPosition(maybe) & 16);
     },
     removeTag = function() {
-        body.removeChild(script) 
+        if (!script || !script.parentNode) return
+        script.parentNode
+            ? script.parentNode.removeChild(script)
+            : body.removeChild(script)
         script = null
     },
     bindEvent = function() {
@@ -43,19 +46,7 @@ honey.def('lib:mustache, tpl:header, plugin:pswencode', function(H) {
         login_trigger = doc.getElementById('top-login-trigger')
 
         //top-login-trigger
-        window.onclick = function(_e) {
-            if (!box) return 
-            var 
-            event = _e || window.event,
-            target = event.target || event.srcElement,
-            display = box.style.display
-            if (
-                !contains(box, target) 
-                && !contains(login_trigger, target)) {
-                    box.style.display = 'none'
-                }
-            //return false
-        }
+
 
         con.onclick = function(_e) {
             var 
@@ -73,10 +64,24 @@ honey.def('lib:mustache, tpl:header, plugin:pswencode', function(H) {
             return funcs[target.id] && funcs[target.id].call(target)
         }
 
-        if (H.placeholder) {
-
-            //H.placeholder()      
+        window.onclick = function(_e) {
+            if (!box) return 
+            var 
+            event = _e || window.event,
+            target = event.target || event.srcElement,
+            display = box.style.display
+            if (
+                !contains(box, target) 
+                && !contains(login_trigger, target)) {
+                    box.style.display = 'none'
+                }
+            //return false
         }
+
+        //if (H.placeholder) {
+
+        //    //H.placeholder()      
+        //}
 
         con.onmouseover = function(_e) {
             var 
@@ -203,7 +208,7 @@ honey.def('lib:mustache, tpl:header, plugin:pswencode', function(H) {
         urls = {
             '100': 'qq', '110': 'tencent', '200': 'weibo'
         },
-		url = 'http://oauth.hunantv.com/'+ urls[type] +'/login/web?rs='+ current_url
+		url = 'http://oauth.hunantv.com/'+ urls[type] +'/login/web?from=www&rs='+ current_url
 		window.location = url
         return false
     },
@@ -231,10 +236,18 @@ honey.def('lib:mustache, tpl:header, plugin:pswencode', function(H) {
     H.header = {
     
         init: function(_id, _options) {
+
+            //var 
+            //s = doc.getElementsByTagName("script"),
+            //l = s.length
+
             con = con || doc.getElementById(_id)
             script = doc.createElement('script')
-            script.src = api
-            body.appendChild(script)
+            script.src = api +'&r='+ Math.random()
+            
+            con.appendChild(script)
+            
+            //s[l-1].parentNode.insertBefore(script, s[l-1])
             options = _options || {}
         },
 
@@ -248,15 +261,18 @@ honey.def('lib:mustache, tpl:header, plugin:pswencode', function(H) {
             !data && (data = {})
             data.options = options
 
+            data.is_home = !!current_url.match(/hunantv\.com(\/?)$/)
+
             var
             html = Mustache.render(_tpl, data)
             con.innerHTML = html
+            //console.log(html)
 
             //if (!data.userinfo) {
             bindEvent()
             //}
 
-            removeTag()
+            //removeTag()
         }
     }
 
