@@ -95,8 +95,10 @@ honey.def('lib:jquery', function(H) {
             + '<tr>'
             
             + '<td class="reply-input">'
+            + '<div class="reply-input-div">'
             + '<div class="notice"></div>'
             + '<input type="text" />'
+            + '</div>'
             + '</td>'
 
             + '</tr>'
