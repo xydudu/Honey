@@ -11,6 +11,7 @@ _*
 *.out
 *.pid
 *.gz
+*.bak
 
 pids
 logs
