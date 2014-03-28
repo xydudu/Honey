@@ -183,7 +183,7 @@ honey.def('lib:mustache, tpl:header, plugin:pswencode', function(H) {
         encode_pass.value = honey.encodePassword(passv)
         form.submit()
         var t = setTimeout(function() {
-            H.header.init()
+            H.header.init(con, options)
             t = null
         }, 1000)
         return false
@@ -252,6 +252,8 @@ honey.def('lib:mustache, tpl:header, plugin:pswencode', function(H) {
         },
 
         back: function(_data) {
+            
+            //console.log('back')
             var 
             data = _data.result.userinfo,
             _tpl = (!data)
@@ -262,6 +264,8 @@ honey.def('lib:mustache, tpl:header, plugin:pswencode', function(H) {
             data.options = options
 
             data.is_home = !!current_url.match(/hunantv\.com(\/?)$/)
+
+            
 
             var
             html = Mustache.render(_tpl, data)

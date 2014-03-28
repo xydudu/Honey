@@ -68,6 +68,8 @@ honey.def(function(H) {
             + '<span class="home"><a href="//www.hunantv.com" target="_blank" >金鹰网首页</a></span>'
             + '{{/is_home}}'
 
+            + '<span class="mobile"><a href="//www.hunantv.com/app" target="_blank"  >手机客户端</a></span>'
+
 
             + '{{#options.show_imgotv}}'
             + '<span class="mgtvlogo"><a href="http://www.imgo.tv/" target="_blank"  >芒果TV</a></span>'

@@ -116,7 +116,10 @@ honey.def('lib:jquery', function(H) {
                 options.times, 
                 function(){
                     inAnim = false;
-                    options.after && options.after.call(elem, elem);
+                    options.after && options.after.call(elem, elem, {
+                        max: max,
+                        current: $attr['scroll'+ (options.direction == 'X' ? 'Left' : 'Top')]
+                    });
                     if (options.autoPlay) {
                         clearTimeout(t);
                         t = setTimeout(function() {
@@ -128,7 +131,9 @@ honey.def('lib:jquery', function(H) {
         }
 
         return {
-            goTo: scroll  
+            goTo: scroll,
+            el_prev : prev,
+            el_next : next
         };
 
     }; 

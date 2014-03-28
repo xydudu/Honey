@@ -39,6 +39,13 @@ newhunantv:
 	@uglifyjs -nc src/head.load.js >> svn/honey.newhunantv.js
 	@uglifyjs -nc src/honey.source.js >> svn/honey.newhunantv.js
 
+hunantvimgotv:
+	@echo 芒果视频 压缩中
+	@uglifyjs -nc src/configs/config.hunantvimgotv.js > svn/honey.hunantv.imgo.js
+	@uglifyjs -nc src/head.load.js >> svn/honey.hunantv.imgo.js
+	@uglifyjs -nc src/honey.source.js >> svn/honey.hunantv.imgo.js
+
+
 
 admanager:
 	@echo 广告系统 压缩中。。。
@@ -61,7 +68,8 @@ docx:
 #uglifyjs $${origin} >> svn/; 
 #echo $${dirname}; 
 
-svn: hunantv compress imgotv ihunantv datahunantv monitor newhunantv admanager
+svn: hunantv compress imgotv ihunantv datahunantv monitor hunantvimgotv admanager
+#svn: hunantvimgotv
 	@for dirname in src/*; do \
 		if [ -d $${dirname} ]; then \
 			for file in $${dirname}/*.source.js; do \

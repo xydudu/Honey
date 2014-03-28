@@ -607,7 +607,8 @@ honey.def('lib:jquery, lib:mustache', function(H) {
                 _.renderItem(comments.pop())
             _.listbox.animate({opacity: 1}, 500)
             _.buildPages(total_number)
-            window.location.hash = _page
+            if (_page > 1)
+                window.location.hash = _page
             _fn && _fn()
         })
 

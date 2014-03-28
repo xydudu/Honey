@@ -36,6 +36,10 @@
 
     </div> 
     <script>
+        honey.config({
+            'ROOT': 'http://honey.hunantv.com/honey/src/',
+            'PUBROOT': 'http://honey.hunantv.com/honey/src/'
+        })
         honey.go('lib:jquery, lib:mustache, plugin:pswencode, '
         + 'tpl:comment, widget:comment', 
         function() {

@@ -1,7 +1,7 @@
 // project config
 var
 PROJECT = 'imgotv', //绑定到项目中
-VERSION = '20130424',
+VERSION = '20140312v1',
 DEV = !!window.DEV, 
 COMBO = false,
 COMBOURL = 'http://honey.hunantv.com/combo/',
