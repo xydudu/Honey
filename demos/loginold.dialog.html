@@ -5,9 +5,9 @@
     <title>Honey Demos - Login.dialog</title>
     <link rel="stylesheet" href="http://honey.hunantv.com/css/honey.css" type="text/css">
 
-    <script src="../../src/configs/config.js"></script>
-    <script src="../../src/head.load.js"></script>
-    <script src="../../src/honey.source.js"></script>
+    <script src="http://honey.hunantv.com/honey/src/configs/config.js"></script>
+    <script src="http://honey.hunantv.com/honey/src/head.load.js"></script>
+    <script src="http://honey.hunantv.com/honey/src/honey.source.js"></script>
 
 </head>
 <body>
@@ -30,6 +30,10 @@
         <option>1</option>
     </select>
     <script>
+        honey.config({
+            'PUBROOT': 'http://honey.hunantv.com/honey/src/',
+            'DEV': true
+        })
         honey.go('lib:jquery, plugin:pswencode, mod:dialog, widget:login.dialog', function() {
             var trigger = $('#trigger');
             trigger.click(function() {

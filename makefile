@@ -68,8 +68,8 @@ docx:
 #uglifyjs $${origin} >> svn/; 
 #echo $${dirname}; 
 
-svn: hunantv compress imgotv ihunantv datahunantv monitor hunantvimgotv admanager
-#svn: hunantvimgotv
+#svn: hunantv compress imgotv ihunantv datahunantv monitor hunantvimgotv admanager
+svn: hunantvimgotv
 	@for dirname in src/*; do \
 		if [ -d $${dirname} ]; then \
 			for file in $${dirname}/*.source.js; do \
