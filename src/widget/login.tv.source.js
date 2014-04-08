@@ -12,6 +12,7 @@ honey.def('mod:dialog, plugin:pswencode ', function(H) {
     H.css('http://honey.hunantv.com/hunantv.imgotv/css/page/webfloat/page-dialog-login.css')
 
     var 
+    userinfo_api = 'http://u.api.hunantv.com/user/get_login_user?callback=?',
     dialog = null,
     current_url = window.location.href,
     id = 'honey-login-dialog',
@@ -35,6 +36,7 @@ honey.def('mod:dialog, plugin:pswencode ', function(H) {
 
     ].join(''),
     con_html = [
+        '<form action="http://spp.hunantv.com/passport/service.php?action=login" method="post" >',
         '<p class="page-float-bg"></p>',
         '<a class="page-float-close honey-dialog-close" href="#">关闭</a>',
         '<div class="page-float-box clearfix">',
@@ -50,7 +52,7 @@ honey.def('mod:dialog, plugin:pswencode ', function(H) {
         ' name="email">',
         '</p>',
         '<p class="lf-box clearfix">',
-        '<input type="text" class="mgtv-input1 password1" placeholder="'+ texts.password +'">',
+        '<input type="password" class="mgtv-input1 password1" placeholder="'+ texts.password +'">',
         '<input type="hidden" class="password" name="password" />',
         '</p>',
 
@@ -66,12 +68,12 @@ honey.def('mod:dialog, plugin:pswencode ', function(H) {
         '<a href="http://passport2.hunantv.com/index.php?ac=findpass">'+ texts.forgetpass +'</a>',
         '</p>',
         // notice
-        //'<p class="lf-box lb-txt1 clearfix">',
-        //'<span class="mgtv-ts4">用户名或密码不正确</span>',
-        //'</p>',
+        '<p style="visibility: hidden" class="lf-box lb-txt1 clearfix" id="honey-dialog-login-notice">',
+        '<span class="mgtv-ts4"></span>',
+        '</p>',
         //notice end
         '<p class="lf-box login-btn clearfix">',
-        '<a href="javascript:" id="honey-dialog-submit" class="mgtv-b8030 mgtv-b11040">登录</a>',
+        '<a href="javascript:" id="honey-dialog-submit" class="mgtv-b8030 mgtv-b11040">'+ texts.submit +'</a>',
         '<span class="mgtv-ts1">'+ texts.needsignup +'</span>',
         '</p>',
         '</div>  ',
@@ -84,9 +86,12 @@ honey.def('mod:dialog, plugin:pswencode ', function(H) {
         '</div>',
         '</div>',
         '</div>',
-        '</div>'
+        '</div>',
+        '</form>'
 
-    ].join('')
+    ].join(''),
+    notice_box
+
 
     H.loginDialog = function() {
         if (!dialog) {
@@ -94,13 +99,20 @@ honey.def('mod:dialog, plugin:pswencode ', function(H) {
                 id: 'honey-login-dialog',
                 html: html,
                 content: con_html,
-                height: 330,
+                height: 370,
                 width: 700,
                 opacity: 0.5
             })
             dialog.init()
             dialog.find('#honey-dialog-submit').click(login)
             dialog.find('.thired-parts a').click(third)
+            dialog.find('.email').click(function() {
+                hideNotice()
+            })
+            dialog.find('.password1').click(function() {
+                hideNotice()
+            })
+
 
             $(document).keydown(function(event){
                 var keycode = (event.keyCode ? event.keyCode : event.which)
@@ -111,18 +123,36 @@ honey.def('mod:dialog, plugin:pswencode ', function(H) {
             if ($.fn.placeholder) {
                 dialog.find('input').placeholder()
             }
+            notice_box = dialog.find('#honey-dialog-login-notice')
+
         }
         dialog.open()
     }
 
+    var loading_t
     function showLoading(_) {
-        _.addClass('bl-loading')
-        _.find('em').show()
+        var i = 0
+
+        loading_t = setInterval(function() {
+            i ++
+            _.text('正在登录 '+ Array(i).join('.'))
+            if (i > 3) i = 0
+        }, 500)
+
     }
     function hideLoading(_) {
-        _.removeClass('bl-loading')
-        _.find('em').hide()
+        _.text(texts.submit)
+        clearInterval(loading_t)
     }
+    function showNotice(_msg) {
+        notice_box.css('visibility', 'visible') 
+        notice_box.children('span').text(_msg)
+    }
+
+    function hideNotice() {
+        notice_box.css('visibility', 'hidden') 
+    }
+    
 
     function login(e) {
         e.preventDefault() 
@@ -139,28 +169,95 @@ honey.def('mod:dialog, plugin:pswencode ', function(H) {
         showLoading(_)
         
         if ($.trim(emailv) == '') {
-            alert('请输入您的金鹰网帐号')
+            showNotice('请输入您的帐号')
             email.focus()
             hideLoading(_)
             return false
         }
 
-        if (!reg.test(emailv)) {
-            alert('邮箱格式不正确')
-            email.focus()
-            hideLoading(_)
-            return false
+        if (/\d+/.test(emailv)) {
+            if (eamilv.length !== 11) {
+                showNotice('手机号格式不正确')
+                email.focus()
+                hideLoading(_)
+                return false
+            }
+        } else {
+            if (!reg.test(emailv)) {
+                showNotice('邮箱格式不正确')
+                email.focus()
+                hideLoading(_)
+                return false
+            }
         }
+        
 
         if ($.trim(passv) == '') {
-            alert('密码不能为空')
+            showNotice('密码不能为空')
             pass.focus()
             hideLoading(_)
             return false
         }
          
-        pass1.val(honey.encodePassword(passv))
-        form.submit()
+        passv = honey.encodePassword(passv)
+        pass1.val(passv)
+
+        hideNotice()
+
+        doAjaxLogin.call(_, {
+            username: emailv,
+            password: passv
+        })
+
+        return false
+        //form.submit()
+    }
+
+    function doAjaxLogin(_data) {
+        var 
+        _ = this,
+        url = 'http://spp.hunantv.com/ajax_login.php?callback=?'
+
+        _data.jsonp = 1
+        _data.app = 'www'
+
+        $.getJSON(url, _data, function(_url) {
+            if (!~~_url.errcode) {
+                $('<iframe />').hide().attr('src', _url.msg).appendTo('body')
+                checkLogin()
+            } else {
+                showNotice(_url.message)
+            }
+            hideLoading(_)
+        })
+        return false
+    }
+
+    var 
+    check_t,
+    check_nums = 0
+    function checkLogin() {
+        check_nums ++
+        if (check_nums > 10) {
+            showNotice('登录超时')
+            clearTimeout(check_t)
+            check_nums = 0
+            return
+        }
+        
+        $.getJSON(userinfo_api, function(_data) {
+            if (_data.code < 0)  {
+                check_t = setTimeout(checkLogin, 500)
+            }
+            if (~~_data.code === 200) {
+                dialog.destroy()
+                clearTimeout(check_t)
+                check_nums = 0
+                if (H.headerInfo)
+                    H.headerInfo().refresh()
+            }
+        }) 
+    
     }
 
     function third() {
@@ -169,9 +266,13 @@ honey.def('mod:dialog, plugin:pswencode ', function(H) {
         urls = {
             '100': 'qq', '110': 'tencent', '200': 'weibo'
         },
-		url = 'http://oauth.hunantv.com/'+ urls[type] +'/login/web?from=www&rs='+ current_url
-		window.location = url
+		url = 'http://oauth.hunantv.com/'+ urls[type] +'/login/web?from=www&rs=http://www.hunantv.com/login/3rd_callback.html'
+        
+        window.open(url, '_blank', 'width=500, height=400')
+        checkLogin()
 
+        return false
+		//window.location = url
     }
 
 })

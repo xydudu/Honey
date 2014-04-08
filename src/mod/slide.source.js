@@ -37,6 +37,11 @@ honey.def('lib:jquery', function(H) {
         max = 0,
         t = null;
 
+        // reset
+        con.scrollLeft(0)
+        con.scrollTop(0)
+        
+
         //!s.length && HN.debug('没有找到id为"'+ options.slideId +'"的东东');
 
         distance = options[worh] || $(items[0])['outer'+worh](true);
@@ -133,7 +138,8 @@ honey.def('lib:jquery', function(H) {
         return {
             goTo: scroll,
             el_prev : prev,
-            el_next : next
+            el_next : next,
+            el: s
         };
 
     }; 
