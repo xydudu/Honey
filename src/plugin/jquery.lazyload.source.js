@@ -240,3 +240,7 @@
     });
 
 })(jQuery, window, document);
+
+if ($('img.lazy').length) {
+    $('img.lazy').lazyload()
+}
