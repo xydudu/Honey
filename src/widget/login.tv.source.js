@@ -104,11 +104,12 @@ honey.def('mod:dialog, plugin:pswencode ', function(H) {
                 opacity: 0.5
             })
             dialog.init()
+            dialog.reInit = true
             dialog.find('#honey-dialog-submit').click(login)
             dialog.find('.thired-parts a').click(third)
             dialog.find('.email').click(function() {
                 hideNotice()
-            })
+            }).focus()
             dialog.find('.password1').click(function() {
                 hideNotice()
             })
@@ -117,7 +118,7 @@ honey.def('mod:dialog, plugin:pswencode ', function(H) {
             $(document).keydown(function(event){
                 var keycode = (event.keyCode ? event.keyCode : event.which)
                 if(keycode == '13'){
-                    login.call(this, event)
+                    dialog.find('#honey-dialog-submit').trigger('click')
                 }
             })
             if ($.fn.placeholder) {
@@ -159,6 +160,7 @@ honey.def('mod:dialog, plugin:pswencode ', function(H) {
         var 
         _ = $(this),
         reg = /^([a-zA-Z0-9\_\.\-])+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/gi,
+        mobile_reg =/(^(([0\+]\d{2,3}-)?(0\d{2,3})-)(\d{7,8})(-(\d{3,}))?$)|(^0{0,1}1[3|4|5|6|7|8|9][0-9]{9}$)/,
         form = dialog.find('form'),
         email = form.find('.email'),
         emailv = email.val(),
@@ -175,21 +177,37 @@ honey.def('mod:dialog, plugin:pswencode ', function(H) {
             return false
         }
 
-        if (/\d+/.test(emailv)) {
-            if (eamilv.length !== 11) {
-                showNotice('手机号格式不正确')
-                email.focus()
-                hideLoading(_)
-                return false
-            }
-        } else {
+
+        //if (/\d+/.test(emailv)) {
+        //    if (emailv.length !== 11) {
+        //        showNotice('手机号格式不正确')
+        //        email.focus()
+        //        hideLoading(_)
+        //        return false
+        //    }
+        //} else {
+
+        if (emailv.indexOf('@') > 0 ) {
+
             if (!reg.test(emailv)) {
-                showNotice('邮箱格式不正确')
+                showNotice('邮箱或手机格式不正确')
                 email.focus()
                 hideLoading(_)
                 return false
             }
-        }
+
+        } else {
+
+            if (!mobile_reg.test(emailv)) {
+                showNotice('邮箱或手机格式不正确')
+                email.focus()
+                hideLoading(_)
+                return false
+            }
+
+        } 
+
+        //}
         
 
         if ($.trim(passv) == '') {
@@ -238,7 +256,7 @@ honey.def('mod:dialog, plugin:pswencode ', function(H) {
     check_nums = 0
     function checkLogin() {
         check_nums ++
-        if (check_nums > 10) {
+        if (check_nums > 50) {
             showNotice('登录超时')
             clearTimeout(check_t)
             check_nums = 0
