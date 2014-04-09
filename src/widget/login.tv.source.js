@@ -25,7 +25,7 @@ honey.def('mod:dialog, plugin:pswencode ', function(H) {
         verify: '验证码',
         setcookie: '记住我',
         forgetpass: '忘记密码？',
-        needsignup: '没有账号？ <a href="http://i.hunantv.com/register" target="_blank">马上注册</a>',
+        needsignup: '没有帐号？ <a href="http://i.hunantv.com/register" target="_blank">马上注册</a>',
         signup: '<a target="_blank" href="http://i.hunantv.com/register">注册</a>'
     },
     html = [
@@ -78,9 +78,9 @@ honey.def('mod:dialog, plugin:pswencode ', function(H) {
         '</p>',
         '</div>  ',
         '<div class="plmb-right">',
-        '<p class="plmb-right-til">使用第三方账号登录</p>',
+        '<p class="plmb-right-til">使用第三方帐号登录</p>',
         '<p class="plmb-right-btn thired-parts">',
-        '<a class="mgtv-bqq qq" href="#100">QQ账号</a>',
+        '<a class="mgtv-bqq qq" href="#100">QQ帐号</a>',
         '<a class="mgtv-bsina sina" href="#200">新浪微博</a>',
         '</p>',
         '</div>',
