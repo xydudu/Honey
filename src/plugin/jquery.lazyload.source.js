@@ -35,11 +35,15 @@
         function update() {
             var counter = 0;
 
+            var __i = 0
             elements.each(function() {
                 var $this = $(this);
+                __i ++
+
                 if (settings.skip_invisible && !$this.is(":visible")) {
                     return;
                 }
+
                 if ($.abovethetop(this, settings) ||
                     $.leftofbegin(this, settings)) {
                         /* Nothing. */
@@ -50,7 +54,7 @@
                         counter = 0;
                 } else {
                     if (++counter > settings.failure_limit) {
-                        return false;
+                        //return false;
                     }
                 }
             });
@@ -240,7 +244,3 @@
     });
 
 })(jQuery, window, document);
-
-if ($('img.lazy').length) {
-    $('img.lazy').lazyload()
-}
