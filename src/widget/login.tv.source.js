@@ -224,7 +224,8 @@ honey.def('mod:dialog, plugin:pswencode ', function(H) {
 
         doAjaxLogin.call(_, {
             username: emailv,
-            password: passv
+            password: passv,
+            current_url: current_url
         })
 
         return false
@@ -263,19 +264,21 @@ honey.def('mod:dialog, plugin:pswencode ', function(H) {
             return
         }
         
-        $.getJSON(userinfo_api, function(_data) {
-            if (_data.code < 0)  {
-                check_t = setTimeout(checkLogin, 500)
-            }
-            if (~~_data.code === 200) {
-                dialog.destroy()
-                clearTimeout(check_t)
-                check_nums = 0
-                if (H.headerInfo)
-                    H.headerInfo().refresh()
-            }
-        }) 
-    
+        if (/login\-ok/.test(window.location)) {
+            $.getJSON(userinfo_api, function(_data) {
+                if (_data.code < 0)  {
+                    check_t = setTimeout(checkLogin, 500)
+                }
+                if (~~_data.code === 200) {
+                    dialog.destroy()
+                    clearTimeout(check_t)
+                    check_nums = 0
+                    if (H.headerInfo)
+                        H.headerInfo().refresh()
+                }
+            })   
+        }
+        check_t = setTimeout(checkLogin, 500)
     }
 
     function third() {
