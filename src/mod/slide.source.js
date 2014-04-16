@@ -37,6 +37,11 @@ honey.def('lib:jquery', function(H) {
         max = 0,
         t = null;
 
+        if (itemLen < options.showItems + 1) {
+            prev.hide()
+            next.hide()
+        }
+
         // reset
         con.scrollLeft(0)
         con.scrollTop(0)
@@ -75,6 +80,33 @@ honey.def('lib:jquery', function(H) {
                 return false;
             }); 
         } 
+
+        // 可触摸
+        //if ('ontouchstart' in window || 'onmsgesturechange' in window ) {
+        //    box.bind('touchstart', function() {
+        //    
+        //    })
+        //    box.bind('touchmove', function() {
+        //    
+        //    })
+        //    $('docment').bind('touchend', function() {
+        //        
+        //    })
+        //}
+
+        if ($.fn.lazyload) {
+            var 
+            i = 0,
+            imgs = box.find('img.lazy')
+            imgs.lazyload()
+            imgs.each(function(_item) {
+                i ++
+                if (i < 6) {
+                    $(_item).trigger('appear')
+                }
+
+            })
+        }
         
         function scroll($isNext) {
             var 

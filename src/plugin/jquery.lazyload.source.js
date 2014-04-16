@@ -44,17 +44,25 @@
                     return;
                 }
 
-                if ($.abovethetop(this, settings) ||
-                    $.leftofbegin(this, settings)) {
-                        /* Nothing. */
-                } else if (!$.belowthefold(this, settings) &&
+                //if ($.abovethetop(this, settings) ||
+                //    $.leftofbegin(this, settings)) {
+                //        /* Nothing. */
+
+                //} else 
+                
+                if ($.abovethetop(this, settings)) {
+                    $this.trigger("appear");
+                    counter = 0;
+                }
+
+                if (!$.belowthefold(this, settings) &&
                     !$.rightoffold(this, settings)) {
                         $this.trigger("appear");
                         /* if we found an image we'll load, reset the counter */
                         counter = 0;
                 } else {
                     if (++counter > settings.failure_limit) {
-                        //return false;
+                        return false;
                     }
                 }
             });
