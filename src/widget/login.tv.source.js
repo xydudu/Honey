@@ -267,18 +267,22 @@ honey.def('mod:dialog, plugin:pswencode ', function(H) {
         if (/login\-ok/.test(window.location)) {
             $.getJSON(userinfo_api, function(_data) {
                 if (_data.code < 0)  {
+                    clearTimeout(check_t)
                     check_t = setTimeout(checkLogin, 500)
                 }
                 if (~~_data.code === 200) {
                     dialog.destroy()
                     clearTimeout(check_t)
                     check_nums = 0
+                    window.location.hash = ''
                     if (H.headerInfo)
                         H.headerInfo().refresh()
                 }
             })   
+        } else {
+            clearTimeout(check_t)
+            check_t = setTimeout(checkLogin, 500)
         }
-        check_t = setTimeout(checkLogin, 500)
     }
 
     function third() {
@@ -287,10 +291,11 @@ honey.def('mod:dialog, plugin:pswencode ', function(H) {
         urls = {
             '100': 'qq', '110': 'tencent', '200': 'weibo'
         },
-		url = 'http://oauth.hunantv.com/'+ urls[type] +'/login/web?from=www&rs=http://www.hunantv.com/login/3rd_callback.html'
+		url = 'http://oauth.hunantv.com/'+ urls[type] +'/login/web?from=www&rs=http://i.hunantv.com/connect/dialog'
         
         window.open(url, '_blank', 'width=500, height=400')
-        checkLogin()
+        window.location.hash = 'login-ok'
+        setTimeout(checkLogin, 3000)
 
         return false
 		//window.location = url
